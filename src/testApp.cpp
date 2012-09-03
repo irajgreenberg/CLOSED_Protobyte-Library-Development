@@ -1,5 +1,9 @@
 #include "testApp.h"
 
+//GLfloat lightOnePosition[] = {40.0, 40, 100.0, 0.0};
+GLfloat lightOnePosition[] = {400.0, 40, 100.0, 1.0};
+GLfloat lightOneColor[] = {0.99, 0.99, 0.99, 1.0};
+
 //--------------------------------------------------------------
 void testApp::setup(){
     // single particle
@@ -12,11 +16,11 @@ void testApp::setup(){
         float y = ofRandom(-3, 5);
         float xs = ofRandom(-1.8, 1.8);
         float ys = ofRandom(.75, 1.3);
-        parts.push_back(Particle(ofVec2f(x, y), ofVec2f(xs, ys)));  
+        parts.push_back(Particle(ofVec2f(x, y), ofVec2f(xs, ys)));
     }
     
     //ProtoOrg
-    pOrg = ProtoOrg001(60, 60, 200);
+    pOrg = ProtoOrg001(30, 30, 200);
     //pOrg.spines = 75;
     pOrg.init();
     
@@ -38,19 +42,32 @@ void testApp::setup(){
     
     
     ofEnableAlphaBlending(); // enable alpha
+    glEnable (GL_DEPTH_TEST);
+    glShadeModel (GL_SMOOTH);
+	
+    
+    /* initialize lighting */
+    glLightfv (GL_LIGHT0, GL_POSITION, lightOnePosition);
+    glLightfv (GL_LIGHT0, GL_DIFFUSE, lightOneColor);
+    glEnable (GL_LIGHT0);
+    
+    //glEnable (GL_LIGHTING);
+    //glColorMaterial (GL_FRONT_AND_BACK, GL_DIFFUSE);
+    //glEnable (GL_COLOR_MATERIAL)
+    
     //ofSetBackgroundAuto(false); //disable automatic background redraw
-   
+    
     //ofLogVerbose() << "a verbose print";
     //ofLogNotice() << "a regular notice print";
-
-
+    
+    
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
     p.move();
     
-     // particles
+    // particles
     for(int i=0; i<PARTICLE_COUNT; i++){
         parts[i].move();
     }
@@ -59,11 +76,11 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
     
-    cam.begin();		
+    cam.begin();
     
     ofRotateX(180);
-   // ofRotateY(ofRadToDeg(-.5));
-
+    // ofRotateY(ofRadToDeg(-.5));
+    
     
     ofSetColor(255,130,0);
     ofFill();
@@ -73,66 +90,70 @@ void testApp::draw(){
     ofSetColor(75, 75, 255, 20);
     ofFill();
     for(int i=0; i<PARTICLE_COUNT; i++){
-       // parts[i].display();
+        // parts[i].display();
     }
-   
     
-    ofSetColor(0, 100, 0, 45);
-    ofNoFill();
+    
+    ofSetColor(0, 100, 0, 90);
+    //ofNoFill();
     ofPushMatrix();
     
     //ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
     //ofScale(1.9, 1.9, 1.9);
-   // pOrg.display(1);
-    pOrg.display(2);
+    //pOrg.display(2);
+    //pOrg.displayNormals();
+    
+    ofSetColor(255, 127, 0);
+    ofNoFill();
+    pOrg.display();
     ofPopMatrix();
     
-   cam.end();
-      
-
+    cam.end();
+    
+    
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y){
-
+    
 }
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void testApp::mouseReleased(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void testApp::windowResized(int w, int h){
-
+    
 }
 
 //--------------------------------------------------------------
 void testApp::gotMessage(ofMessage msg){
-
+    
 }
 
 //--------------------------------------------------------------
 void testApp::dragEvent(ofDragInfo dragInfo){ 
-
+    
 }

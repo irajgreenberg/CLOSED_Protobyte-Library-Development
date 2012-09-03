@@ -20,16 +20,18 @@ public:
     IGFace3D(ofVec3f vecs[3]);
     IGFace3D(ofVec3f* p_vecs[3]);
     
-    ofVec3f nrml;
+    ofVec3f normal, centroid;
     ofVec3f* vecs; // pointer to array
     ofVec3f* p_vecs[3]; // array of vec pointers
     
     ofVec3f& getNormal();
     
     void display();
+    void displayNormal();
     
 private:
     void calcNormal();
+    void calcCentroid();
     
     
 };

@@ -29,11 +29,16 @@ public:
     
     ofVec3f apex; // top point
     vector< vector <ofVec3f> > vecs2D;
+    //vector <ofVec3f> vecs1D;
+    vector <GLint> indices;
+    vector <GLfloat>  vertices;
+    vector <GLfloat>  normals;
     vector <IGFace3D>  faces;
     
     // to dynamically fill
     // vecs2D.push_back ( vector<ofVec3f>() );
-    vector<int> indices;
+    //vector<int> indices;
+   
 
     
     // each vertex in multiple faces. Use address of each face to test for
@@ -43,12 +48,14 @@ public:
     void init(); // do vertex calcs
     void display();
     void display(int renderStyle);
+    void displayNormals();
     
    
     
     
 private:
     // make more politiclaly correct eventually
+    void calculateVertexNormals();
     
 };
 
