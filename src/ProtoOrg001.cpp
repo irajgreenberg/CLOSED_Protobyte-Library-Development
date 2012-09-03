@@ -16,7 +16,7 @@ spines(spines), spineDetail(spineDetail), radius(radius)
 
 void ProtoOrg001::init()
 {
-
+    
     // apex vertex
     float x = (cos(PI/4-PI) - sin(PI/4-PI))*radius;
     float y = radius/2+(sin(PI/4-PI) + cos(PI/4-PI))*radius;
@@ -28,13 +28,13 @@ void ProtoOrg001::init()
         float theta = -PI/4; // spine detail arc
         
         // add each vector to 2d vector
-        vecs2D.push_back ( vector<ofVec3f>() ); 
+        vecs2D.push_back ( vector<ofVec3f>() );
         
         // START CALCULATE VERTICES
         for(int j=0; j<spineDetail-1; j++){
             /* 1.  Z rotation for inital spine
              x' = x*cos q - y*sin q
-             y' = x*sin q + y*cos q 
+             y' = x*sin q + y*cos q
              */
             x = (cos(theta) - sin(theta))*radius;
             y = radius/2+(sin(theta) + cos(theta))*radius;
@@ -42,7 +42,7 @@ void ProtoOrg001::init()
             
             /* 2.  y rotation to place spines
              // eventually concatenate expressions
-             x' = z*sin q + x*cos q 
+             x' = z*sin q + x*cos q
              z' = z*cos q - x*sin q
              */
             float x2 = z*cos(phi) - x*sin(phi);
@@ -55,24 +55,24 @@ void ProtoOrg001::init()
             vertices.push_back(x2);
             vertices.push_back(y);
             vertices.push_back(z2);
-            //vecs1D.push_back(ofVec3f(x2, y, z2));
+            vecs1D.push_back(ofVec3f(x2, y, z2));
             theta -= PI/2/spineDetail;
             
-        } 
+        }
         phi += PI*2/spines;
     }
-     // add final apex
+    // add final apex
     vertices.push_back(apex.x);
     vertices.push_back(apex.y);
     vertices.push_back(apex.z);
     // END VERTICES
     
     
-      // START CALCULATE FACES AND INDICES
-      // quad face divided into 2 tri faces
+    // START CALCULATE FACES AND INDICES
+    // quad face divided into 2 tri faces
     
     // NOTE put Apex at end of vertices array
-   int apexPos = spines * (spineDetail-1);
+    int apexPos = spines * (spineDetail-1);
     for(int i=0; i<spines; i++){
         for(int j=0; j<spineDetail-1; j++){
             GLint sd = spineDetail-1;
@@ -97,7 +97,7 @@ void ProtoOrg001::init()
                     
                     indices.push_back(prevBot); indices.push_back(apexPos); indices.push_back(nextBot);
                 }
-            
+                
                 // close spines
             }  else {
                 if (j<spineDetail-2){
@@ -112,9 +112,12 @@ void ProtoOrg001::init()
                     faces.push_back(IGFace3D(&(vecs2D[i][j]), &apex, &(vecs2D[0][j])));
                     
                     indices.push_back(prevBot); indices.push_back(apexPos); indices.push_back(j);
-                } 
+                }
             }
         } // END CALCULATE FACES AND INDICES
+        
+        // calculate normals
+        calculateVertexNormals();
         
     }
     
@@ -128,10 +131,39 @@ void ProtoOrg001::init()
 
 void ProtoOrg001::calculateVertexNormals()
 {
-    for(int i=0; i<vertices.size(); i++){
+  /*  for(int i=0; i<vecs1D.size(); i++){
+        norms.push_back(ofVec3f());
+        ofVec3f temp;
         for(int j=0; j<faces.size(); j++){
-        
+            if(&vecs1D[i] == faces[j].p_vecs[0] || &vecs1D[i] == faces[j].p_vecs[1] || &vecs1D[i] == faces[j].p_vecs[2]){
+                norms[i] += faces[j].getNormal();
+                
+            }
+            
         }
+    }*/
+    
+    for(int i=0; i<vecs2D.size(); i++){
+        for(int j=0; j<vecs2D[i].size(); j++){
+            ofVec3f temp;
+            norms.push_back(ofVec3f());
+            for (int k=0; k<faces.size(); k++){
+                if(&vecs2D[i][j] == faces[k].p_vecs[0] || &vecs2D[i][j] == faces[k].p_vecs[1] || &vecs2D[i][j] == faces[k].p_vecs[2]){
+                    norms[vecs2D[i].size()*i + j] += faces[j].getNormal();
+                    
+                }
+            }
+            
+        }
+    }
+    
+    
+    
+    for (int i=0, j=0; i<norms.size(); i++, j+=3){
+        norms[i].normalize();
+        normals.push_back(norms[i].x);
+        normals.push_back(norms[i].y);
+        normals.push_back(norms[i].z);
     }
 }
 
@@ -145,6 +177,7 @@ void ProtoOrg001::display(int renderStyle)
                 ofBeginShape();
                 
                 for(int j=0; j<vecs2D[i].size(); j++){
+                    glNormal3f(norms[vecs2D[i].size()*i+j].x, norms[vecs2D[i].size()*i+j].y, norms[vecs2D[i].size()*i+j].z);
                     ofVertex(vecs2D[i][j].x, vecs2D[i][j].y, vecs2D[i][j].z);
                 }
                 ofVertex(apex.x, apex.y, apex.z);
@@ -189,7 +222,7 @@ void ProtoOrg001::display()
 	//set the pointers
 	//glTexCoordPointer(2,GL_FLOAT,sizeof(GL_FLOAT) * 5,evilPointer);
 	glVertexPointer (3, GL_FLOAT, 0, &vertices[0]);
-	//glNormalPointer(GL_FLOAT, 0, normallist);
+	glNormalPointer(GL_FLOAT, 0, &normals[0]);
 	
 	//Draw Protobyte
     int elementCount = ((spines*(spineDetail-1)*2)+spines)*3;
@@ -197,7 +230,7 @@ void ProtoOrg001::display()
 	
 	//disable the client state and texture
 	//glDisable(GL_TEXTURE_2D);
-	//glDisableClientState(GL_NORMAL_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
 	//glDisableClientState (GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState (GL_VERTEX_ARRAY);
 	
@@ -211,5 +244,5 @@ void ProtoOrg001::displayNormals()
     for(int i=0; i<faces.size(); i++){
         faces[i].displayNormal();
     }
-
+    
 }

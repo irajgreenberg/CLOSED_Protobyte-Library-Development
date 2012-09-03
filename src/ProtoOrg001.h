@@ -29,9 +29,10 @@ public:
     
     ofVec3f apex; // top point
     vector< vector <ofVec3f> > vecs2D;
-    //vector <ofVec3f> vecs1D;
+    vector <ofVec3f> vecs1D;
     vector <GLint> indices;
     vector <GLfloat>  vertices;
+    vector <ofVec3f>  norms;
     vector <GLfloat>  normals;
     vector <IGFace3D>  faces;
     

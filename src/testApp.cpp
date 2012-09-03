@@ -1,7 +1,7 @@
 #include "testApp.h"
 
 //GLfloat lightOnePosition[] = {40.0, 40, 100.0, 0.0};
-GLfloat lightOnePosition[] = {400.0, 40, 100.0, 1.0};
+GLfloat lightOnePosition[] = {0.0, 40, 400.0, 1.0};
 GLfloat lightOneColor[] = {0.99, 0.99, 0.99, 1.0};
 
 //--------------------------------------------------------------
@@ -20,13 +20,13 @@ void testApp::setup(){
     }
     
     //ProtoOrg
-    pOrg = ProtoOrg001(30, 30, 200);
+    pOrg = ProtoOrg001(28, 28, 200);
     //pOrg.spines = 75;
     pOrg.init();
     
     // environment states
     ofSetCircleResolution(20);
-	ofBackground(255,255,255);
+	ofBackground(0,0,0);
 	ofSetWindowTitle("particles example");
     ofSetFrameRate(60);
     
@@ -43,7 +43,7 @@ void testApp::setup(){
     
     ofEnableAlphaBlending(); // enable alpha
     glEnable (GL_DEPTH_TEST);
-    glShadeModel (GL_SMOOTH);
+    //glShadeModel (GL_SMOOTH);
 	
     
     /* initialize lighting */
@@ -51,9 +51,9 @@ void testApp::setup(){
     glLightfv (GL_LIGHT0, GL_DIFFUSE, lightOneColor);
     glEnable (GL_LIGHT0);
     
-    //glEnable (GL_LIGHTING);
-    //glColorMaterial (GL_FRONT_AND_BACK, GL_DIFFUSE);
-    //glEnable (GL_COLOR_MATERIAL)
+    glEnable (GL_LIGHTING);
+    glColorMaterial (GL_FRONT_AND_BACK, GL_DIFFUSE);
+    glEnable (GL_COLOR_MATERIAL);
     
     //ofSetBackgroundAuto(false); //disable automatic background redraw
     
@@ -104,8 +104,10 @@ void testApp::draw(){
     //pOrg.displayNormals();
     
     ofSetColor(255, 127, 0);
-    ofNoFill();
-    pOrg.display();
+    //ofNoFill();
+    pOrg.display(2);
+    ofSetColor(175, 95, 30);
+    //pOrg.display(2);
     ofPopMatrix();
     
     cam.end();
