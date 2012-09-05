@@ -3,9 +3,8 @@
 using namespace ijg;
 
 
-//GLfloat lightOnePosition[] = {40.0, 40, 100.0, 0.0};
-GLfloat lightOnePosition[] = {0.0, 40, 400.0, 1.0};
-GLfloat lightOneColor[] = {0.99, 0.99, 0.99, 1.0};
+GLfloat lightOnePosition[] = {0, 0, 0, 1.0};
+GLfloat lightOneColor[] = {255, 255, 255, 1.0};
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -23,9 +22,10 @@ void testApp::setup(){
     }
     
     //ProtoOrg
-    pOrg = ProtoOrg001(28, 28, 200);
+   // pOrg = ProtoOrg001(28, 28, 200);
     //pOrg.spines = 75;
-    pOrg.init();
+   // pOrg.init();
+    
     
     // environment states
     ofSetCircleResolution(20);
@@ -97,23 +97,27 @@ void testApp::draw(){
     }
     
     
-    ofSetColor(0, 100, 0, 90);
+    ofSetColor(0, 255, 0);
     //ofNoFill();
     ofPushMatrix();
+    ofScale(300, 300, 300);
+    pBase.display();
     
     //ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
     //ofScale(1.9, 1.9, 1.9);
     //pOrg.display(2);
     //pOrg.displayNormals();
     
-    ofSetColor(255, 127, 0);
-    //ofNoFill();
-    pOrg.display(2);
-    ofSetColor(175, 95, 30);
+    
+    ofNoFill();
+    ofSetColor(255, 255, 255);
+    pBase.displayNormals();
+    //pOrg.display(2);
+    //ofSetColor(175, 95, 30);
     //pOrg.display(2);
     ofPopMatrix();
     
-    cam.end();
+       cam.end();
     
     
 }

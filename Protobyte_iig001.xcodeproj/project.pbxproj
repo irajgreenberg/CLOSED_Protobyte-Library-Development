@@ -68,7 +68,7 @@
 		2A413E2415F7CC640066A6C1 /* Tuple3i.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tuple3i.h; sourceTree = "<group>"; };
 		2A413E2515F7CC710066A6C1 /* Tuple3i.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tuple3i.cpp; sourceTree = "<group>"; };
 		2A413E2715F7CF840066A6C1 /* ProtoOrgBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoOrgBase.cpp; sourceTree = "<group>"; };
-		2A8DE23715EFB2C400FC89C3 /* Face3D.h */ = {isa = PBXFileReference; path = Face3D.h; sourceTree = "<group>"; };
+		2A8DE23715EFB2C400FC89C3 /* Face3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Face3D.h; sourceTree = "<group>"; };
 		2A8DE23815EFB2D000FC89C3 /* Face3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Face3D.cpp; sourceTree = "<group>"; };
 		2A8DE25215F1010A00FC89C3 /* IGConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGConstants.h; sourceTree = "<group>"; };
 		2A9BD1FE15EE862400FD9060 /* ProtoOrg001.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ProtoOrg001.h; path = src/ProtoOrg001.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };

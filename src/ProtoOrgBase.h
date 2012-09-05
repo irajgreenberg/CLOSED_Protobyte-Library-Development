@@ -40,19 +40,28 @@ namespace ijg {
         // prototypes
         explicit ProtoOrgBase(); // cster 
         virtual ~ProtoOrgBase(); // for super (base) class
+        void display();
         void display(int renderStyle);
         void displayNormals();
         void move();
+        
+        //VertexPacked_VNC getData();
         
         
         
         
     private:
         // vertex calculations
-        void init(); 
+        void init();
+            
+        // vertex calculations
+        void calcVerts();
         
         // vertex normals calculations
-        void calculateVertexNormals();
+        void calcNormals();
+        
+        // primitves for drawElements
+        void calcPrimitives();
         
     };
 }

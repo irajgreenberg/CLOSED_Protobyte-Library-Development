@@ -4,12 +4,16 @@
 #include "Particle.h"
 #include "ProtoOrg001.h"
 
+#include "ProtoOrgBase.h"
+
 class testApp : public ofBaseApp{
 
 public:
     
     Particle p;
     ijg::ProtoOrg001 pOrg;
+    
+    ijg::ProtoOrgBase pBase;
     
     
     static const int PARTICLE_COUNT=2000;

@@ -92,7 +92,7 @@ void Face3D::displayNormal()
     ofPushStyle();
     
     ofNoFill();
-    ofSetColor(100, 100, 100);
+    ofSetColor(255, 255, 255);
     //ofBeginShape();
     glBegin(GL_LINES);
     glVertex3f(centroid.x, centroid.y, centroid.z);
