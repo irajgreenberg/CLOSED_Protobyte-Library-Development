@@ -9,6 +9,8 @@
 #include <iostream>
 #include "ProtoOrg001.h"
 
+using namespace ijg;
+
 ProtoOrg001::ProtoOrg001(int spines, int spineDetail, float radius):
 spines(spines), spineDetail(spineDetail), radius(radius)
 {
@@ -85,15 +87,15 @@ void ProtoOrg001::init()
             if (i<spines-1){
                 
                 if (j<spineDetail-2){
-                    faces.push_back(IGFace3D(&(vecs2D[i][j]), &(vecs2D[i][j+1]), &(vecs2D[i+1][j+1])));
-                    faces.push_back(IGFace3D(&(vecs2D[i][j]), &(vecs2D[i+1][j+1]), &(vecs2D[i+1][j])));
+                    faces.push_back(Face3D(&(vecs2D[i][j]), &(vecs2D[i][j+1]), &(vecs2D[i+1][j+1])));
+                    faces.push_back(Face3D(&(vecs2D[i][j]), &(vecs2D[i+1][j+1]), &(vecs2D[i+1][j])));
                     
                     indices.push_back(prevBot); indices.push_back(prevTop); indices.push_back(nextTop);
                     indices.push_back(prevBot); indices.push_back(nextTop); indices.push_back(nextBot);
                     
                 } else {
                     // connect spine to apex
-                    faces.push_back(IGFace3D(&(vecs2D[i][j]), &apex, &(vecs2D[i+1][j])));
+                    faces.push_back(Face3D(&(vecs2D[i][j]), &apex, &(vecs2D[i+1][j])));
                     
                     indices.push_back(prevBot); indices.push_back(apexPos); indices.push_back(nextBot);
                 }
@@ -101,15 +103,15 @@ void ProtoOrg001::init()
                 // close spines
             }  else {
                 if (j<spineDetail-2){
-                    faces.push_back(IGFace3D(&(vecs2D[i][j]), &(vecs2D[i][j+1]), &(vecs2D[0][j+1])));
-                    faces.push_back(IGFace3D(&(vecs2D[i][j]), &(vecs2D[0][j+1]), &(vecs2D[0][j])));
+                    faces.push_back(Face3D(&(vecs2D[i][j]), &(vecs2D[i][j+1]), &(vecs2D[0][j+1])));
+                    faces.push_back(Face3D(&(vecs2D[i][j]), &(vecs2D[0][j+1]), &(vecs2D[0][j])));
                     
                     indices.push_back(prevBot); indices.push_back(prevTop); indices.push_back(j+1);
                     indices.push_back(prevBot); indices.push_back(j+1); indices.push_back(j);
                     
                 } else {
                     // connect spine to apex
-                    faces.push_back(IGFace3D(&(vecs2D[i][j]), &apex, &(vecs2D[0][j])));
+                    faces.push_back(Face3D(&(vecs2D[i][j]), &apex, &(vecs2D[0][j])));
                     
                     indices.push_back(prevBot); indices.push_back(apexPos); indices.push_back(j);
                 }

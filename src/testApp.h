@@ -9,7 +9,7 @@ class testApp : public ofBaseApp{
 public:
     
     Particle p;
-    ProtoOrg001 pOrg;
+    ijg::ProtoOrg001 pOrg;
     
     
     static const int PARTICLE_COUNT=2000;

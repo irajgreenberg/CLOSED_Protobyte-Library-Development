@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A8DE23915EFB2D000FC89C3 /* IGFace3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DE23815EFB2D000FC89C3 /* IGFace3D.cpp */; };
+		2A413E2615F7CC710066A6C1 /* Tuple3i.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A413E2515F7CC710066A6C1 /* Tuple3i.cpp */; };
+		2A413E2815F7CF840066A6C1 /* ProtoOrgBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A413E2715F7CF840066A6C1 /* ProtoOrgBase.cpp */; };
+		2A8DE23915EFB2D000FC89C3 /* Face3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DE23815EFB2D000FC89C3 /* Face3D.cpp */; };
 		2A9BD20015EE863100FD9060 /* ProtoOrg001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BD1FF15EE863100FD9060 /* ProtoOrg001.cpp */; };
 		2AF6D5B115EBF9D10092D12D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6D5B015EBF9D10092D12D /* Particle.cpp */; };
 		72C20F9F15F4EFB900C993D7 /* BaseOrg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C20F9E15F4EFB900C993D7 /* BaseOrg.cpp */; };
@@ -62,8 +64,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2A8DE23715EFB2C400FC89C3 /* IGFace3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGFace3D.h; sourceTree = "<group>"; };
-		2A8DE23815EFB2D000FC89C3 /* IGFace3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IGFace3D.cpp; sourceTree = "<group>"; };
+		2A413E2315F682020066A6C1 /* ProtoOrgBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtoOrgBase.h; sourceTree = "<group>"; };
+		2A413E2415F7CC640066A6C1 /* Tuple3i.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tuple3i.h; sourceTree = "<group>"; };
+		2A413E2515F7CC710066A6C1 /* Tuple3i.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tuple3i.cpp; sourceTree = "<group>"; };
+		2A413E2715F7CF840066A6C1 /* ProtoOrgBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoOrgBase.cpp; sourceTree = "<group>"; };
+		2A8DE23715EFB2C400FC89C3 /* Face3D.h */ = {isa = PBXFileReference; path = Face3D.h; sourceTree = "<group>"; };
+		2A8DE23815EFB2D000FC89C3 /* Face3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Face3D.cpp; sourceTree = "<group>"; };
 		2A8DE25215F1010A00FC89C3 /* IGConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGConstants.h; sourceTree = "<group>"; };
 		2A9BD1FE15EE862400FD9060 /* ProtoOrg001.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ProtoOrg001.h; path = src/ProtoOrg001.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		2A9BD1FF15EE863100FD9060 /* ProtoOrg001.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoOrg001.cpp; sourceTree = "<group>"; };
@@ -196,12 +202,16 @@
 				2A9BD1FE15EE862400FD9060 /* ProtoOrg001.h */,
 				72C20F9D15F4EFAF00C993D7 /* BaseOrg.h */,
 				2A9BD1FF15EE863100FD9060 /* ProtoOrg001.cpp */,
-				2A8DE23715EFB2C400FC89C3 /* IGFace3D.h */,
-				2A8DE23815EFB2D000FC89C3 /* IGFace3D.cpp */,
+				2A8DE23715EFB2C400FC89C3 /* Face3D.h */,
+				2A8DE23815EFB2D000FC89C3 /* Face3D.cpp */,
 				2A8DE25215F1010A00FC89C3 /* IGConstants.h */,
 				72C20F9E15F4EFB900C993D7 /* BaseOrg.cpp */,
 				72C20FA015F4F5B100C993D7 /* VertexPacked_VNC.h */,
 				72C20FA115F5450000C993D7 /* VertexPacked_VNC.cpp */,
+				2A413E2315F682020066A6C1 /* ProtoOrgBase.h */,
+				2A413E2415F7CC640066A6C1 /* Tuple3i.h */,
+				2A413E2515F7CC710066A6C1 /* Tuple3i.cpp */,
+				2A413E2715F7CF840066A6C1 /* ProtoOrgBase.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -303,9 +313,11 @@
 				E4B69E210A3A1BDC003C02F2 /* testApp.cpp in Sources */,
 				2AF6D5B115EBF9D10092D12D /* Particle.cpp in Sources */,
 				2A9BD20015EE863100FD9060 /* ProtoOrg001.cpp in Sources */,
-				2A8DE23915EFB2D000FC89C3 /* IGFace3D.cpp in Sources */,
+				2A8DE23915EFB2D000FC89C3 /* Face3D.cpp in Sources */,
 				72C20F9F15F4EFB900C993D7 /* BaseOrg.cpp in Sources */,
 				72C20FA215F5450000C993D7 /* VertexPacked_VNC.cpp in Sources */,
+				2A413E2615F7CC710066A6C1 /* Tuple3i.cpp in Sources */,
+				2A413E2815F7CF840066A6C1 /* ProtoOrgBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

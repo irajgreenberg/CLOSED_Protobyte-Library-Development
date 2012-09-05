@@ -25,7 +25,7 @@ namespace ijg{
         
         // cster
         explicit VertexPacked_VNC(float x=0, float y=0, float z=0,
-                                float r=0, float g=0, float b=0, float a=0);
+                            float r=0, float g=0, float b=0, float a=0);
         VertexPacked_VNC(const ofVec3f& vec);
         VertexPacked_VNC(const ofVec3f& vec, float rgba[]);
         

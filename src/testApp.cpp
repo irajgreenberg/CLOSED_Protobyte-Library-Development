@@ -1,5 +1,8 @@
 #include "testApp.h"
 
+using namespace ijg;
+
+
 //GLfloat lightOnePosition[] = {40.0, 40, 100.0, 0.0};
 GLfloat lightOnePosition[] = {0.0, 40, 400.0, 1.0};
 GLfloat lightOneColor[] = {0.99, 0.99, 0.99, 1.0};
