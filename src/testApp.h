@@ -3,8 +3,9 @@
 #include "ofMain.h"
 #include "Particle.h"
 #include "ProtoOrg001.h"
+#include "ProtoOrg002.h"
 
-#include "ProtoOrgBase.h"
+//#include "ProtoOrgBase.h"
 
 class testApp : public ofBaseApp{
 
@@ -14,6 +15,7 @@ public:
     ijg::ProtoOrg001 pOrg;
     
     ijg::ProtoOrgBase pBase;
+    ijg::ProtoOrg002 pOrg02;
     
     
     static const int PARTICLE_COUNT=2000;

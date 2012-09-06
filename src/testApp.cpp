@@ -3,7 +3,7 @@
 using namespace ijg;
 
 
-GLfloat lightOnePosition[] = {0, 0, 0, 1.0};
+GLfloat lightOnePosition[] = {0, 0, 800, 1.0};
 GLfloat lightOneColor[] = {255, 255, 255, 1.0};
 
 //--------------------------------------------------------------
@@ -25,6 +25,9 @@ void testApp::setup(){
    // pOrg = ProtoOrg001(28, 28, 200);
     //pOrg.spines = 75;
    // pOrg.init();
+    pOrg02.setSpines(40);
+    pOrg02.setSpineDetail(40);
+    
     
     
     // environment states
@@ -100,8 +103,8 @@ void testApp::draw(){
     ofSetColor(0, 255, 0);
     //ofNoFill();
     ofPushMatrix();
-    ofScale(300, 300, 300);
-    pBase.display();
+    ofScale(200, 200, 200);
+    pOrg02.display();
     
     //ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
     //ofScale(1.9, 1.9, 1.9);
@@ -111,7 +114,7 @@ void testApp::draw(){
     
     ofNoFill();
     ofSetColor(255, 255, 255);
-    pBase.displayNormals();
+    pOrg02.displayNormals();
     //pOrg.display(2);
     //ofSetColor(175, 95, 30);
     //pOrg.display(2);

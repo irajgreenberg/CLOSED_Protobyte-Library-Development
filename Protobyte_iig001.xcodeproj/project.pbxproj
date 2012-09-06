@@ -12,6 +12,7 @@
 		2A8DE23915EFB2D000FC89C3 /* Face3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DE23815EFB2D000FC89C3 /* Face3D.cpp */; };
 		2A9BD20015EE863100FD9060 /* ProtoOrg001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BD1FF15EE863100FD9060 /* ProtoOrg001.cpp */; };
 		2AF6D5B115EBF9D10092D12D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6D5B015EBF9D10092D12D /* Particle.cpp */; };
+		728BBFB915F82F8F004612CC /* ProtoOrg002.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728BBFB815F82F8F004612CC /* ProtoOrg002.cpp */; };
 		72C20F9F15F4EFB900C993D7 /* BaseOrg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C20F9E15F4EFB900C993D7 /* BaseOrg.cpp */; };
 		72C20FA215F5450000C993D7 /* VertexPacked_VNC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C20FA115F5450000C993D7 /* VertexPacked_VNC.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -75,6 +76,8 @@
 		2A9BD1FF15EE863100FD9060 /* ProtoOrg001.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoOrg001.cpp; sourceTree = "<group>"; };
 		2AF6D5AA15EBEF520092D12D /* Particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		2AF6D5B015EBF9D10092D12D /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
+		728BBFB715F81AB0004612CC /* ProtoOrg002.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtoOrg002.h; sourceTree = "<group>"; };
+		728BBFB815F82F8F004612CC /* ProtoOrg002.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoOrg002.cpp; sourceTree = "<group>"; };
 		72C20F9D15F4EFAF00C993D7 /* BaseOrg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseOrg.h; sourceTree = "<group>"; };
 		72C20F9E15F4EFB900C993D7 /* BaseOrg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseOrg.cpp; sourceTree = "<group>"; };
 		72C20FA015F4F5B100C993D7 /* VertexPacked_VNC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VertexPacked_VNC.h; sourceTree = "<group>"; };
@@ -209,9 +212,11 @@
 				72C20FA015F4F5B100C993D7 /* VertexPacked_VNC.h */,
 				72C20FA115F5450000C993D7 /* VertexPacked_VNC.cpp */,
 				2A413E2315F682020066A6C1 /* ProtoOrgBase.h */,
+				728BBFB715F81AB0004612CC /* ProtoOrg002.h */,
 				2A413E2415F7CC640066A6C1 /* Tuple3i.h */,
 				2A413E2515F7CC710066A6C1 /* Tuple3i.cpp */,
 				2A413E2715F7CF840066A6C1 /* ProtoOrgBase.cpp */,
+				728BBFB815F82F8F004612CC /* ProtoOrg002.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -318,6 +323,7 @@
 				72C20FA215F5450000C993D7 /* VertexPacked_VNC.cpp in Sources */,
 				2A413E2615F7CC710066A6C1 /* Tuple3i.cpp in Sources */,
 				2A413E2815F7CF840066A6C1 /* ProtoOrgBase.cpp in Sources */,
+				728BBFB915F82F8F004612CC /* ProtoOrg002.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

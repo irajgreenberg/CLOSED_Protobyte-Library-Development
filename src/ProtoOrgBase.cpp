@@ -21,10 +21,36 @@ ProtoOrgBase::~ProtoOrgBase()
     
 }
 
+void ProtoOrgBase::clearAll()
+{
+    if(verts.size()>0){
+        verts.clear();
+    }
+    if(inds.size()>0){
+        inds.clear();
+    }
+    if(faces.size()>0){
+        faces.clear();
+    }
+    if(norms.size()>0){
+        norms.clear();
+    }
+    if(vertices.size()>0){
+        vertices.clear();
+    }
+    if(indices.size()>0){
+        indices.clear();
+    }
+    if(normals.size()>0){
+        normals.clear();
+    }
+}
+
 void ProtoOrgBase::init()
 {
-    calcVerts();  
-    calcNormals();
+    clearAll();
+    calcVerts();
+    calcNorms();
     calcPrimitives();
 }
 
@@ -42,7 +68,11 @@ void ProtoOrgBase::calcVerts()
     faces.push_back(Face3D(&verts[0], &verts[1], &verts[2]));
 }
 
-void ProtoOrgBase::calcNormals()
+void ProtoOrgBase::calcInds()
+{
+}
+
+void ProtoOrgBase::calcNorms()
 {
     // get face normals
     for ( int i=0; i<faces.size(); i++){
@@ -54,7 +84,7 @@ void ProtoOrgBase::calcNormals()
         ofVec3f temp;
         for (int j=0; j<faces.size(); j++){
             if(&verts[i] == faces[j].p_vecs[0]|| &verts[i] == faces[j].p_vecs[1] || &verts[i] == faces[j].p_vecs[2]){
-                std::cout << "in normals loop" << std::endl;
+               // std::cout << "in normals loop" << std::endl;
                 temp += faces[j].getNormal();
             }
             temp.normalize();

@@ -24,7 +24,6 @@ namespace ijg {
         
     public:
         
-        
         // composites for convenince
         vector <ofVec3f> verts;
         vector <Tuple3i> inds;
@@ -40,6 +39,7 @@ namespace ijg {
         // prototypes
         explicit ProtoOrgBase(); // cster 
         virtual ~ProtoOrgBase(); // for super (base) class
+        void clearAll();
         void display();
         void display(int renderStyle);
         void displayNormals();
@@ -47,18 +47,24 @@ namespace ijg {
         
         //VertexPacked_VNC getData();
         
-        
-        
-        
     private:
+        
+        
+    protected:
+        /***overridden in subclasses***/
         // vertex calculations
-        void init();
+        virtual void init();
             
         // vertex calculations
-        void calcVerts();
+        virtual void calcVerts();
         
+        // indices calculations
+        virtual void calcInds();
+        
+        
+        /***used by subclasses***/
         // vertex normals calculations
-        void calcNormals();
+        void calcNorms();
         
         // primitves for drawElements
         void calcPrimitives();
