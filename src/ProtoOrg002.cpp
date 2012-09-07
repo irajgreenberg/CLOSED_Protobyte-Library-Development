@@ -71,9 +71,9 @@ void ProtoOrg002::calcInds(){
             int t2_1 = i*spineDetail + j+1;
             int t2_2 = (i+1)*spineDetail + j+1;
             
-            std::cout<<"t1_0 = " << t1_0 <<std::endl;
-            std::cout<<"t1_1 = " << t1_1 <<std::endl;
-            std::cout<<"t1_2 = " << t1_2 <<std::endl;
+            // std::cout<<"t1_0 = " << t1_0 <<std::endl;
+            // std::cout<<"t1_1 = " << t1_1 <<std::endl;
+            // std::cout<<"t1_2 = " << t1_2 <<std::endl;
             if(j<spineDetail-1){
                 
                 if(i<spines-1){
@@ -81,8 +81,8 @@ void ProtoOrg002::calcInds(){
                     inds.push_back( Tuple3i(t2_0, t2_1, t2_2) );
                     
                 } else {
-                    //inds.push_back( Tuple3i(t1_0, j, t1_2) );
-                    //inds.push_back( Tuple3i(j, j+1, t2_2) );
+                    inds.push_back( Tuple3i(t1_2, j, t1_0) );
+                    inds.push_back( Tuple3i(j, t2_1, j+1) );
                 }
             }
         }

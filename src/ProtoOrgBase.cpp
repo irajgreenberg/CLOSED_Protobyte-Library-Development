@@ -76,7 +76,7 @@ void ProtoOrgBase::calcNorms()
 {
     // get face normals
     for ( int i=0; i<faces.size(); i++){
-        norms.push_back(ofVec3f(faces[i].getNormal()));
+        //norms.push_back(ofVec3f(faces[i].getNormal()));
     }
     
     // vertex normals
@@ -87,9 +87,9 @@ void ProtoOrgBase::calcNorms()
                // std::cout << "in normals loop" << std::endl;
                 temp += faces[j].getNormal();
             }
-            temp.normalize();
-            norms.push_back(temp);
         }
+        temp.normalize();
+        norms.push_back(temp);
     }
 }
 

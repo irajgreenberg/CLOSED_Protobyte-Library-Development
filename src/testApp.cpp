@@ -3,8 +3,20 @@
 using namespace ijg;
 
 
-GLfloat lightOnePosition[] = {0, 0, 800, 1.0};
+GLfloat lightOnePosition[] = {-100, -100, 800, 1.0};
 GLfloat lightOneColor[] = {255, 255, 255, 1.0};
+GLfloat lightAmbientLight[] = {0.0, 0.0, 0.0};
+GLfloat lightSpecularLight[] = {1.0, 1.0, 1.0};
+GLfloat mShininess[] = {128};
+
+GLfloat mat_diffuse[] = {0.1f, 0.5f, 0.8f, 1.0f};
+GLfloat mat_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
+GLfloat no_mat[] = {0.0f, 0.0f, 0.0f, 1.0f};
+GLfloat no_shininess = 0.0f;
+GLfloat low_shininess = 5.0f;
+GLfloat high_shininess = 100.0f;
+GLfloat mat_emission[] = {0.3f, 0.2f, 0.2f, 0.0f};
+
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -25,8 +37,8 @@ void testApp::setup(){
    // pOrg = ProtoOrg001(28, 28, 200);
     //pOrg.spines = 75;
    // pOrg.init();
-    pOrg02.setSpines(40);
-    pOrg02.setSpineDetail(40);
+    pOrg02.setSpines(15);
+    pOrg02.setSpineDetail(15);
     
     
     
@@ -41,24 +53,40 @@ void testApp::setup(){
 	// this uses depth information for occlusion
 	// rather than always drawing things on top of each other
 	glEnable(GL_DEPTH_TEST);
-	
+
 	// this sets the camera's distance from the object
 	cam.setDistance(0);
     cam.enableMouseInput();
     
     
     ofEnableAlphaBlending(); // enable alpha
-    glEnable (GL_DEPTH_TEST);
+    glShadeModel (GL_FLAT);
     //glShadeModel (GL_SMOOTH);
 	
     
     /* initialize lighting */
-    glLightfv (GL_LIGHT0, GL_POSITION, lightOnePosition);
-    glLightfv (GL_LIGHT0, GL_DIFFUSE, lightOneColor);
+    glEnable (GL_DEPTH_TEST);
+    glEnable (GL_LIGHTING);
     glEnable (GL_LIGHT0);
     
-    glEnable (GL_LIGHTING);
-    glColorMaterial (GL_FRONT_AND_BACK, GL_DIFFUSE);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpecularLight);
+    //glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbientLight);
+    glLightfv (GL_LIGHT0, GL_POSITION, lightOnePosition);
+    glLightfv (GL_LIGHT0, GL_DIFFUSE, lightOneColor);
+    //glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mShininess);
+    
+    //glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, no_mat);
+    //glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, low_shininess);
+    //glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, mat_emission);
+    
+    //glColorMaterial (GL_FRONT_AND_BACK, GL_DIFFUSE);
+    
+    
+    
+    
+    
     glEnable (GL_COLOR_MATERIAL);
     
     //ofSetBackgroundAuto(false); //disable automatic background redraw
@@ -100,8 +128,9 @@ void testApp::draw(){
     }
     
     
-    ofSetColor(0, 255, 0);
+    ofSetColor(0, 255, 0, 255);
     //ofNoFill();
+    
     ofPushMatrix();
     ofScale(200, 200, 200);
     pOrg02.display();
@@ -114,10 +143,12 @@ void testApp::draw(){
     
     ofNoFill();
     ofSetColor(255, 255, 255);
-    pOrg02.displayNormals();
+    //pOrg02.displayNormals();
+    
     //pOrg.display(2);
     //ofSetColor(175, 95, 30);
     //pOrg.display(2);
+    
     ofPopMatrix();
     
        cam.end();

@@ -62,7 +62,7 @@ void Face3D::calcNormal()
     
     normal.normalize();
     
-    normal*=30;
+    //normal*=.04;
 }
 
 void Face3D::calcCentroid()
@@ -96,7 +96,7 @@ void Face3D::displayNormal()
     //ofBeginShape();
     glBegin(GL_LINES);
     glVertex3f(centroid.x, centroid.y, centroid.z);
-    glVertex3f(centroid.x+normal.x, centroid.y+normal.y, centroid.z+normal.z);
+    glVertex3f(centroid.x+normal.x*.1, centroid.y+normal.y*.1, centroid.z+normal.z*.1);
     //ofEndShape();
     glEnd();
     
