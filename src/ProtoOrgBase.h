@@ -11,7 +11,7 @@
 
 /**
  * Base class for ProtoOrganisms
- *
+ * Quick sort from http://www.algolist.net/Algorithms/Sorting/Quicksort
  *
  */
 #include "ofmain.h"
@@ -35,6 +35,9 @@ namespace ijg {
         vector <GLfloat>  vertices;
         vector <GLfloat>  normals;
         
+        // for sorting – front to back for transparency
+        vector<GLfloat> tempVecs;
+        
         
         // prototypes
         explicit ProtoOrgBase(); // cster 
@@ -44,6 +47,8 @@ namespace ijg {
         void display(int renderStyle);
         void displayNormals();
         void move();
+        
+        void quickFaceSort(vector <GLint>indices, vector <GLfloat>vertices, vector <GLfloat>normals, int left, int right);
         
         //VertexPacked_VNC getData();
         

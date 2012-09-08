@@ -68,10 +68,11 @@ void testApp::setup(){
     // not fully implemented
     glEnable (GL_BLEND);
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //glBlendFunc (GL_ONE, GL_ONE);
     
     // The Type Of Depth Testing To Do
     glDepthFunc(GL_LEQUAL);
-    
+    //glEnable (GL_POLYGON_STIPPLE);
     // Really Nice Perspective Calculations
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
     
@@ -141,7 +142,7 @@ void testApp::draw(){
     cam.begin();
     
     ofRotateX(180);
-    ofSetColor(155, 255, 255);
+    ofSetColor(155, 255, 255, 200);
     //ofNoFill();
     
     ofPushMatrix();
