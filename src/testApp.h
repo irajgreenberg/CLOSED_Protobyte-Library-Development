@@ -11,15 +11,9 @@ class testApp : public ofBaseApp{
 
 public:
     
-    Particle p;
-    ijg::ProtoOrg001 pOrg;
-    
     ijg::ProtoOrgBase pBase;
     ijg::ProtoOrg002 pOrg02;
     
-    
-    static const int PARTICLE_COUNT=2000;
-    vector<Particle> parts;
     
     ofEasyCam cam; // add mouse controls for camera movement
     

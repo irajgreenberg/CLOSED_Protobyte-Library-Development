@@ -61,7 +61,6 @@ namespace ijg {
         // indices calculations
         virtual void calcInds();
         
-        
         /***used by subclasses***/
         // vertex normals calculations
         void calcNorms();

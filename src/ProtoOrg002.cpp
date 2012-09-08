@@ -21,7 +21,7 @@ spines(spines), spineDetail(spineDetail), isClosed(isClosed), radius(radius), he
 // vertex calculations
 void ProtoOrg002::init()
 {
-    clearAll(); // esure vectors are cleaned
+    clearAll(); // ensure vectors are cleaned
     calcVerts();
     calcInds();
     calcFaces();
@@ -40,8 +40,8 @@ void ProtoOrg002::calcVerts()
         // START CALCULATE VERTICES
         for(int j=0; j<spineDetail; j++){
             // 1.  Z rotation for inital spine
-            x = (cos(theta) - sin(theta))*radius;
-            y = radius/2+(sin(theta) + cos(theta))*radius;
+            x = (cos(theta) - sin(theta))*(radius+ofRandom(.01));
+            y = radius/2+(sin(theta) + cos(theta))*(radius+ofRandom(.01));
             z = 0;
             
             // 2.  y rotation to place spines
@@ -94,9 +94,9 @@ void ProtoOrg002::calcInds(){
         // calc faces
         for(int i=0; i<inds.size(); i++){
             faces.push_back( Face3D(&verts[inds[i].elem0], &verts[inds[i].elem1], &verts[inds[i].elem2]) );
-            std::cout<<"inds["<<i<<"].elem0 = " <<inds[i].elem0 <<std::endl;
-            std::cout<<"inds["<<i<<"].elem1 = " <<inds[i].elem1 <<std::endl;
-            std::cout<<"inds["<<i<<"].elem2 = " <<inds[i].elem2 <<std::endl;
+            //std::cout<<"inds["<<i<<"].elem0 = " <<inds[i].elem0 <<std::endl;
+            //std::cout<<"inds["<<i<<"].elem1 = " <<inds[i].elem1 <<std::endl;
+            //std::cout<<"inds["<<i<<"].elem2 = " <<inds[i].elem2 <<std::endl;
         }
         
     }
