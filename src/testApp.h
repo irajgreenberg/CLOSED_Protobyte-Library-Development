@@ -13,6 +13,8 @@ public:
     
     ijg::ProtoOrgBase pBase;
     ijg::ProtoOrg002 pOrg02;
+    ijg::ProtoOrg002 pOrg02_b;
+    ijg::ProtoOrg002 pOrg02_c;
     
     
     ofEasyCam cam; // add mouse controls for camera movement

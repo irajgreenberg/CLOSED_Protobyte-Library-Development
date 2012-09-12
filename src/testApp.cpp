@@ -27,7 +27,7 @@ float light2Specular[] = {  1.2, 1.2, 1.2, 1 };
 float light2Pos[4] = { 100.5, .2, 20, 0 };  // 4th arg 0=infinity, 1=position
 
 // Materials
-float mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+float mat_specular[] = { 1.0, .5, 1.0, 1.0 };
 float mat_shininess[] = { 128 }; // use range 0 to 128
 
 
@@ -36,15 +36,12 @@ float mat_shininess[] = { 128 }; // use range 0 to 128
 //--------------------------------------------------------------
 void testApp::setup(){
     
-    
-    
-    
     // environment states
 	ofBackground(0,0,0);
 	ofSetWindowTitle("particles example");
     ofSetFrameRate(60);
     
-    ofSetVerticalSync(true);
+    ofSetVerticalSync(true); // is this necessary
     
 	// this sets the camera's distance from the object
 	cam.setDistance(-10);
@@ -62,16 +59,19 @@ void testApp::setup(){
     glFrontFace(GL_CW); // or GL_CW
     
     // Hide back faces of surfaces
-    //glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
     
     // enable alpha - requires faces drawn back to front
     // not fully implemented
     glEnable (GL_BLEND);
+    
+    // try different blends
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    //glBlendFunc (GL_ONE, GL_ONE);
+    //glBlendFunc(GL_ONE, GL_ONE);
     
     // The Type Of Depth Testing To Do
     glDepthFunc(GL_LEQUAL);
+   //glDepthFunc(GL_ALWAYS);
     //glEnable (GL_POLYGON_STIPPLE);
     // Really Nice Perspective Calculations
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
@@ -86,8 +86,14 @@ void testApp::setup(){
     
     setLighting();
     
-    pOrg02.setSpines(30);
-    pOrg02.setSpineDetail(30);
+    pOrg02.setSpines(80);
+    pOrg02.setSpineDetail(80);
+    
+    pOrg02_b.setSpines(30);
+    pOrg02_b.setSpineDetail(30);
+    
+    pOrg02_c.setSpines(20);
+    pOrg02_c.setSpineDetail(20);
     
     
 }
@@ -100,6 +106,7 @@ void testApp::setLighting(){
     glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
     glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
     glColorMaterial(GL_FRONT,GL_DIFFUSE);
+    //glColorMaterial(GL_FRONT,GL_SPECULAR);
     
     // light0
     glLightfv(GL_LIGHT0, GL_POSITION, light0Pos);
@@ -110,19 +117,19 @@ void testApp::setLighting(){
     // light1
     glLightfv(GL_LIGHT1, GL_POSITION, light1Pos);
     glLightfv(GL_LIGHT1, GL_DIFFUSE, light1Diffuse);
-    //glLightfv(GL_LIGHT1, GL_SPECULAR, light1Specular);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, light1Specular);
     //glLightfv(GL_LIGHT1, GL_AMBIENT, light1Ambient);
     
     // light2
     glLightfv(GL_LIGHT2, GL_POSITION, light2Pos);
     glLightfv(GL_LIGHT2, GL_DIFFUSE, light2Diffuse);
-    //glLightfv(GL_LIGHT1, GL_SPECULAR, light2Specular);
+    glLightfv(GL_LIGHT2, GL_SPECULAR, light2Specular);
     //glLightfv(GL_LIGHT2, GL_AMBIENT, light2Ambient);
     
     
     // enable the lights/materials
     glEnable(GL_COLOR_MATERIAL);
-    glEnable(GL_SPECULAR);
+    glEnable(GL_SPECULAR); // does this do anything
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
@@ -142,15 +149,43 @@ void testApp::draw(){
     cam.begin();
     
     ofRotateX(180);
-    ofSetColor(155, 255, 255, 200);
-    //ofNoFill();
     
+    //ofNoFill();
+
+    
+    // draw opaque first
+    glDisable(GL_CULL_FACE);
+    
+   
+    ofSetColor(0, 255, 255);
+    ofPushMatrix();
+    ofScale(50, 50, 50);
+    pOrg02_c.display();
+    ofPopMatrix();
+   
+    
+    glDepthMask(GL_FALSE); // turn off - for transparency
+
+     //glDisable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    ofSetColor(75, 100, 125, 190);
+    ofPushMatrix();
+    ofScale(100, 100, 100);
+    pOrg02_b.display();
+    ofPopMatrix();
+    
+       
+    ofSetColor(155, 255, 255, 80);
     ofPushMatrix();
     ofScale(200, 200, 200);
-    
     pOrg02.display();
-    
     ofPopMatrix();
+    
+    // glEnable(GL_DEPTH_TEST);
+    // turn back on
+    glDepthMask(GL_TRUE); // turn back on
+    
+    
     
     cam.end();
     
