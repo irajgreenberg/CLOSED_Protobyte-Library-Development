@@ -115,6 +115,15 @@ void ProtoOrgBase::calcPrimitives()
         normals.push_back(norms[i].z);
     }
     
+    // colors
+    for (int i=0; i<verts.size(); i++){
+        colors.push_back(ofRandom(1.0));
+        colors.push_back(ofRandom(1.0));
+        colors.push_back(ofRandom(1.0));
+        colors.push_back(ofRandom(1.0));
+    }
+
+    
 }
 
 void ProtoOrgBase::display()
@@ -129,6 +138,7 @@ void ProtoOrgBase::display()
     glEnableClientState (GL_VERTEX_ARRAY);
 	//glEnableClientState (GL_TEXTURE_COORD_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
 	
 	//bind the ground texture
 	//glBindTexture(GL_TEXTURE_2D, gltexture);
@@ -138,6 +148,9 @@ void ProtoOrgBase::display()
 	//evilPointer+=sizeof(GL_FLOAT)*3;
 	
 	//set the pointers
+    
+    glColorPointer(4, GL_FLOAT, 0, &colors[0]);
+
 	//glTexCoordPointer(2,GL_FLOAT,sizeof(GL_FLOAT) * 5,evilPointer);
 	glVertexPointer (3, GL_FLOAT, 0, &vertices[0]);
 	glNormalPointer(GL_FLOAT, 0, &normals[0]);

@@ -28,11 +28,13 @@ namespace ijg {
         vector <ofVec3f> verts;
         vector <Tuple3i> inds;
         vector <ofVec3f>  norms;
+        vector <ofColor> colrs;
         vector <Face3D>  faces;
         
         // primitive buffers
         vector <GLint> indices;
         vector <GLfloat>  vertices;
+        vector <GLfloat>  colors;
         vector <GLfloat>  normals;
         
         // for sorting – front to back for transparency
