@@ -13,6 +13,7 @@
 #include "ofMain.h"
 
 namespace ijg {
+
     
     class Face3D {
         

@@ -18,6 +18,11 @@
 #include "Tuple3i.h"
 #include "Face3D.h"
 
+#include <iostream>
+#include <fstream>
+#include<sys/stat.h>
+#include<sys/types.h>
+
 namespace ijg {
     
     class ProtoOrgBase {
@@ -51,6 +56,9 @@ namespace ijg {
         void move();
         
         void quickFaceSort(vector <GLint>indices, vector <GLfloat>vertices, vector <GLfloat>normals, int left, int right);
+        
+        // export ProtoObj to STL format
+        void exportSTL();
         
         //VertexPacked_VNC getData();
         

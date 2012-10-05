@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
 #include "ProtoOrgBase.h"
 
 using namespace ijg;
@@ -279,6 +278,21 @@ void  ProtoOrgBase::displayNormals()
 void ProtoOrgBase::move()
 {
     
+}
+
+void ProtoOrgBase::exportSTL()
+{
+    if(mkdir("../exportData",0777)==-1)//creating a directory
+    {
+        //std::cout << "STL file Successfully Written" << std::endl;
+        cerr<<"Error :  "<<strerror(errno)<<endl;
+        //exit(1);
+    }
+    std::ofstream myfile;
+    myfile.open ("../exportData/geomData.STL");
+    myfile << "Writing this to a file.\n";
+    myfile.close();
+    std::cout << "STL file Successfully Written" << std::endl;
 }
 
 
