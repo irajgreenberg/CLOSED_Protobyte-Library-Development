@@ -290,7 +290,20 @@ void ProtoOrgBase::exportSTL()
     }
     std::ofstream myfile;
     myfile.open ("../exportData/geomData.STL");
-    myfile << "Writing this to a file.\n";
+    
+     myfile << "PROTOBYTE\n";
+    for(int i=0; i<faces.size(); i++){
+        myfile <<  scientific << setprecision (7) <<"\tfacet normal " <<
+        faces[i].getNormal().x << " "<<faces[i].getNormal().y << " "<<faces[i].getNormal().z << "\n"<<
+        "\t\touter loop\n"<<
+        "\t\t\tvertex " << faces[i].p_vecs[0]->x << " "<<faces[i].p_vecs[0]->y << " "<<faces[i].p_vecs[0]->z << "\n"<<
+        "\t\t\tvertex " << faces[i].p_vecs[1]->x << " "<<faces[i].p_vecs[1]->y << " "<<faces[i].p_vecs[1]->z << "\n"<<
+        "\t\t\tvertex " << faces[i].p_vecs[2]->x << " "<<faces[i].p_vecs[2]->y << " "<<faces[i].p_vecs[2]->z << "\n"<<
+        "\t\tendloop\n" <<
+        "\tendfacet\n";
+    }
+        myfile << "END_PROTOBYTE\n";
+    
     myfile.close();
     std::cout << "STL file Successfully Written" << std::endl;
 }
