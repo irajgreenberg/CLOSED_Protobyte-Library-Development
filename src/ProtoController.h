@@ -4,6 +4,7 @@
 #include "Particle.h"
 #include "ProtoOrg001.h"
 #include "ProtoOrg002.h"
+#include "ProtoToroid.h"
 
 //#include "ProtoOrgBase.h"
 
@@ -15,6 +16,10 @@ public:
     ijg::ProtoOrg002 pOrg02;
     ijg::ProtoOrg002 pOrg02_b;
     ijg::ProtoOrg002 pOrg02_c;
+    
+    ijg::ProtoOrg002 pOrg03;
+    
+    ijg::ProtoToroid toroid1;
     
     
     ofEasyCam cam; // add mouse controls for camera movement

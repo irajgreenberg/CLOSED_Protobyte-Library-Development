@@ -17,13 +17,11 @@ namespace ijg {
         
     public:
         
-        explicit ProtoOrg002(int spines = 3, int spineDetail = 3, bool isClosed = false, float radius = 1, float height = 1);
+        explicit ProtoOrg002(const ofVec3f& loc = ofVec3f(), const Dimension3D& dim = Dimension3D(1, 1, 1), int spines = 3, int spineDetail = 3, bool isClosed = false);
         
         // overrides base class 
-        void init();
         void calcVerts();
         void calcInds();
-        void calcFaces();
         
         
         // getters & setters

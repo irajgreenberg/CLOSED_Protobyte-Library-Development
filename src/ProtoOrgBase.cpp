@@ -12,7 +12,13 @@ using namespace ijg;
 
 ProtoOrgBase::ProtoOrgBase()
 {
-    init();
+    //init();
+}
+
+ProtoOrgBase::ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim):
+loc(loc), dim(dim)
+{
+    //init();
 }
 
 ProtoOrgBase::~ProtoOrgBase()
@@ -47,8 +53,15 @@ void ProtoOrgBase::clearAll()
 
 void ProtoOrgBase::init()
 {
-    clearAll();
+    /*clearAll();
     calcVerts();
+    calcNorms();
+    calcPrimitives();*/
+    
+    clearAll(); // ensure vectors are cleaned
+    calcVerts();
+    calcInds();
+    calcFaces();
     calcNorms();
     calcPrimitives();
 }
@@ -92,6 +105,18 @@ void ProtoOrgBase::calcNorms()
     }
 }
 
+void ProtoOrgBase::calcFaces()
+{
+    // calc faces
+    for(int i=0; i<inds.size(); i++){
+        faces.push_back( Face3D(&verts[inds[i].elem0], &verts[inds[i].elem1], &verts[inds[i].elem2]) );
+        //std::cout<<"inds["<<i<<"].elem0 = " <<inds[i].elem0 <<std::endl;
+        //std::cout<<"inds["<<i<<"].elem1 = " <<inds[i].elem1 <<std::endl;
+        //std::cout<<"inds["<<i<<"].elem2 = " <<inds[i].elem2 <<std::endl;
+    }
+    
+}
+
 void ProtoOrgBase::calcPrimitives()
 {
     // vertices
@@ -116,10 +141,14 @@ void ProtoOrgBase::calcPrimitives()
     
     // colors
     for (int i=0; i<verts.size(); i++){
+       /* colors.push_back(ofRandom(1.0));
         colors.push_back(ofRandom(1.0));
         colors.push_back(ofRandom(1.0));
-        colors.push_back(ofRandom(1.0));
-        colors.push_back(ofRandom(1.0));
+        colors.push_back(ofRandom(1.0));*/
+        colors.push_back(1);
+        colors.push_back(.5);
+        colors.push_back(0);
+        colors.push_back(1);
     }
 
     
@@ -154,8 +183,12 @@ void ProtoOrgBase::display()
 	glVertexPointer (3, GL_FLOAT, 0, &vertices[0]);
 	glNormalPointer(GL_FLOAT, 0, &normals[0]);
 	
-	//Draw Protobyte
+	glPushMatrix();
+    glTranslatef(loc.x, loc.y, loc.z);
+    glScalef(dim.w, dim.h, dim.d);
+    //Draw Protobyte
 	glDrawElements (GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, &indices[0]);
+    glPopMatrix();
 	
 	//disable the client state and texture
 	//glDisable(GL_TEXTURE_2D);

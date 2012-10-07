@@ -17,6 +17,7 @@
 #include "ofmain.h"
 #include "Tuple3i.h"
 #include "Face3D.h"
+#include "Dimension3D.h"
 
 #include <iostream>
 #include <fstream>
@@ -28,6 +29,9 @@ namespace ijg {
     class ProtoOrgBase {
         
     public:
+        
+        ofVec3f loc;
+        Dimension3D dim;
         
         // composites for convenince
         vector <ofVec3f> verts;
@@ -42,12 +46,13 @@ namespace ijg {
         vector <GLfloat>  colors;
         vector <GLfloat>  normals;
         
-        // for sorting – front to back for transparency
+        // for sorting – front to back for transparency - NOT CURRENTLY IMPLEMENTED
         vector<GLfloat> tempVecs;
         
         
         // prototypes
-        explicit ProtoOrgBase(); // cster 
+        ProtoOrgBase();  // cster
+        ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim); // cster
         virtual ~ProtoOrgBase(); // for super (base) class
         void clearAll();
         void display();
@@ -55,6 +60,7 @@ namespace ijg {
         void displayNormals();
         void move();
         
+        //NOT CURRENTLY IMPLEMENTED
         void quickFaceSort(vector <GLint>indices, vector <GLfloat>vertices, vector <GLfloat>normals, int left, int right);
         
         // export ProtoObj to STL format
@@ -68,7 +74,7 @@ namespace ijg {
     protected:
         /***overridden in subclasses***/
         // vertex calculations
-        virtual void init();
+        void init();
             
         // vertex calculations
         virtual void calcVerts();
@@ -79,6 +85,8 @@ namespace ijg {
         /***used by subclasses***/
         // vertex normals calculations
         void calcNorms();
+        
+        void calcFaces();
         
         // primitves for drawElements
         void calcPrimitives();

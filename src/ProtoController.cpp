@@ -95,7 +95,12 @@ void ProtoController::setup(){
     pOrg02_c.setSpines(20);
     pOrg02_c.setSpineDetail(20);
     
+    //const ofVec3f& loc, const Dimension3D& dim, int spines, int spineDetail, bool isClosed
+    pOrg03 = ProtoOrg002(ofVec3f(0, 0, 0), Dimension3D(200, 50, 200), 60, 20, false);
+    
     pOrg02_c.exportSTL();
+    
+    toroid1 =  ProtoToroid(ofVec3f(0, 0, 0), Dimension3D(200, 200, 200), 80, 80, .1);
     
 }
 
@@ -156,12 +161,14 @@ void ProtoController::draw(){
     
     // draw opaque first
     glDisable(GL_CULL_FACE);
-    
+    glRotatef(ofGetFrameNum(), 1, 0, 0);
+    glRotatef(ofGetFrameNum(), 0, 0, 1);
+
    
     ofSetColor(0, 255, 255);
     ofPushMatrix();
     ofScale(50, 50, 50);
-    pOrg02_c.display();
+    //pOrg02_c.display();
     ofPopMatrix();
    
     
@@ -172,14 +179,23 @@ void ProtoController::draw(){
     ofSetColor(75, 100, 125, 190);
     ofPushMatrix();
     ofScale(100, 100, 100);
-    pOrg02_b.display();
+    //pOrg02_b.display();
     ofPopMatrix();
     
        
     ofSetColor(155, 255, 255, 80);
     ofPushMatrix();
     ofScale(200, 200, 200);
-    pOrg02.display();
+    //pOrg02.display();
+    ofPopMatrix();
+    
+    //pOrg03.display();
+    ofPushMatrix();
+    glRotatef(180, 1, 0, 0);
+    //pOrg03.display();
+    
+    glDepthMask(GL_TRUE);
+    toroid1.display();
     ofPopMatrix();
     
     // glEnable(GL_DEPTH_TEST);

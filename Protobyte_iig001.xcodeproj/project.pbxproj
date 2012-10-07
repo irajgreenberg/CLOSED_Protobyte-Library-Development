@@ -11,6 +11,8 @@
 		2A413E2815F7CF840066A6C1 /* ProtoOrgBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A413E2715F7CF840066A6C1 /* ProtoOrgBase.cpp */; };
 		2A8DE23915EFB2D000FC89C3 /* Face3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DE23815EFB2D000FC89C3 /* Face3D.cpp */; };
 		2AF6D5B115EBF9D10092D12D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6D5B015EBF9D10092D12D /* Particle.cpp */; };
+		728A92CE1620681800610171 /* ProtoToroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728A92CD1620681800610171 /* ProtoToroid.cpp */; };
+		728A92D116206AA300610171 /* Dimension3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728A92D016206AA300610171 /* Dimension3D.cpp */; };
 		728BBFB915F82F8F004612CC /* ProtoOrg002.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728BBFB815F82F8F004612CC /* ProtoOrg002.cpp */; };
 		72C20FA215F5450000C993D7 /* VertexPacked_VNC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C20FA115F5450000C993D7 /* VertexPacked_VNC.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -72,6 +74,10 @@
 		2A8DE25215F1010A00FC89C3 /* IGConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGConstants.h; sourceTree = "<group>"; };
 		2AF6D5AA15EBEF520092D12D /* Particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		2AF6D5B015EBF9D10092D12D /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
+		728A92CC1620680100610171 /* ProtoToroid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtoToroid.h; sourceTree = "<group>"; };
+		728A92CD1620681800610171 /* ProtoToroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoToroid.cpp; sourceTree = "<group>"; };
+		728A92CF1620697E00610171 /* Dimension3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dimension3D.h; sourceTree = "<group>"; };
+		728A92D016206AA300610171 /* Dimension3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dimension3D.cpp; sourceTree = "<group>"; };
 		728BBFB715F81AB0004612CC /* ProtoOrg002.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtoOrg002.h; sourceTree = "<group>"; };
 		728BBFB815F82F8F004612CC /* ProtoOrg002.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoOrg002.cpp; sourceTree = "<group>"; };
 		72C20FA015F4F5B100C993D7 /* VertexPacked_VNC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VertexPacked_VNC.h; sourceTree = "<group>"; };
@@ -133,6 +139,8 @@
 				728BBFB715F81AB0004612CC /* ProtoOrg002.h */,
 				2A413E2715F7CF840066A6C1 /* ProtoOrgBase.cpp */,
 				728BBFB815F82F8F004612CC /* ProtoOrg002.cpp */,
+				728A92CC1620680100610171 /* ProtoToroid.h */,
+				728A92CD1620681800610171 /* ProtoToroid.cpp */,
 			);
 			name = geom;
 			sourceTree = "<group>";
@@ -142,6 +150,8 @@
 			children = (
 				2A413E2415F7CC640066A6C1 /* Tuple3i.h */,
 				2A413E2515F7CC710066A6C1 /* Tuple3i.cpp */,
+				728A92CF1620697E00610171 /* Dimension3D.h */,
+				728A92D016206AA300610171 /* Dimension3D.cpp */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -328,6 +338,8 @@
 				2A413E2615F7CC710066A6C1 /* Tuple3i.cpp in Sources */,
 				2A413E2815F7CF840066A6C1 /* ProtoOrgBase.cpp in Sources */,
 				728BBFB915F82F8F004612CC /* ProtoOrg002.cpp in Sources */,
+				728A92CE1620681800610171 /* ProtoToroid.cpp in Sources */,
+				728A92D116206AA300610171 /* Dimension3D.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

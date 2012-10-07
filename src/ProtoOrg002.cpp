@@ -10,16 +10,15 @@
 
 using namespace ijg;
 
-ProtoOrg002::ProtoOrg002(int spines, int spineDetail, bool isClosed, float radius, float height):
-spines(spines), spineDetail(spineDetail), isClosed(isClosed), radius(radius), height(height){
+ProtoOrg002::ProtoOrg002(const ofVec3f& loc, const Dimension3D& dim, int spines, int spineDetail, bool isClosed):
+ProtoOrgBase(loc, dim), spines(spines), spineDetail(spineDetail), isClosed(isClosed) {
     init();
 }
-
 
 // overridden methods
 
 // vertex calculations
-void ProtoOrg002::init()
+/*void ProtoOrg002::init()
 {
     clearAll(); // ensure vectors are cleaned
     calcVerts();
@@ -27,7 +26,7 @@ void ProtoOrg002::init()
     calcFaces();
     calcNorms();
     calcPrimitives();
-}
+}*/
 
 // vertex calculations
 void ProtoOrg002::calcVerts()
@@ -40,8 +39,8 @@ void ProtoOrg002::calcVerts()
         // START CALCULATE VERTICES
         for(int j=0; j<spineDetail; j++){
             // 1.  Z rotation for inital spine
-            x = (cos(theta) - sin(theta))*(radius+ofRandom(.01));
-            y = radius/2+(sin(theta) + cos(theta))*(radius+ofRandom(.01));
+            x = (cos(theta) - sin(theta))*(1+ofRandom(.01));
+            y = 1/2+(sin(theta) + cos(theta))*(1+ofRandom(.01));
             z = 0;
             
             // 2.  y rotation to place spines
@@ -89,7 +88,7 @@ void ProtoOrg002::calcInds(){
     }
 }
     
-    void ProtoOrg002::calcFaces()
+  /*  void ProtoOrg002::calcFaces()
     {
         // calc faces
         for(int i=0; i<inds.size(); i++){
@@ -99,7 +98,7 @@ void ProtoOrg002::calcInds(){
             //std::cout<<"inds["<<i<<"].elem2 = " <<inds[i].elem2 <<std::endl;
         }
         
-    }
+    }*/
     
     
     // getters & setters
