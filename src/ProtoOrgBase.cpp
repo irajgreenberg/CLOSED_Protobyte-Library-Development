@@ -8,6 +8,17 @@
 
 #include "ProtoOrgBase.h"
 
+
+
+namespace ijg {
+    
+    std::ostream& operator<<(std::ostream& output, const ProtoOrgBase& protoBase)
+    {
+        output << "ProtoOrgBase obj: [ loc = "<<protoBase.loc<<" dim = "<<protoBase.dim<<" ]";
+        return output;
+    }
+}
+
 using namespace ijg;
 
 ProtoOrgBase::ProtoOrgBase()
@@ -54,9 +65,9 @@ void ProtoOrgBase::clearAll()
 void ProtoOrgBase::init()
 {
     /*clearAll();
-    calcVerts();
-    calcNorms();
-    calcPrimitives();*/
+     calcVerts();
+     calcNorms();
+     calcPrimitives();*/
     
     clearAll(); // ensure vectors are cleaned
     calcVerts();
@@ -141,16 +152,16 @@ void ProtoOrgBase::calcPrimitives()
     
     // colors
     for (int i=0; i<verts.size(); i++){
-       /* colors.push_back(ofRandom(1.0));
-        colors.push_back(ofRandom(1.0));
-        colors.push_back(ofRandom(1.0));
-        colors.push_back(ofRandom(1.0));*/
+        /* colors.push_back(ofRandom(1.0));
+         colors.push_back(ofRandom(1.0));
+         colors.push_back(ofRandom(1.0));
+         colors.push_back(ofRandom(1.0));*/
         colors.push_back(1);
         colors.push_back(.5);
         colors.push_back(0);
         colors.push_back(1);
     }
-
+    
     
 }
 
@@ -178,7 +189,7 @@ void ProtoOrgBase::display()
 	//set the pointers
     
     glColorPointer(4, GL_FLOAT, 0, &colors[0]);
-
+    
 	//glTexCoordPointer(2,GL_FLOAT,sizeof(GL_FLOAT) * 5,evilPointer);
 	glVertexPointer (3, GL_FLOAT, 0, &vertices[0]);
 	glNormalPointer(GL_FLOAT, 0, &normals[0]);
@@ -288,13 +299,13 @@ void ProtoOrgBase::quickFaceSort(vector <GLint>indices, vector <GLfloat>vertices
     
     if (left < j) {
         
-         //if (left >2 && j>2)
-            // quickFaceSort(indices, vertices, normals, left, j);
+        //if (left >2 && j>2)
+        // quickFaceSort(indices, vertices, normals, left, j);
     }
     
     if (i < right) {
         
-         //quickFaceSort(indices, vertices, normals, i, right);
+        //quickFaceSort(indices, vertices, normals, i, right);
     }
     
 }
@@ -324,7 +335,7 @@ void ProtoOrgBase::exportSTL()
     std::ofstream myfile;
     myfile.open ("../exportData/geomData.STL");
     
-     myfile << "PROTOBYTE\n";
+    myfile << "solid PROTOBYTE\n";
     for(int i=0; i<faces.size(); i++){
         myfile <<  scientific << setprecision (7) <<"\tfacet normal " <<
         faces[i].getNormal().x << " "<<faces[i].getNormal().y << " "<<faces[i].getNormal().z << "\n"<<
@@ -335,7 +346,7 @@ void ProtoOrgBase::exportSTL()
         "\t\tendloop\n" <<
         "\tendfacet\n";
     }
-        myfile << "END_PROTOBYTE\n";
+    myfile << "endsolid PROTOBYTE\n";
     
     myfile.close();
     std::cout << "STL file Successfully Written" << std::endl;

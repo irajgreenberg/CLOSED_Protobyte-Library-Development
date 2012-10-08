@@ -30,6 +30,7 @@ namespace ijg {
         
     public:
         
+        friend std::ostream& operator<<(std::ostream& output, const ProtoOrgBase& protoBase);
         ofVec3f loc;
         Dimension3D dim;
         
