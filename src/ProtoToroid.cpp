@@ -40,15 +40,23 @@ void ProtoToroid::calcVerts()
         // START CALCULATE VERTICES
         for(int j=0; j<ringDetail; j++){
             // 1.  Z rotation for inital ring
-            if (i % 2==0) {
-                x = 1-ringRadius + (cos(theta) - sin(theta))*ringRadius;
-                y = (sin(theta) + cos(theta))*ringRadius;
-                z = 0;
-            } else {
-                x = 1.2-ringRadius*1.2 + (cos(theta) - sin(theta))*ringRadius*1.2;
-                y = (sin(theta) + cos(theta))*ringRadius;
-                z = 0;
-            }
+            x = 1-ringRadius*1.2 + (cos(theta) - sin(theta))*ringRadius;
+            y = (sin(theta) + cos(theta))*ringRadius;
+            z = 0;
+            
+            // STAR 
+            /*
+             // 1.  Z rotation for inital ring
+             if (i % 2==0) {
+             x = 1-ringRadius + (cos(theta) - sin(theta))*ringRadius;
+             y = (sin(theta) + cos(theta))*ringRadius;
+             z = 0;
+             } else {
+             float r = ofRandom(1.1, 1.2);
+             x = r-ringRadius*1.2 + (cos(theta) - sin(theta))*ringRadius*r;
+             y = (sin(theta) + cos(theta))*ringRadius;
+             z = 0;
+             }*/
             
             // 2.  y rotation to place rings
             float x2 = z*cos(phi) - x*sin(phi);

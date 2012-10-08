@@ -96,11 +96,11 @@ void ProtoController::setup(){
     pOrg02_c.setSpineDetail(20);
     
     //const ofVec3f& loc, const Dimension3D& dim, int spines, int spineDetail, bool isClosed
-    pOrg03 = ProtoOrg002(ofVec3f(0, 0, 0), Dimension3D(200, 50, 200), 60, 20, false);
+    pOrg03 = ProtoOrg002(ofVec3f(0, 0, 0), Dimension3D(200, 200, 200), 60, 20, false);
     
     //pOrg02_c.exportSTL();
     
-    toroid1 =  ProtoToroid(ofVec3f(0, 0, 0), Dimension3D(200, 200, 200), 30, 80, .09);
+    toroid1 =  ProtoToroid(ofVec3f(0, 0, 0), Dimension3D(240, 240, 240), 60, 80, .06);
     toroid1.exportSTL();
     std::cout << toroid1 << std::endl;
     
