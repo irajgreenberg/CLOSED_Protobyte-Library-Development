@@ -10,7 +10,6 @@
 		2A413E2615F7CC710066A6C1 /* Tuple3i.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A413E2515F7CC710066A6C1 /* Tuple3i.cpp */; };
 		2A413E2815F7CF840066A6C1 /* ProtoOrgBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A413E2715F7CF840066A6C1 /* ProtoOrgBase.cpp */; };
 		2A8DE23915EFB2D000FC89C3 /* Face3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DE23815EFB2D000FC89C3 /* Face3D.cpp */; };
-		2AC8DE8A16235C2F00EE207F /* ExtrudeObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8DE8716235C2F00EE207F /* ExtrudeObj.cpp */; };
 		2AC8DE8B16235C2F00EE207F /* Spline3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8DE8816235C2F00EE207F /* Spline3d.cpp */; };
 		2AC8DE8C16235C2F00EE207F /* Curve3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8DE8916235C2F00EE207F /* Curve3d.cpp */; };
 		2AF6D5B115EBF9D10092D12D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6D5B015EBF9D10092D12D /* Particle.cpp */; };
@@ -76,8 +75,6 @@
 		2A8DE23815EFB2D000FC89C3 /* Face3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Face3D.cpp; sourceTree = "<group>"; };
 		2A8DE25215F1010A00FC89C3 /* IGConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGConstants.h; sourceTree = "<group>"; };
 		2AC8DE8416235C2F00EE207F /* Spline3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spline3d.h; sourceTree = "<group>"; };
-		2AC8DE8616235C2F00EE207F /* ExtrudeObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtrudeObj.h; sourceTree = "<group>"; };
-		2AC8DE8716235C2F00EE207F /* ExtrudeObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExtrudeObj.cpp; sourceTree = "<group>"; };
 		2AC8DE8816235C2F00EE207F /* Spline3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Spline3d.cpp; sourceTree = "<group>"; };
 		2AC8DE8916235C2F00EE207F /* Curve3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Curve3d.cpp; sourceTree = "<group>"; };
 		2AC8DE8E16235CCB00EE207F /* Curve3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Curve3d.h; sourceTree = "<group>"; };
@@ -144,8 +141,6 @@
 			children = (
 				2AC8DE8E16235CCB00EE207F /* Curve3d.h */,
 				2AC8DE8416235C2F00EE207F /* Spline3d.h */,
-				2AC8DE8616235C2F00EE207F /* ExtrudeObj.h */,
-				2AC8DE8716235C2F00EE207F /* ExtrudeObj.cpp */,
 				2AC8DE8816235C2F00EE207F /* Spline3d.cpp */,
 				2AC8DE8916235C2F00EE207F /* Curve3d.cpp */,
 			);
@@ -363,7 +358,6 @@
 				728BBFB915F82F8F004612CC /* ProtoOrg002.cpp in Sources */,
 				728A92CE1620681800610171 /* ProtoToroid.cpp in Sources */,
 				728A92D116206AA300610171 /* Dimension3D.cpp in Sources */,
-				2AC8DE8A16235C2F00EE207F /* ExtrudeObj.cpp in Sources */,
 				2AC8DE8B16235C2F00EE207F /* Spline3d.cpp in Sources */,
 				2AC8DE8C16235C2F00EE207F /* Curve3d.cpp in Sources */,
 			);

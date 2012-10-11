@@ -21,74 +21,81 @@
 #include "Curve3d.h"
 
 
+
 /**
  * Spline cubic curve class, where curve goes through all points. Curve is
- * specified by 6 points, with a constant specifying tension.
+ * specified by 6 points, with a smoothness value specifying tension.
  * <p>
  */
 
-class Spline3d: public Curve3d {
+namespace ijg {
     
-public:
-    Spline3d();
-    Spline3d(Vector3df* controlPts, int controlPtsLength, int interpDetail, double smoothness);	
-	Spline3d(Vector3df* controlPts, int controlPtsLength, int interpDetail, double smoothness, bool isCurveClosed);  
-    
-    ~Spline3d();
-    
-    // copy constructor
-    //Spline3d(Spline3d& spline3d_src);
-    
-    // overloaded assignment operator
-    //Spline3d& operator=Spline3d& spline3d_src) 
-    
-    /**
-	 * Set flag for Curve to be closed
-	 * overrides
-	 * @param isCurveClosed
-	 *            boolean value
-	 */
-	void setCurveClosed(bool isCurveClosed);	
-	
-    /**
-	 * Set flag for Curve at Terminals to be continuous
-	 * 
-	 * @param isTerminalSmooth
-	 *            boolean value
-	 */
-	void setTerminalSmooth(bool isTerminalSmooth);
-	
-    /**
-	 * Draw the curve.
-	 * 
-	 */
-	void display();    
-	
-    /**
-	 * Draw the control points.
-	 * 
-	 */
-	void displayControlPts();    
-	
-    /**
-	 * Draw the interpolated points.
-	 * 
-	 */
-	void displayInterpPts();
-    
-    
-private:
-    /**
-	 * Controls spline curve curvature.
-	 */
-    double smoothness;
-    
-    /**
-     * allocate memory and initialize stuff.
-     */
-    void init();
-    
-};
+    class Spline3d: public Curve3d {
+        
+    public:
+        Spline3d(ofVec3f controlPt0 = ofVec3f(), ofVec3f controlPt1 = ofVec3f(), ofVec3f controlPt2 = ofVec3f(), ofVec3f controlPt3 = ofVec3f(), ofVec3f controlPt4 = ofVec3f(), ofVec3f controlPt5 = ofVec3f(), ofVec3f controlPt6 = ofVec3f(), ofVec3f controlPt7 = ofVec3f(), int interpDetail = .1, bool isCurveClosed = false, float smoothness = .5);    
+        
+        Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness);        
+        
+        
+        /**
+         * Set flag for Curve at Terminals to be continuous
+         * 
+         * @param isTerminalSmooth
+         *            boolean value
+         */
+        void setTerminalSmooth(bool isTerminalSmooth);
+        
+        /**
+         * Draw the curve.
+         * 
+         */
+        void display();    
+        
+        /**
+         * Draw the control points.
+         * 
+         */
+        void displayControlPts();    
+        
+        /**
+         * Draw the interpolated points.
+         * 
+         */
+        void displayInterpPts();
+        
+        /**
+         * Set the smoothenss value.
+         * 
+         */
+        void setSmoothness(float smoothness);
+        
+        /**
+         * get the smoothenss value.
+         * 
+         */
+        float getSmoothness(float smoothness) const;
+        
+        /**
+         * sets flag for curve closed
+         * 
+         */
+        void setCurveClosed(bool isCurveClosed);
+        
+        
+    private:
+        /**
+         * Controls spline curve curvature.
+         */
+        float smoothness;
+        
+        /**
+         * allocate memory and initialize stuff.
+         */
+        void init();
+        
+    };
+}
 
 
 #endif

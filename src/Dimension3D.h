@@ -17,6 +17,7 @@ namespace ijg {
     
     public:
         friend std::ostream& operator<<(std::ostream& output, const Dimension3D & dim);
+        
         explicit Dimension3D(float w = 1, float h = 1, float d = 1);
         
         float w, h, d;

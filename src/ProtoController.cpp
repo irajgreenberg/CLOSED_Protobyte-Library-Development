@@ -104,6 +104,13 @@ void ProtoController::setup(){
     toroid1.exportSTL();
     std::cout << toroid1 << std::endl;
     
+    // Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness); 
+    std::vector<ofVec3f> vecs;
+    for(int i=0; i<500; i++){
+        vecs.push_back(ofVec3f(ofRandom(300), ofRandom(300), ofRandom(300)));
+    }
+    spline1 = Spline3d(vecs, 10, true, 1);
+    
 }
 
 //============================================================================
@@ -204,7 +211,7 @@ void ProtoController::draw(){
     // turn back on
     glDepthMask(GL_TRUE); // turn back on
     
-    
+    spline1.display();
     
     cam.end();
     

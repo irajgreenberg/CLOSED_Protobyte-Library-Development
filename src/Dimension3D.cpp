@@ -11,12 +11,11 @@
 
 
 namespace ijg {
-    
-std::ostream& operator<<(std::ostream& output, const Dimension3D & dim)
-{
-    output << "Dimenion3D obj: [ w = "<<dim.w<<" h = "<<dim.h<<" d = "<<dim.d<<" ]";
-    return output;
-}
+    std::ostream& operator<<(std::ostream& output, const Dimension3D & dim)
+    {
+        output << "Dimenion3D obj: [ w = "<<dim.w<<" h = "<<dim.h<<" d = "<<dim.d<<" ]";
+        return output;
+    }
 }
 
 using namespace ijg;
