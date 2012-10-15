@@ -9,7 +9,7 @@ using namespace ijg;
 
 // Basic 3-point lighting setup (Key, Fill, Back)
 // light0 - Key
-float light0Ambient[] = { 0, 0, 0, 1 };
+float light0Ambient[] = { 0, 0, 0, 0 };
 float light0Diffuse[] = {.5, .65, .4 }; // warmer
 float light0Specular[] = {  1, .85, .75, 1 };
 float light0Pos[4] = { -50, 150.2, 100, 0 };  // 4th arg 0=infinity, 1=position
@@ -106,10 +106,11 @@ void ProtoController::setup(){
     
     // Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness); 
     std::vector<ofVec3f> vecs;
-    for(int i=0; i<500; i++){
-        vecs.push_back(ofVec3f(ofRandom(300), ofRandom(300), ofRandom(300)));
+    for(int i=0; i<6; i++){
+        vecs.push_back(ofVec3f(-150+ofRandom(300), -150+ofRandom(300), -150+ofRandom(300)));
     }
-    spline1 = Spline3d(vecs, 10, true, 1);
+    spline1 = Spline3d(vecs, 20, false, 1);
+    //spline1.setTerminalSmooth(true); // not working yet
     
 }
 
@@ -170,8 +171,8 @@ void ProtoController::draw(){
     
     // draw opaque first
     glDisable(GL_CULL_FACE);
-    glRotatef(ofGetFrameNum(), 1, 0, 0);
-    glRotatef(ofGetFrameNum(), 0, 0, 1);
+    //glRotatef(ofGetFrameNum(), 1, 0, 0);
+    //glRotatef(ofGetFrameNum(), 0, 0, 1);
 
    
     ofSetColor(0, 255, 255);
@@ -211,9 +212,22 @@ void ProtoController::draw(){
     // turn back on
     glDepthMask(GL_TRUE); // turn back on
     
+    
+    // Render spline path
+    light0Ambient[0] =  light0Ambient[1] = light0Ambient[2] = 1;
+    setLighting();
+    glDisable(GL_CULL_FACE);
     spline1.display();
+    spline1.displayControlPts();
+    spline1.displayInterpPts();
+    spline1.displayFrenetFrame();
     
     cam.end();
+    
+    // reset culling/lighting
+    glEnable(GL_CULL_FACE);
+    light0Ambient[0] =  light0Ambient[1] = light0Ambient[2] = 0;
+    setLighting();
     
     
 }

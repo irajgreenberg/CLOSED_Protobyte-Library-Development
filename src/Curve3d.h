@@ -69,7 +69,7 @@ namespace ijg{
         ofVec3f controlPt7;
         
         /**
-         * Array of control points.
+         * vector of control points.
          */
         std::vector<ofVec3f> controlPts;
         
@@ -79,14 +79,24 @@ namespace ijg{
         int interpDetail;
         
         /**
-         * Array of interpolated points along curve.
+         * vector of interpolated points along curve.
          */
         std::vector<ofVec3f> interpPts;
         
         /**
-         * Array of all curve vertsBuff.
+         * vector of all curve vertices.
          */
         std::vector<ofVec3f> verts;
+        
+        /**
+         * vector of all curve vertices (Frenet frame).
+         */
+        std::vector<ofVec3f> biNorms;
+        
+        /**
+         * vector of all curve normals (Frenet frame).
+         */
+        std::vector<ofVec3f> norms;
         
         
         /**
@@ -153,6 +163,11 @@ namespace ijg{
          * Draw the curve points.
          */
         virtual void displayInterpPts() = 0;
+        
+        /**
+         * Draw the Frenet Frame.
+         */
+        virtual void displayFrenetFrame() = 0;
         
         /**
          * Returns length of the control points array.
