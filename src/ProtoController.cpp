@@ -107,9 +107,9 @@ void ProtoController::setup(){
     // Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness); 
     std::vector<ofVec3f> vecs;
     for(int i=0; i<20; i++){
-        vecs.push_back(ofVec3f(-150+ofRandom(300), -150+ofRandom(300), -150+ofRandom(300)));
+        vecs.push_back(ofVec3f(-100+ofRandom(400), -100+ofRandom(400), -100+ofRandom(400)));
     }
-    spline1 = Spline3d(vecs, 4, false, 1);
+    spline1 = Spline3d(vecs, 15, false, 1);
     //spline1.setTerminalSmooth(false); // not working yet
     
 }
@@ -134,18 +134,19 @@ void ProtoController::setLighting(){
     glLightfv(GL_LIGHT1, GL_POSITION, light1Pos);
     glLightfv(GL_LIGHT1, GL_DIFFUSE, light1Diffuse);
     glLightfv(GL_LIGHT1, GL_SPECULAR, light1Specular);
-    //glLightfv(GL_LIGHT1, GL_AMBIENT, light1Ambient);
+    glLightfv(GL_LIGHT1, GL_AMBIENT, light1Ambient);
     
     // light2
     glLightfv(GL_LIGHT2, GL_POSITION, light2Pos);
     glLightfv(GL_LIGHT2, GL_DIFFUSE, light2Diffuse);
     glLightfv(GL_LIGHT2, GL_SPECULAR, light2Specular);
-    //glLightfv(GL_LIGHT2, GL_AMBIENT, light2Ambient);
+    glLightfv(GL_LIGHT2, GL_AMBIENT, light2Ambient);
     
     
     // enable the lights/materials
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_SPECULAR); // does this do anything
+    glEnable(GL_AMBIENT);  // does this do anything
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
@@ -215,18 +216,20 @@ void ProtoController::draw(){
     
     // Render spline path
     light0Ambient[0] =  light0Ambient[1] = light0Ambient[2] = 1;
+    light1Ambient[0] =  light1Ambient[1] = light1Ambient[2] = 1;
     setLighting();
     glDisable(GL_CULL_FACE);
     spline1.display();
-    spline1.displayControlPts();
-    spline1.displayInterpPts();
-    spline1.displayFrenetFrames();
+    //spline1.displayControlPts();
+    //spline1.displayInterpPts();
+    spline1.displayFrenetFrames(30);
     
     cam.end();
     
     // reset culling/lighting
     glEnable(GL_CULL_FACE);
     light0Ambient[0] =  light0Ambient[1] = light0Ambient[2] = 0;
+    light1Ambient[0] =  light1Ambient[1] = light1Ambient[2] = 0;
     setLighting();
     
     

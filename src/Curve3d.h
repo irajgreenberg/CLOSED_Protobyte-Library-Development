@@ -173,7 +173,7 @@ namespace ijg{
         /**
          * Draw the Frenet Frame.
          */
-        virtual void displayFrenetFrames() = 0;
+        virtual void displayFrenetFrames(float len = 20) = 0;
         
         /**
          * Returns length of the control points array.

@@ -66,7 +66,7 @@ namespace ijg {
          * Draw the Frenet Frames.
          *
          */
-        void displayFrenetFrames();
+        void displayFrenetFrames(float len = 20);
         
         /**
          * Set the smoothenss value.

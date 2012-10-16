@@ -22,7 +22,7 @@ namespace ijg {
         // constructor
         Quaternion(const ofVec3f& axis = ofVec3f(0, 0, 1), float theta = 0);
         Quaternion(float x, float y, float z, float w);
-        void rotate(ofVec3f v);
+        //void rotate(ofVec3f v);
         ofVec3f rotate(const ofVec3f& v);
         float mag() const;
         void normalize();

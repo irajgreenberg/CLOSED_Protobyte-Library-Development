@@ -57,6 +57,7 @@ void FrenetFrame::display(float len)
     
     glBegin(GL_LINES);
     
+    len = 1;
     // T
     glColor3f(1, 0, 0);
     glVertex3f(p.x, p.y, p.z);
@@ -66,6 +67,8 @@ void FrenetFrame::display(float len)
     glColor3f(0, 0, 1);
     glVertex3f(p.x, p.y, p.z);
     glVertex3f(p.x + B.x*len, p.y + B.y*len, p.z + B.z*len);
+    
+    len = 20;
     
     // N
     glColor3f(0, 1, 0);
