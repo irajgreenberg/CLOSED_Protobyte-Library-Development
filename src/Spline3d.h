@@ -20,8 +20,6 @@
 
 #include "Curve3d.h"
 
-
-
 /**
  * Spline cubic curve class, where curve goes through all points. Curve is
  * specified by 6 points, with a smoothness value specifying tension.
@@ -65,10 +63,10 @@ namespace ijg {
         void displayInterpPts();
         
         /**
-         * Draw the Frenet Frame.
+         * Draw the Frenet Frames.
          *
          */
-        void displayFrenetFrame();
+        void displayFrenetFrames();
         
         /**
          * Set the smoothenss value.

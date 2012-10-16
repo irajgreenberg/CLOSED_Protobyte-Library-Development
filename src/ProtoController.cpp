@@ -106,11 +106,11 @@ void ProtoController::setup(){
     
     // Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness); 
     std::vector<ofVec3f> vecs;
-    for(int i=0; i<6; i++){
+    for(int i=0; i<20; i++){
         vecs.push_back(ofVec3f(-150+ofRandom(300), -150+ofRandom(300), -150+ofRandom(300)));
     }
-    spline1 = Spline3d(vecs, 20, false, 1);
-    //spline1.setTerminalSmooth(true); // not working yet
+    spline1 = Spline3d(vecs, 4, false, 1);
+    //spline1.setTerminalSmooth(false); // not working yet
     
 }
 
@@ -205,7 +205,7 @@ void ProtoController::draw(){
     //pOrg03.display();
     
     glDepthMask(GL_TRUE);
-    toroid1.display();
+    //toroid1.display();
     ofPopMatrix();
     
     // glEnable(GL_DEPTH_TEST);
@@ -220,7 +220,7 @@ void ProtoController::draw(){
     spline1.display();
     spline1.displayControlPts();
     spline1.displayInterpPts();
-    spline1.displayFrenetFrame();
+    spline1.displayFrenetFrames();
     
     cam.end();
     

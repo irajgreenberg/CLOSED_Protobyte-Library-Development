@@ -22,6 +22,7 @@
 #include "ofMain.h"
 #include "Dimension3D.h"
 #include <vector>
+#include "FrenetFrame.h"
 
 namespace ijg{
     
@@ -98,6 +99,11 @@ namespace ijg{
          */
         std::vector<ofVec3f> norms;
         
+        /**
+         * vector of Frenet frames.
+         */
+        std::vector<FrenetFrame> frenetFrames;
+        
         
         /**
          * Radius of rectangle used for rendering vertsBuff (?)
@@ -167,7 +173,7 @@ namespace ijg{
         /**
          * Draw the Frenet Frame.
          */
-        virtual void displayFrenetFrame() = 0;
+        virtual void displayFrenetFrames() = 0;
         
         /**
          * Returns length of the control points array.
