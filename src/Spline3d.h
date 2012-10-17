@@ -87,7 +87,13 @@ namespace ijg {
         void setCurveClosed(bool isCurveClosed);
         
         
+        
+        void Spline3d::drawCrossSections(); // temp
+        
+        
     private:
+        
+        vector<FrenetFrame> ff2; // temp
         /**
          * Controls spline curve curvature.
          */

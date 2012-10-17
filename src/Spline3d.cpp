@@ -7,7 +7,7 @@
 //
 
 #include "Spline3d.h"
-#include "Quaternion.h";
+#include "Quaternion.h"
 #include <iostream>
 
 using namespace ijg;
@@ -22,7 +22,7 @@ using namespace ijg;
 Spline3d::Spline3d(ofVec3f controlPt0, ofVec3f controlPt1, ofVec3f controlPt2, ofVec3f controlPt3, ofVec3f controlPt4, ofVec3f controlPt5, ofVec3f controlPt6, ofVec3f controlPt7, int interpDetail, bool isCurveClosed, float smoothness):
 Curve3d(controlPt0, controlPt1, controlPt2, controlPt3, controlPt4,controlPt5, controlPt6, controlPt7, interpDetail), smoothness(smoothness)
 {
-   // init();
+    // init();
 }
 
 Spline3d::Spline3d(const std::vector<ofVec3f>& controlPts,int interpDetail, bool isCurveClosed, float smoothness):
@@ -152,7 +152,7 @@ void Spline3d::init() {
                 t1 = controlPts[i + 1];
             } else {
                 //uses 1st CP to control curvature on last point
-                t1 = controlPts[0]; 
+                t1 = controlPts[0];
             }
             // Pi-1
             if (i > 0) {
@@ -178,7 +178,7 @@ void Spline3d::init() {
             t2 -= controlPts[i];
             t2 *= smoothness;
             
-             std::cout << "control point "<< i << " = " << controlPts[i] << std::endl;
+            //std::cout << "control point "<< i << " = " << controlPts[i] << std::endl;
             // FIXED 8/9/10 to allow symmetry on curve
             // ADDED 10/15/12 "<=" was "<"  - creates interpolated
             // point at control point, allowing derivatives to be calculated
@@ -209,7 +209,7 @@ void Spline3d::init() {
                 // for tangents
                 double yy3 = 6 * s - 12.0 * s; // 6s-12
                 double yy4 = 6 * s; // 6s
-
+                
                 
                 // create temporary vector
                 ofVec3f tempVec, tempVec2, T, B, N;
@@ -225,8 +225,8 @@ void Spline3d::init() {
                 tempVec += (t1 * h3); // p1
                 // tangent 2
                 tempVec += (t2 * h4); // p2
-               
-                std::cout << "tempVec "<< t << " = " << tempVec << std::endl;
+                
+                //std::cout << "tempVec "<< t << " = " << tempVec << std::endl;
                 tempVecs.push_back(tempVec);
                 
                 /****************************
@@ -263,10 +263,10 @@ void Spline3d::init() {
         // add last control point to tempVecs
         //tempVecs.push_back(controlPts[controlPts.size() - 1]);
         // curve smoothness terminates at end of path
-             /*****************************/
+        /*****************************/
     } else { /***********NOT WORKING*******/
-             /*****************************/
-        std::cout << "in Spline3d catch all else" << std::endl; 
+        /*****************************/
+        std::cout << "in Spline3d catch all else" << std::endl;
         for (int i = 0; i < controlPts.size() - 1; i++) {
             tempVecs.push_back(controlPts[i]);
             ofVec3f t1;
@@ -307,7 +307,7 @@ void Spline3d::init() {
                 // calculate basis functions
                 // for controls
                 double h1 = 2.0 * s * s * s - 3.0 * s * s + 1.0; // 2*s^3-3*s^2 + 1
-                double h2 = -2.0 * s * s * s + 3.0 * s * s; // -2*s^3-3*s^2 
+                double h2 = -2.0 * s * s * s + 3.0 * s * s; // -2*s^3-3*s^2
                 // for tangents
                 double h3 = s * s * s - 2.0 * s * s + s; // s^3-2*s^3
                 double h4 = s * s * s - s * s; // s^3 - s^2
@@ -339,11 +339,11 @@ void Spline3d::init() {
                 tempVec += (t2 * h4); // p2
                 tempVecs.push_back(tempVec);
                 
-  
+                
                 /****************************
                  ** Calculate Frenet Frame **
                  ****************************/
-                 // calculate binormal
+                // calculate binormal
                 // 1st derivative Vi
                 T = controlPts[i]; // b0
                 T *= y1;
@@ -356,10 +356,10 @@ void Spline3d::init() {
                 
                 
                 /*if(tempVecs.size()>2){
-                    ofVec3f test = tempVecs[i+1]-tempVecs[i-1];
-                    std::cout << "test = " << (t2.cross(t1)).normalize() << std::endl;
-                    std::cout << "testVec = " << tempVec.normalize() << std::endl;
-                }*/
+                 ofVec3f test = tempVecs[i+1]-tempVecs[i-1];
+                 std::cout << "test = " << (t2.cross(t1)).normalize() << std::endl;
+                 std::cout << "testVec = " << tempVec.normalize() << std::endl;
+                 }*/
                 
                 // 2nd derivative
                 tempVec2 = controlPts[i]; // b0
@@ -373,7 +373,7 @@ void Spline3d::init() {
                 
                 T.normalize();
                 B = T.cross(tempVec2);
-                N = B.cross(T);           
+                N = B.cross(T);
                 
                 //std::cout <<"here" << std::endl;
                 //frenetFrames.push_back(FrenetFrame(tempVec, T, B, N));
@@ -382,19 +382,19 @@ void Spline3d::init() {
         
         // add last control point to tempVecs DOESN'T SEEM NECESSARY ANY MORE
         // tempVecs.push_back(controlPts[controlPts.size() - 1]); // not needed
-
+        
     }
     // copy array vals to verts array - NOTE: not efficient to do this.
     //verts = new ofVec3f[tempVecs.size()];
     for (int i = 0; i < tempVecs.size(); i++) {
         verts.push_back(tempVecs[i]);
         if (i==0){  std::cout << "\n****VERTS****" << std::endl; }
-        std::cout <<"verts["<<i<<"] = " <<  verts[i] << std::endl;
+        //std::cout <<"verts["<<i<<"] = " <<  verts[i] << std::endl;
     }
     
     //std::cout << "verts.size() = " << verts.size() << std::endl;
     //std::cout << "biNorms.size() = " << biNorms.size() << std::endl;
-
+    
 }
 
 /**
@@ -489,20 +489,23 @@ void Spline3d::displayInterpPts()
  */
 void Spline3d::displayFrenetFrames(float len)
 {
+    ff2.clear();
     //std::cout << "frenetFrames.size() = " << frenetFrames.size() << std::endl;
     for (int i = 0; i <frenetFrames.size(); i++) {
         // rotate frenet frames
         
-       // frenetFrames[i].display(len);
+        // frenetFrames[i].display(len);
         
     }
-   //******************************************************************* 
+    //*******************************************************************
     // new way
-    vector<FrenetFrame> ff2;
+    
+    ofVec3f t0, t1, t2, newT, newB, newN;
+    
     //std::cout << "frenetFrames.size() = " << frenetFrames.size() << std::endl;
     for (int i = 0; i <verts.size(); i++) {
         // rotate frenet frames
-        ofVec3f t0, t1, t2, newT, newB, newN, newN_0, newN_1;
+        
         // first Frame is unrotated
         if (i==1){
             t0 = verts[i-1];
@@ -516,39 +519,94 @@ void Spline3d::displayFrenetFrames(float len)
             newN = newB;
             newN.cross(newT);
             ff2.push_back(FrenetFrame(verts[i], newT, newB, newN));
+            //std::cout << "ff2.size() = " << ff2.size() << std::endl;
+            //std::cout << "ff2[i-1].getT() = " << ff2[i-1].getT() << std::endl;
+            //std::cout << "ff2[i-1].getB() = " << ff2[i-1].getB() << std::endl;
+            //std::cout << "ff2[i-1].getN() = " << ff2[i-1].getN() << std::endl;
         }
         // after 1st frame
-            else  if (i>1){
-                t0 = verts[i-1]; //p1
-                t1 = verts[i]; //p2
-                t2 = verts[i+1]; //p3
-                newT = t2-t0;
-                newT.normalize();
-                newB = t1;
-                newB.cross(t2);
-                newB.normalize();
-                //newN = newB;
-                //newN.cross(newT);
+        else  if (i>1){
+            
+            t0 = verts[i-1]; //p1
+            t1 = verts[i]; //p2
+            t2 = verts[i+1]; //p3
+            newT = t2-t0;
+            newT.normalize();
+            newB = t1;
+            newB.cross(t2);
+            newB.normalize();
+            //newN = newB;
+            //newN.cross(newT);
+            
+            ofVec3f oldN = ff2[i-2].getN();
+            //std::cout << "ff2[i-1].getN() = " << ff2[i-1].getN() << std::endl;
+            // std::cout << "ff2[i].getN() = " << ff2[i].getN() << std::endl;
+            if(newB == 0) {
+                newN = oldN;
+                ff2.push_back(FrenetFrame(verts[i], newT, newB, newN));
+            } else {
+                t0.normalize();
+                t1.normalize();
+                float theta = acos(t0.dot(t1));
+                //std::cout << "t0.dot(t1) = " << t0.dot(t1) << std::endl;
                 
-                ofVec3f oldN = ff2[i-1].getN();
-                if(newB == 0) {
-                    newN = oldN;
-                    ff2.push_back(FrenetFrame(verts[i], newT, newB, newN));
-                } else {   
-                    float theta = acos(t0.dot(t1));
-                    //const ofVec3f& axis, float theta
-                    Quaternion q(newB, theta);
-                    newN = q.rotate(oldN);
-                    ff2.push_back(FrenetFrame(verts[i], newT, newB, newN));
-                }
-
+                newN = newB;
+                newN.cross(newT);
+                
+                //const ofVec3f& axis, float theta
+                Quaternion q(newB, theta);
+                //newN = q.rotate(oldN); // NOT WORKING
+                //std::cout << "oldN = " << oldN << std::endl;
+                ff2.push_back(FrenetFrame(verts[i], newT, newB, newN));
             }
+            
+        }
         
-            frenetFrames[i].display(len);
+        frenetFrames[i].display(len);
         
     }
+    //std::cout << "verts.size() = " << verts.size() << std::endl;
+    //std::cout << "ff2.size() = " << ff2.size() << std::endl;
+}
+
+void Spline3d::drawCrossSections(){
+    for (int i = 0; i <ff2.size(); i++) {
+        // draw cross-section ellipse
+         glColor3f(1, 1, 1);
+        glBegin(GL_POLYGON);
+        float th = 0;
+        for(int j=0; j<6; j++){
+            float x = cos(th)*10;
+            float y = sin(th)*10;
+            float z = 0;
+            float px = verts[i+1].x + x*ff2[i].getN().x + y*ff2[i].getB().x;
+            float py = verts[i+1].y + x*ff2[i].getN().y + y*ff2[i].getB().y;
+            float pz = verts[i+1].z + x*ff2[i].getN().z + y*ff2[i].getB().z;
+            glVertex3f(px, py, pz);
+            th += PI*2/6;
+        }
+        glEnd();
+    }
     
-     
+    glPointSize(4);
+    for (int i = 0; i <ff2.size(); i++) {
+        // draw cross-section ellipse
+        glBegin(GL_POINTS);
+        float th = 0;
+        for(int j=0; j<6; j++){
+            float x = cos(th)*10;
+            float y = sin(th)*10;
+            float z = 0;
+            float px = verts[i+1].x + x*ff2[i].getN().x + y*ff2[i].getB().x;
+            float py = verts[i+1].y + x*ff2[i].getN().y + y*ff2[i].getB().y;
+            float pz = verts[i+1].z + x*ff2[i].getN().z + y*ff2[i].getB().z;
+            glColor3f(0, 1-1/(j+1), 1/(j+1));
+            glVertex3f(px, py, pz);
+            th += PI*2/6;
+        }
+        glEnd();
+    }
+
 }
 
 /**
