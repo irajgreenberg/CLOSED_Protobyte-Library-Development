@@ -9,13 +9,18 @@
 #include "FrenetFrame.h"
 #include <iostream>
 
-using namespace ijg;
 
-ostream& operator<<(ostream& out, const FrenetFrame& frame)
-{
-    std::cout << "T = " << frame.getT()<<", B = " << frame.getB()<<", N = " << frame.getN();
-    return out;
+
+namespace ijg {
+    
+    std::ostream& operator<<(std::ostream& out, const FrenetFrame& frame)
+    {
+        std::cout << "T = " << frame.getT()<<", B = " << frame.getB()<<", N = " << frame.getN();
+        return out;
+    }
 }
+
+using namespace ijg;
 
 FrenetFrame::FrenetFrame()
 {
@@ -57,7 +62,6 @@ void FrenetFrame::display(float len)
     
     glBegin(GL_LINES);
     
-    len = 1;
     // T
     glColor3f(1, 0, 0);
     glVertex3f(p.x, p.y, p.z);
@@ -68,15 +72,14 @@ void FrenetFrame::display(float len)
     glVertex3f(p.x, p.y, p.z);
     glVertex3f(p.x + B.x*len, p.y + B.y*len, p.z + B.z*len);
     
-    len = 20;
     
     // N
     glColor3f(0, 1, 0);
     glVertex3f(p.x, p.y, p.z);
     glVertex3f(p.x + N.x*len, p.y + N.y*len, p.z + N.z*len);
-
     
-   
+    
+    
     
     glEnd();
 }

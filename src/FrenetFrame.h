@@ -18,7 +18,7 @@ namespace ijg {
         ofVec3f p, T, N, B;
         
     public:
-        friend ostream& operator<<(ostream& out, const FrenetFrame& frame);
+        friend std::ostream& operator<<(std::ostream& out, const FrenetFrame& frame);
         FrenetFrame();
         FrenetFrame(const ofVec3f& p, const ofVec3f& T, const ofVec3f& B, const ofVec3f& N);
         FrenetFrame(const ofVec3f TBN[3]);

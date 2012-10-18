@@ -13,6 +13,7 @@
 		2AC8DE8B16235C2F00EE207F /* Spline3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8DE8816235C2F00EE207F /* Spline3d.cpp */; };
 		2AC8DE8C16235C2F00EE207F /* Curve3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8DE8916235C2F00EE207F /* Curve3d.cpp */; };
 		2AF6D5B115EBF9D10092D12D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6D5B015EBF9D10092D12D /* Particle.cpp */; };
+		723C4594162F73F60052B358 /* Tube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723C4593162F73F60052B358 /* Tube.cpp */; };
 		7247BD1D162CE2CB004EC54A /* FrenetFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7247BD1C162CE2CB004EC54A /* FrenetFrame.cpp */; };
 		725265C9162BB92B00108E03 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725265C8162BB92B00108E03 /* Quaternion.cpp */; };
 		728A92CE1620681800610171 /* ProtoToroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728A92CD1620681800610171 /* ProtoToroid.cpp */; };
@@ -82,6 +83,8 @@
 		2AC8DE8E16235CCB00EE207F /* Curve3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Curve3d.h; sourceTree = "<group>"; };
 		2AF6D5AA15EBEF520092D12D /* Particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		2AF6D5B015EBF9D10092D12D /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
+		723C4592162F73A10052B358 /* Tube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tube.h; sourceTree = "<group>"; };
+		723C4593162F73F60052B358 /* Tube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tube.cpp; sourceTree = "<group>"; };
 		7247BD1B162CE14A004EC54A /* FrenetFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrenetFrame.h; sourceTree = "<group>"; };
 		7247BD1C162CE2CB004EC54A /* FrenetFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrenetFrame.cpp; sourceTree = "<group>"; };
 		725265C7162BB87F00108E03 /* Quaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				728BBFB815F82F8F004612CC /* ProtoOrg002.cpp */,
 				728A92CC1620680100610171 /* ProtoToroid.h */,
 				728A92CD1620681800610171 /* ProtoToroid.cpp */,
+				723C4592162F73A10052B358 /* Tube.h */,
+				723C4593162F73F60052B358 /* Tube.cpp */,
 			);
 			name = geom;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 				2AC8DE8C16235C2F00EE207F /* Curve3d.cpp in Sources */,
 				725265C9162BB92B00108E03 /* Quaternion.cpp in Sources */,
 				7247BD1D162CE2CB004EC54A /* FrenetFrame.cpp in Sources */,
+				723C4594162F73F60052B358 /* Tube.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

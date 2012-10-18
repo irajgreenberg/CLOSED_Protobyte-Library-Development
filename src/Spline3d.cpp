@@ -566,7 +566,7 @@ void Spline3d::displayFrenetFrames(float len)
         
     }
     //std::cout << "verts.size() = " << verts.size() << std::endl;
-    //std::cout << "ff2.size() = " << ff2.size() << std::endl;
+    std::cout << "ff2[0] = " << ff2[0] << std::endl;
 }
 
 void Spline3d::drawCrossSections(){
