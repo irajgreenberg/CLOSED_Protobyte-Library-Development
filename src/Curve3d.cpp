@@ -339,3 +339,13 @@ bool Curve3d::getIsTerminalSmooth() const  {
 void Curve3d::setIsTerminalSmooth(bool isTerminalSmooth) {
     this->isTerminalSmooth = isTerminalSmooth;
 }
+
+/**
+ * get Frenet Frame
+ * 
+ * @return Frenet Frame
+ */
+const std::vector<FrenetFrame>& Curve3d::getFrenetFrame() const
+{
+    return frenetFrames;
+}

@@ -21,13 +21,13 @@ Tube::Tube()
     
 }
 
-Tube::Tube(const Spline3d& path,  float radii[]): // varied thickness
-path(path), radii(radii){
+Tube::Tube(const ofVec3f& loc, const Dimension3D& dim, const Spline3d& path,  float radii[]): // varied thickness
+ProtoOrgBase(loc, dim), path(path), radii(radii){
     
 }
 
-Tube::Tube(const Spline3d& path, float radius):
-path(path), radius(radius){
+Tube::Tube(const ofVec3f& loc, const Dimension3D& dim, const Spline3d& path, float radius):
+ProtoOrgBase(loc, dim), path(path), radius(radius){
     
 }
 
@@ -42,7 +42,7 @@ void Tube::calcInds()
     
 }
 
-Spline3d& Tube::getPath()
+const Spline3d& Tube::getPath() const
 {
     return path;
 }

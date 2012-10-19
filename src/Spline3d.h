@@ -86,14 +86,16 @@ namespace ijg {
          */
         void setCurveClosed(bool isCurveClosed);
         
+        /**
+         * Draw cross-section extruded along the spline path.
+         * Default cross-section is an ellipse
+         */
+        void drawCrossSections(); // temp
         
-        
-        void Spline3d::drawCrossSections(); // temp
         
         
     private:
         
-        vector<FrenetFrame> ff2; // temp
         /**
          * Controls spline curve curvature.
          */
@@ -103,6 +105,13 @@ namespace ijg {
          * allocate memory and initialize stuff.
          */
         void init();
+        
+        /**
+         * Frenet frame is used to calcuate extrusions
+         * along spline path (Tubes & Tendrils baby!).
+         * Called automatically by init()
+         */
+        void createFrenetFrame();
         
     };
 }

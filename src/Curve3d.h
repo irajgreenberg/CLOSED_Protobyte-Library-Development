@@ -175,6 +175,8 @@ namespace ijg{
          */
         virtual void displayFrenetFrames(float len = 20) = 0;
         
+        //virtual void createFrenetFrame();
+        
         /**
          * Returns length of the control points array.
          */
@@ -397,6 +399,16 @@ namespace ijg{
          *            boolean value
          */
         void setIsTerminalSmooth(bool isTerminalSmooth);
+        
+        /**
+         * get Frenet Frame
+         * 
+         * @return Frenet Frame
+         */
+        const std::vector<FrenetFrame>& getFrenetFrame() const;
+        
+        
+         
         
     };
 }
