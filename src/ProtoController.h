@@ -6,6 +6,7 @@
 #include "ProtoOrg002.h"
 #include "ProtoToroid.h"
 #include "Spline3d.h"
+#include "Tube.h"
 
 //#include "ProtoOrgBase.h"
 
@@ -22,7 +23,8 @@ public:
     
     ijg::ProtoToroid toroid1;
     
-    ijg::Spline3d spline1;    
+    ijg::Spline3d spline1;
+    ijg::Tube tube;
     
     ofEasyCam cam; // add mouse controls for camera movement
     

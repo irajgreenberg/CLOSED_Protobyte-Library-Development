@@ -518,7 +518,7 @@ float Spline3d::getSmoothness(float smoothness) const
 
 /**
  * Calculate a Frenet frame for extrusion (tubes/tendrils).
- *
+ * - private access
  */
 void Spline3d::createFrenetFrame()
 {

@@ -341,7 +341,7 @@ namespace ijg{
          * @param uniqueVerts
          *            Vector array
          */
-        vector<ofVec3f>& getVerts();
+        const vector<ofVec3f>& getVerts();
         
         /**
          * Get vector of all vertices
@@ -406,7 +406,6 @@ namespace ijg{
          * @return Frenet Frame
          */
         const std::vector<FrenetFrame>& getFrenetFrame() const;
-        
         
          
         

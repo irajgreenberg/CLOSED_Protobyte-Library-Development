@@ -22,8 +22,8 @@ namespace ijg {
         
         friend std::ostream& operator<<(std::ostream& out, const Tube& tube);
         Tube();
-        Tube(const ofVec3f& loc, const Dimension3D& dim, const Spline3d& path, float radii[]); // varied thickness
-        Tube(const ofVec3f& loc, const Dimension3D& dim, const Spline3d& path, float radius);
+        Tube(const ofVec3f& loc, const Dimension3D& dim, const Spline3d& path, float radii[], int crossSectionDetail); // varied thickness
+        Tube(const ofVec3f& loc, const Dimension3D& dim, const Spline3d& path, float radius, int crossSectionDetail);
         
         // overrides base class
         void calcVerts();
@@ -35,7 +35,8 @@ namespace ijg {
     private:
         Spline3d path;
         float radius;
-        float* radii;
+        std::vector<float> radii;
+        int crossSectionDetail;
     };
 }
 

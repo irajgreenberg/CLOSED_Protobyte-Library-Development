@@ -106,11 +106,17 @@ void ProtoController::setup(){
     
     // Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness); 
     std::vector<ofVec3f> vecs;
-    for(int i=0; i<10; i++){
+    const int LEN = 100;
+    float radii[100];
+    float theta = 0;
+    for(int i=0; i<LEN; i++){
         vecs.push_back(ofVec3f(-100+ofRandom(400), -100+ofRandom(400), -100+ofRandom(400)));
+        radii[i] = abs(sin(theta +=PI/180)*4);
     }
-    spline1 = Spline3d(vecs, 15, false, 1);
+    spline1 = Spline3d(vecs, 20, false, 1);
     //spline1.setTerminalSmooth(false); // not working yet
+    
+    tube = Tube(ofVec3f(), Dimension3D(), spline1, 2, 16);
     
 }
 
@@ -207,6 +213,7 @@ void ProtoController::draw(){
     
     glDepthMask(GL_TRUE);
     toroid1.display();
+    tube.display();
     ofPopMatrix();
     
     // glEnable(GL_DEPTH_TEST);
@@ -219,11 +226,11 @@ void ProtoController::draw(){
     light1Ambient[0] =  light1Ambient[1] = light1Ambient[2] = 1;
     setLighting();
     glDisable(GL_CULL_FACE);
-    spline1.display();
+    //spline1.display();
     //spline1.displayControlPts();
     //spline1.displayInterpPts();
-    spline1.displayFrenetFrames(30);
-    spline1.drawCrossSections();
+    //spline1.displayFrenetFrames(30);
+    //spline1.drawCrossSections();
     
     cam.end();
     

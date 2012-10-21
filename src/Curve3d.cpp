@@ -235,7 +235,7 @@ void Curve3d::setVerts(std::vector<ofVec3f> verts) {
  * @param uniqueVerts
  *            Vector array
  */
-vector<ofVec3f>& Curve3d::getVerts() {
+const vector<ofVec3f>& Curve3d::getVerts() {
     return verts;
 }
 
@@ -349,3 +349,4 @@ const std::vector<FrenetFrame>& Curve3d::getFrenetFrame() const
 {
     return frenetFrames;
 }
+
