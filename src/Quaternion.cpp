@@ -48,12 +48,21 @@ Quaternion::Quaternion(float x, float y, float z, float w) {
     v.z = newZ;
 }*/
 
-ofVec3f Quaternion::rotate(const ofVec3f& v) {
+ofVec3f Quaternion::getRotate(const ofVec3f& v) {
     float newX = v.x*(1-2*y*y-2*z*z) + v.y*(2*x*y-2*w*z) + v.z*(2*x*z+2*w*y);
     float newY = v.x*(2*x*y+2*w*z) + v.y*(1-2*x*x-2*z*z) + v.z*(2*y*z+2*w*x);
     float newZ = v.x*(2*x*z-2*w*y) + v.y*(2*y*z-2*w*x) + v.z*(1-2*x*x-2*y*y);
     
     return ofVec3f(newX, newY, newZ);
+}
+
+void Quaternion::rotate(ofVec3f& v) {
+    ofVec3f tempV = v;
+    tempV.x = v.x*(1-2*y*y-2*z*z) + v.y*(2*x*y-2*w*z) + v.z*(2*x*z+2*w*y);
+    tempV.y = v.x*(2*x*y+2*w*z) + v.y*(1-2*x*x-2*z*z) + v.z*(2*y*z+2*w*x);
+    tempV.z = v.x*(2*x*z-2*w*y) + v.y*(2*y*z-2*w*x) + v.z*(1-2*x*x-2*y*y);
+    
+    v = tempV;
 }
 
 float Quaternion::mag() const{

@@ -8,9 +8,12 @@
 
 #include "Spline3d.h"
 #include "Quaternion.h"
+#include "Matrix3D.h"
+
 #include <iostream>
 
 using namespace ijg;
+//Matrix3D m;;
 
 /**
  * Spline cubic curve class, where curve goes through all points. Curve is
@@ -43,22 +46,10 @@ void Spline3d::init() {
     } else {
         len =(controlPts.size()-1)*interpDetail;
     }
-    // std::cout<< "controlPtsLength 2 = " << controlPtsLength << std::endl;
-    // std::cout<< "interpDetail 2 = " << interpDetail << std::endl;
-    // std::cout<< "len 2 = " << len << std::endl;
-    
-    //interpPts = newofVec3f[len]; NOT SURE IF I NEED THIS
-    // vertsLength = len + controlPts.size();
-    
-    // std::cout<< "vertsLength 2 = " << vertsLength << std::endl;
-    //verts = newofVec3f[vertsLength];
     vertRad = 5;
     
     // detect if curve should be closed
     if (isCurveClosed) {
-        // std::cout << "in isCurveClosed" << std::endl;
-        // std::cout << "len = " << len << std::endl;
-        // tempVecs.push_back(controlPts[0]);
         for (int i = 0; i < controlPts.size(); i++) {
             //tempVecs.push_back(controlPts[i]);
             //std::cout<< "controlPts["<<i<<"] = " << controlPts[i] << std::endl;
@@ -213,17 +204,17 @@ void Spline3d::init() {
                 
                 //std::cout << "tempVec "<< t << " = " << tempVec << std::endl;
                 tempVecs.push_back(tempVec);
-        
+                
             }
         }
         // add last control point to tempVecs
         //tempVecs.push_back(controlPts[controlPts.size() - 1]);
         // curve smoothness terminates at end of path
-            
+        
     } else {
-            /******************************************/
-            /***********NOT WORKING BELOW HERE*********/
-            /******************************************/
+        /******************************************/
+        /***********NOT WORKING BELOW HERE*********/
+        /******************************************/
         std::cout << "in Spline3d catch all else" << std::endl;
         for (int i = 0; i < controlPts.size() - 1; i++) {
             tempVecs.push_back(controlPts[i]);
@@ -354,7 +345,7 @@ void Spline3d::init() {
     }
     
     /******* Create Frenet Frame for extrusion *****/
-    createFrenetFrame();
+    createFrenetFrame4();
 }
 
 /**
@@ -522,59 +513,201 @@ float Spline3d::getSmoothness(float smoothness) const
  */
 void Spline3d::createFrenetFrame()
 {
-    ofVec3f t0, t1, t2, newT, newB, newN;
-    for (int i = 0; i <verts.size(); i++) {
+    ofVec3f t0, t1, t2, initT, initB, initN, newT, newB, newN, axis;
+    for (int i = 1; i <verts.size(); i++) {
         
-        if (i==1){
-            t0 = verts[i-1];
-            t1 = verts[i];
-            t2 = verts[i+1];
-            newT = t2-t0;
-            newT.normalize();
-            newB = t1;
-            newB.cross(t2);
-            newB.normalize();
-            newN = newB;
-            newN.cross(newT);
-            frenetFrames.push_back(FrenetFrame(verts[i], newT, newB, newN));
-        }
-        // after 1st frame
-        else  if (i>1){
-            
-            t0 = verts[i-1]; //p1
-            t1 = verts[i]; //p2
-            t2 = verts[i+1]; //p3
-            newT = t2-t0;
-            newT.normalize();
-            newB = t1;
-            newB.cross(t2);
-            newB.normalize();
-            
-            ofVec3f oldN = frenetFrames[i-2].getN();
-            if(newB == 0) {
-                newN = oldN;
-                frenetFrames.push_back(FrenetFrame(verts[i], newT, newB, newN));
-            } else {
-                t0.normalize();
-                t1.normalize();
-                float theta = acos(t0.dot(t1));
-                //std::cout << "t0.dot(t1) = " << t0.dot(t1) << std::endl;
-                
-                newN = newB;
-                newN.cross(newT);
-                
-               // FIX for Parallel Transport
-                //const ofVec3f& axis, float theta
-                Quaternion q(newB, theta);
-                //newN = q.rotate(oldN); // NOT WORKING
-                //std::cout << "oldN = " << oldN << std::endl;
-                frenetFrames.push_back(FrenetFrame(verts[i], newT, newB, newN));
-            }
-            
-        }
+        t0 = verts[i-1];
+        t1 = verts[i];
+        t2 = verts[i+1];
+        
+        initT = t2-t0;
+        initT.normalize();
+        
+        initB = t1;
+        initB.cross(t2);
+        initB.normalize();
+        
+        initN = initB;
+        initN.cross(initT);
+        initN.normalize();
+        std::cout << "initT("<<i<<") = " << initT <<std::endl;
+        std::cout << "initB("<<i<<") = " << initB <<std::endl;
+        std::cout << "initN("<<i<<") = " << initN <<std::endl;
+        
+        
+        frenetFrames.push_back(FrenetFrame(verts[i], initT, initB, initN));
+        
         
     }
     
 }
+
+
+void Spline3d::createFrenetFrame4()
+{
+    std::vector<ofVec3f> tans;
+    float theta;
+    ofVec3f cp0, cp1, cp2;
+    ofVec3f tan, biNorm, norm, nextTan, nextBiNorm, nextNorm;
+    for (int i = 1; i <verts.size(); i++) {
+        
+        cp0 = verts[i-1];
+        cp1 = verts[i];
+        cp2 = verts[i+1];
+        
+        tan = cp2 - cp0;
+        tan.normalize();
+        tans.push_back(tan);
+            
+        if (i==1){
+            
+            biNorm = cp1;
+            biNorm.cross(cp2);
+            biNorm.normalize();
+            
+            norm = biNorm;
+            norm.cross(tan);
+            norm.normalize();
+        }
+              // std::cout << "tan = " << tan <<std::endl;
+               // std::cout << "biNorm = " << biNorm <<std::endl;
+               // std::cout << "norm = " << norm <<std::endl;
+    }
+    // rotate frame
+    for (int i = 0; i <tans.size()-1; i++) {
+        
+         //std::cout<<"tans = "<<tans.at(i)<<std::endl;
+        if (biNorm.length() == 0) {
+            nextNorm = norm;
+        } else {
+            theta = acos(tans.at(i).dot(tans.at(i+1)));
+            //theta = ofRandom(PI);
+            
+            //std::cout << "theta = " << theta*180/PI << std::endl;
+            Quaternion q(biNorm, theta);
+         
+            //Matrix3D m;
+            //nextNorm = m.getRotate(theta, biNorm, norm);
+            std::cout << "norm before = " << norm << std::endl;
+            nextNorm = q.getRotate(norm);
+            //nextNorm = norm;
+            std::cout << "norm after = " << nextNorm << std::endl;
+            nextBiNorm = tans.at(i+1);
+            nextBiNorm.cross(nextNorm);
+
+            
+        }
+        frenetFrames.push_back(FrenetFrame(verts[i], tans.at(i), biNorm.normalize(), norm.normalize()));
+        norm = nextNorm;
+        biNorm = nextBiNorm;
+    }
+    
+}
+void Spline3d::createFrenetFrame3()
+{
+    std::vector<ofVec3f> tans, biNorms, norms;
+    float theta;
+    ofVec3f t0, t1, t2, initT, initB, initN, newT, newB, newN, axis;
+    for (int i = 1; i <verts.size(); i++) {
+        
+        t0 = verts[i-1];
+        t1 = verts[i];
+        t2 = verts[i+1];
+        
+        initT = t2-t0;
+        initT.normalize();
+        tans.push_back(initT);
+        
+        initB = t1;
+        initB.cross(t2);
+        initB.normalize();
+        biNorms.push_back(initB);
+        
+        initN = initB;
+        initN.cross(initT);
+        initN.normalize();
+        norms.push_back(initN);
+        //        std::cout << "initT("<<i<<") = " << initT <<std::endl;
+        //        std::cout << "initB("<<i<<") = " << initB <<std::endl;
+        //        std::cout << "initN("<<i<<") = " << initN <<std::endl;
+    }
+    // rotate
+    
+    for (int i = 1; i <tans.size()-2; i++) {
+        std::cout<<"biNorms.at(i) = " << biNorms.at(i)<<std::endl;
+        if (biNorms.at(i).length() == 0){
+            norms.at(i) = norms.at(i-1);
+        } else {
+            theta = acos(tans.at(i-1).dot(tans.at(i)));
+            Quaternion q(biNorms.at(i-1), theta);
+            norms.at(i) = q.getRotate(norms.at(i-1));
+            //biNorms.at(i+1) = q.getRotate(biNorms.at(i));
+            //tans.at(i+1) = q.getRotate(tans.at(i));
+            biNorms.at(i) = tans.at(i).cross(norms.at(i));
+        }
+        frenetFrames.push_back(FrenetFrame(verts[i], tans.at(i-1), biNorms.at(i-1), norms.at(i-1)));
+    }
+    
+}
+
+
+
+/**
+ * Calculate a Frenet frame for extrusion (tubes/tendrils).
+ * - private access
+ */
+void Spline3d::createFrenetFrame2()
+{
+    // 1st capture all tangent vectors
+    std::vector<ofVec3f> tans, biNorms, norms;
+    std::vector<float> biNormLens;
+    ofVec3f temp;
+    float theta;
+    float biNormalLen;
+    
+    
+    // tangents along spline
+    for (int i = 2; i <verts.size(); i++) {
+        ofVec3f temp = verts.at(i)-verts.at(i-2);
+        temp.normalize();
+        tans.push_back(temp);
+        //std::cout << "tans.at("<<i-2<<") = " << tans.at(i-2) <<std::endl;
+    }
+    
+    // Frenet frame biNorms and norms
+    for (int i = 0; i <tans.size()-1; i++) {
+        //binorm
+        temp = tans.at(i).cross(tans.at(i+1));
+        biNormLens.push_back(temp.length());
+        temp.normalize();
+        biNorms.push_back(temp);
+        //std::cout << "biNorms.at(" << i << ") = " << biNorms.at(i) << std::endl;
+        
+        //norms
+        temp = biNorms.at(i).cross(tans.at(i));
+        temp.normalize();
+        norms.push_back(temp);
+        std::cout << "norms.at(" << i << ") = " << norms.at(i) << std::endl;
+    }
+    
+    // rotate
+    for (int i = 0; i <tans.size()-2; i++) {
+        if (biNormLens.at(i) == 0){
+            norms.at(i+1) = norms.at(i);
+        } else {
+            theta = acos(tans.at(i).dot(tans.at(i+1)));
+            Quaternion q(biNorms.at(i), theta);
+            norms.at(i+1) = q.getRotate(norms.at(i));
+            //biNorms.at(i+1) = tans.at(i+1).cross(norms.at(i+1));
+            
+            
+        }
+        frenetFrames.push_back(FrenetFrame(verts[i+1], tans.at(i), biNorms.at(i), norms.at(i)));
+    }
+    
+    
+    
+}
+
 
 

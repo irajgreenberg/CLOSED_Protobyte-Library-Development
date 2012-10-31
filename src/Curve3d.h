@@ -104,6 +104,11 @@ namespace ijg{
          */
         std::vector<FrenetFrame> frenetFrames;
         
+        /**
+         * vector of Parallel Transport thetas.
+         */
+        std::vector<float> parallelTransportThetas;
+        
         
         /**
          * Radius of rectangle used for rendering vertsBuff (?)

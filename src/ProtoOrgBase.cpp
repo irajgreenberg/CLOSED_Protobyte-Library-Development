@@ -32,6 +32,17 @@ loc(loc), dim(dim)
     //init();
 }
 
+/*ProtoOrgBase::ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim, const ofColor& colr): // cster
+loc(loc), dim(dim){
+    
+    
+}*/
+
+/*ProtoOrgBase::ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim, std::vector<ofColor> colrs): // cster
+loc(loc), dim(dim), {
+    
+}*/
+
 ProtoOrgBase::~ProtoOrgBase()
 {
     

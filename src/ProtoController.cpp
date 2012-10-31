@@ -1,6 +1,23 @@
 #include "ProtoController.h"
+#include "Matrix3D.h"
+#include "Quaternion.h"
 
 using namespace ijg;
+
+// temp experiemntal space
+//
+//
+/*
+float testRadius = 200;
+ofVec3f vs[8];
+Matrix3D m;
+ */
+//
+//
+
+
+// - eventually delete
+
 
 
 //============================================================================
@@ -38,7 +55,7 @@ void ProtoController::setup(){
     
     // environment states
 	ofBackground(0,0,0);
-	ofSetWindowTitle("particles example");
+	ofSetWindowTitle("Protobyte Library Development");
     ofSetFrameRate(60);
     
     ofSetVerticalSync(true); // is this necessary
@@ -100,23 +117,41 @@ void ProtoController::setup(){
     
     //pOrg02_c.exportSTL();
     
-    toroid1 =  ProtoToroid(ofVec3f(0, 0, 0), Dimension3D(240, 240, 240), 60, 80, .06);
+    toroid1 =  ProtoToroid(ofVec3f(0, 0, 0), Dimension3D(240, 240, 240), 60, 80, .09);
     toroid1.exportSTL();
     std::cout << toroid1 << std::endl;
     
     // Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness); 
     std::vector<ofVec3f> vecs;
-    const int LEN = 100;
+    const int LEN = 40;
     float radii[100];
     float theta = 0;
     for(int i=0; i<LEN; i++){
-        vecs.push_back(ofVec3f(-100+ofRandom(400), -100+ofRandom(400), -100+ofRandom(400)));
+        vecs.push_back(ofVec3f(ofRandom(-200, 200), ofRandom(-200, 200), ofRandom(-200, 200)));
         radii[i] = abs(sin(theta +=PI/180)*4);
+        radii[i] = 20;
     }
     spline1 = Spline3d(vecs, 20, false, 1);
     //spline1.setTerminalSmooth(false); // not working yet
     
-    tube = Tube(ofVec3f(), Dimension3D(), spline1, 2, 16);
+    tube = Tube(ofVec3f(), Dimension3D(), spline1, 8, 10);
+    tube.exportSTL();
+    
+    
+    
+    // experimental test space
+    //
+    //
+    /*
+     float tt = 0;
+    for(int i=0; i<8; i++){
+        vs[i] = ofVec3f(cos(tt)*testRadius, sin(tt)*testRadius, 0);
+        tt += PI*2/8;
+    }
+     */
+    //
+    //
+    // Eventually Delete
     
 }
 
@@ -208,11 +243,11 @@ void ProtoController::draw(){
     
     //pOrg03.display();
     ofPushMatrix();
-    glRotatef(180, 1, 0, 0);
+    //glRotatef(180, 1, 0, 0);
     //pOrg03.display();
     
     glDepthMask(GL_TRUE);
-    toroid1.display();
+    //toroid1.display();
     tube.display();
     ofPopMatrix();
     
@@ -229,7 +264,7 @@ void ProtoController::draw(){
     //spline1.display();
     //spline1.displayControlPts();
     //spline1.displayInterpPts();
-    //spline1.displayFrenetFrames(30);
+    spline1.displayFrenetFrames(30);
     //spline1.drawCrossSections();
     
     cam.end();
@@ -241,6 +276,25 @@ void ProtoController::draw(){
     setLighting();
     
     
+    
+    // testing area
+    //
+    //
+    /*
+    glBegin(GL_POLYGON);
+    for(int i=0; i<8; i++){
+        //m.rotate(PI/180, ofVec3f(.7, 1, .4), vs[i]); // axis/angle rot
+        //Quaternion q(ofVec3f(0, 0, 1), PI/180); // quaternion rot
+        //q.rotate(vs[i]);
+        glVertex3f(vs[i].x, vs[i].y, vs[i].z);
+    }
+    glEnd();
+    cam.end();
+    */
+    
+    //
+    //
+    // Eventually Delete
 }
 
 //--------------------------------------------------------------

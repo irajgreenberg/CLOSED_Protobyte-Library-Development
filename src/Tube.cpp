@@ -34,12 +34,14 @@ ProtoOrgBase(loc, dim), path(path), radius(radius), crossSectionDetail(crossSect
     float t = 0;
     for (int i = 0; i < path.getVertsLength(); i++) {
        // ******** don't leave like this ********
-        this->radii.push_back(3+abs(cos(t+=PI/45.0))*radius*3);
+        // testing varying radii
+        //this->radii.push_back(3+abs(cos(t+=PI/45.0))*radius*3);
+        this->radii.push_back(radius);
     }
     init();
 }
 
-// overrides base class
+// overrides method in base class
 void Tube::calcVerts()
 {
     std::vector<FrenetFrame> ff = path.getFrenetFrame();
@@ -47,16 +49,24 @@ void Tube::calcVerts()
     
     for (int i = 0; i <ff.size(); i++) {
         // calculate cross-section vertices
-        float th = 0;
+        float theta = 0;
         for(int j=0; j<crossSectionDetail; j++){
-            float x = cos(th)*radii[i];
-            float y = sin(th)*radii[i];
+            //float x = cos(th)*(radii[i] + ofRandom(-5, 5)); //bumpy
+            //float y = sin(th)*(radii[i] + ofRandom(-5, 5)); //bumpy
+            
+            // calculate cross section shape
+            float x = cos(theta)*radii[i];
+            float y = sin(theta)*radii[i];
+            
             float z = 0;
+            theta -= PI*2/crossSectionDetail;
+            
+            // transform to Frenet frame of reference
             float px = vecs[i+1].x + x*ff[i].getN().x + y*ff[i].getB().x;
             float py = vecs[i+1].y + x*ff[i].getN().y + y*ff[i].getB().y;
             float pz = vecs[i+1].z + x*ff[i].getN().z + y*ff[i].getB().z;
             verts.push_back(ofVec3f(px, py, pz));
-            th -= PI*2/crossSectionDetail;
+            
         }
     }
 }

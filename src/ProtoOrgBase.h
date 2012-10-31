@@ -54,6 +54,8 @@ namespace ijg {
         // prototypes
         ProtoOrgBase();  // cster
         ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim); // cster
+        ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim, const ofColor& colr); // cster
+        ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim, std::vector<ofColor> colrs); // cster
         virtual ~ProtoOrgBase(); // for super (base) class
         void clearAll();
         void display();

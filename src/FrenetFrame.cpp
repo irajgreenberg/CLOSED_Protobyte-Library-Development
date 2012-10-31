@@ -56,24 +56,24 @@ ofVec3f FrenetFrame::getB() const
 
 void FrenetFrame::display(float len)
 {
-    // std::cout << "T = " << T << std::endl;
-    // std::cout << "B = " << B << std::endl;
-    // std::cout << "N = " << N << std::endl;
+//     std::cout << "T = " << T.length() << std::endl;
+//     std::cout << "B = " << B.length() << std::endl;
+//     std::cout << "N = " << N.length()<< std::endl;
     
     glBegin(GL_LINES);
     
-    // T
+    // T = RED
     glColor3f(1, 0, 0);
     glVertex3f(p.x, p.y, p.z);
     glVertex3f(p.x + T.x*len, p.y + T.y*len, p.z + T.z*len);
     
-    // B
+    // B = BLUE
     glColor3f(0, 0, 1);
     glVertex3f(p.x, p.y, p.z);
     glVertex3f(p.x + B.x*len, p.y + B.y*len, p.z + B.z*len);
     
     
-    // N
+    // N = GREEN
     glColor3f(0, 1, 0);
     glVertex3f(p.x, p.y, p.z);
     glVertex3f(p.x + N.x*len, p.y + N.y*len, p.z + N.z*len);

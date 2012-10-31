@@ -94,8 +94,6 @@ namespace ijg {
         
         
         
-        
-        
     private:
         
         /**
@@ -113,7 +111,10 @@ namespace ijg {
          * along spline path (Tubes & Tendrils baby!).
          * Called automatically by init()
          */
-        void createFrenetFrame();
+        void createFrenetFrame(); // eventually get rid of all but one of these
+        void createFrenetFrame2();
+        void createFrenetFrame3();
+        void createFrenetFrame4();
         
     };
 }
