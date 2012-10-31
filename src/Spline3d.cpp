@@ -584,12 +584,15 @@ void Spline3d::createFrenetFrame4()
             //theta = ofRandom(PI);
             
             //std::cout << "theta = " << theta*180/PI << std::endl;
-            Quaternion q(biNorm, theta);
+            ofVec3f axis = tans.at(i);
+            axis.cross(tans.at(i+1));
+            axis.normalize();
+            //Quaternion q(axis, theta);
          
-            //Matrix3D m;
-            //nextNorm = m.getRotate(theta, biNorm, norm);
+            Matrix3D m;
+            nextNorm = m.getRotate(theta, axis, norm);
             std::cout << "norm before = " << norm << std::endl;
-            nextNorm = q.getRotate(norm);
+            //nextNorm = q.getRotate(norm);
             //nextNorm = norm;
             std::cout << "norm after = " << nextNorm << std::endl;
             nextBiNorm = tans.at(i+1);

@@ -123,7 +123,7 @@ void ProtoController::setup(){
     
     // Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness); 
     std::vector<ofVec3f> vecs;
-    const int LEN = 40;
+    const int LEN = 100;
     float radii[100];
     float theta = 0;
     for(int i=0; i<LEN; i++){
@@ -134,7 +134,7 @@ void ProtoController::setup(){
     spline1 = Spline3d(vecs, 20, false, 1);
     //spline1.setTerminalSmooth(false); // not working yet
     
-    tube = Tube(ofVec3f(), Dimension3D(), spline1, 8, 10);
+    tube = Tube(ofVec3f(), Dimension3D(), spline1, 5, 10);
     tube.exportSTL();
     
     
@@ -264,7 +264,7 @@ void ProtoController::draw(){
     //spline1.display();
     //spline1.displayControlPts();
     //spline1.displayInterpPts();
-    spline1.displayFrenetFrames(30);
+    //spline1.displayFrenetFrames(30);
     //spline1.drawCrossSections();
     
     cam.end();
