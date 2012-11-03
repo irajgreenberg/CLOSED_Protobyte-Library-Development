@@ -39,6 +39,8 @@ Curve3d(controlPts, interpDetail, isCurveClosed), smoothness(smoothness){
  * Calculate the interpolated curve points populating the uniqueVerts array.
  */
 void Spline3d::init() {
+
+
     // std::cout<< "In Spline3d init method"<< std::endl;
     int len = 0;
     if(isCurveClosed){
@@ -128,7 +130,7 @@ void Spline3d::init() {
         }
         // smooth curves at end of paths
     } else if (isTerminalSmooth) {
-        //std::cout <<"Inside isTerminalSmooth block" << std::endl;
+        std::cout <<"Inside isTerminalSmooth block" << std::endl;
         for (int i = 0; i < controlPts.size()-1; i++) {
             // ONLY add inital control point to vertex list
             if(i==0)  { tempVecs.push_back(controlPts[i]); }
@@ -204,13 +206,13 @@ void Spline3d::init() {
                 
                 //std::cout << "tempVec "<< t << " = " << tempVec << std::endl;
                 tempVecs.push_back(tempVec);
+
                 
             }
         }
         // add last control point to tempVecs
         //tempVecs.push_back(controlPts[controlPts.size() - 1]);
         // curve smoothness terminates at end of path
-        
     } else {
         /******************************************/
         /***********NOT WORKING BELOW HERE*********/
@@ -287,48 +289,8 @@ void Spline3d::init() {
                 // tangent 2
                 tempVec += (t2 * h4); // p2
                 tempVecs.push_back(tempVec);
-                
-                
-                /****************************
-                 ** Calculate Frenet Frame **
-                 ****************************/
-                /*
-                 // calculate binormal
-                 // 1st derivative Vi
-                 T = controlPts[i]; // b0
-                 T *= y1;
-                 T += (controlPts[i + 1] * y2); // b3
-                 // tangent 1
-                 T += (t1 * y3); // b1
-                 // tangent 2
-                 T += (t2 * y4); // b2
-                 
-                 
-                 
-                 if(tempVecs.size()>2){
-                 ofVec3f test = tempVecs[i+1]-tempVecs[i-1];
-                 std::cout << "test = " << (t2.cross(t1)).normalize() << std::endl;
-                 std::cout << "testVec = " << tempVec.normalize() << std::endl;
-                 }
-                 
-                 // 2nd derivative
-                 tempVec2 = controlPts[i]; // b0
-                 tempVec2 *= yy1;
-                 tempVec2 += (controlPts[i + 1] * yy2); // b3
-                 // tangent 1
-                 tempVec2 += (t1 * yy3); // b1
-                 // tangent 2
-                 tempVec2 += (t2 * yy4); // b2
-                 tempVec2.normalize();
-                 
-                 T.normalize();
-                 B = T.cross(tempVec2);
-                 N = B.cross(T);
-                 
-                 
-                 //std::cout <<"here" << std::endl;
-                 //frenetFrames.push_back(FrenetFrame(tempVec, T, B, N));
-                 */
+                //std::cout << "tempVec "<< t << " = " << tempVec << std::endl;
+
             }
         }
         

@@ -35,8 +35,8 @@ ProtoOrgBase(loc, dim), path(path), radius(radius), crossSectionDetail(crossSect
     for (int i = 0; i < path.getVertsLength(); i++) {
        // ******** don't leave like this ********
         // testing varying radii
-        //this->radii.push_back(3+abs(cos(t+=PI/45.0))*radius*3);
-        this->radii.push_back(radius);
+        this->radii.push_back(.5+abs(cos(t+=PI/15))*radius*15);
+        //this->radii.push_back(radius);
     }
     init();
 }
@@ -73,9 +73,10 @@ void Tube::calcVerts()
 
 void Tube::calcInds()
 {
+    int frameCount = path.getFrenetFrame().size();
     int crossSectionCount = path.getVertsLength();
     // indices
-    for(int i=0; i<path.getVertsLength()/*ringCount*/; i++){
+    for(int i=0; i<frameCount-2/*ringCount*/; i++){
         for(int j=0; j<crossSectionDetail/*ringDetail*/; j++){
             
             int i0 = i*crossSectionDetail + j;

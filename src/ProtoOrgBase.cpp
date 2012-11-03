@@ -146,6 +146,7 @@ void ProtoOrgBase::calcPrimitives()
         vertices.push_back(verts[i].x);
         vertices.push_back(verts[i].y);
         vertices.push_back(verts[i].z);
+        //std::cout << "verts =  " << verts[i] << std::endl;
     }
     // indices
     for (int i=0; i<inds.size(); i++){
@@ -163,13 +164,13 @@ void ProtoOrgBase::calcPrimitives()
     
     // colors
     for (int i=0; i<verts.size(); i++){
-        /* colors.push_back(ofRandom(1.0));
-         colors.push_back(ofRandom(1.0));
-         colors.push_back(ofRandom(1.0));
-         colors.push_back(ofRandom(1.0));*/
-        colors.push_back(1);
-        colors.push_back(.5);
-        colors.push_back(0);
+//         colors.push_back(ofRandom(1.0));
+//         colors.push_back(ofRandom(1.0));
+//         colors.push_back(ofRandom(1.0));
+//         colors.push_back(1.0);
+        colors.push_back(.7);
+        colors.push_back(.7);
+        colors.push_back(.7);
         colors.push_back(1);
     }
     

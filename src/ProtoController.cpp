@@ -123,18 +123,18 @@ void ProtoController::setup(){
     
     // Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness); 
     std::vector<ofVec3f> vecs;
-    const int LEN = 100;
+    const int LEN = 20;
     float radii[100];
     float theta = 0;
     for(int i=0; i<LEN; i++){
-        vecs.push_back(ofVec3f(ofRandom(-200, 200), ofRandom(-200, 200), ofRandom(-200, 200)));
-        radii[i] = abs(sin(theta +=PI/180)*4);
+        vecs.push_back(ofVec3f(ofRandom(-1300, 1300), ofRandom(-1300, 1300), ofRandom(-1300, 1300)));
+        radii[i] = abs(sin(theta +=PI/180)*10);
         radii[i] = 20;
     }
-    spline1 = Spline3d(vecs, 20, false, 1);
+    spline1 = Spline3d(vecs, 35, false, .5);
     //spline1.setTerminalSmooth(false); // not working yet
     
-    tube = Tube(ofVec3f(), Dimension3D(), spline1, 5, 10);
+    tube = Tube(ofVec3f(), Dimension3D(), spline1, 6, 40);
     tube.exportSTL();
     
     
@@ -207,14 +207,15 @@ void ProtoController::draw(){
     cam.begin();
     
     ofRotateX(180);
+    glTranslatef(0, 0, -50);
     
     //ofNoFill();
 
     
     // draw opaque first
     glDisable(GL_CULL_FACE);
-    //glRotatef(ofGetFrameNum(), 1, 0, 0);
-    //glRotatef(ofGetFrameNum(), 0, 0, 1);
+    glRotatef(ofGetFrameNum(), 1, 0, 0);
+    glRotatef(ofGetFrameNum(), 0, 0, 1);
 
    
     ofSetColor(0, 255, 255);

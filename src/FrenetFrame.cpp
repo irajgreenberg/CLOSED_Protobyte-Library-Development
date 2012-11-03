@@ -15,7 +15,7 @@ namespace ijg {
     
     std::ostream& operator<<(std::ostream& out, const FrenetFrame& frame)
     {
-        std::cout << "T = " << frame.getT()<<", B = " << frame.getB()<<", N = " << frame.getN();
+        //std::cout << "T = " << frame.getT()<<", B = " << frame.getB()<<", N = " << frame.getN();
         return out;
     }
 }
