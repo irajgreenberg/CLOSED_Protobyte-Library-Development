@@ -4,21 +4,6 @@
 
 using namespace ijg;
 
-// temp experiemntal space
-//
-//
-/*
-float testRadius = 200;
-ofVec3f vs[8];
-Matrix3D m;
- */
-//
-//
-
-
-// - eventually delete
-
-
 
 //============================================================================
 // Lighting variables - from ProtoLib
@@ -103,39 +88,28 @@ void ProtoController::setup(){
     
     setLighting();
     
-    pOrg02.setSpines(80);
-    pOrg02.setSpineDetail(80);
-    
-    pOrg02_b.setSpines(30);
-    pOrg02_b.setSpineDetail(30);
-    
-    pOrg02_c.setSpines(20);
-    pOrg02_c.setSpineDetail(20);
-    
-    //const ofVec3f& loc, const Dimension3D& dim, int spines, int spineDetail, bool isClosed
-    pOrg03 = ProtoOrg002(ofVec3f(0, 0, 0), Dimension3D(200, 200, 200), 60, 20, false);
-    
-    //pOrg02_c.exportSTL();
-    
     toroid1 =  ProtoToroid(ofVec3f(0, 0, 0), Dimension3D(240, 240, 240), 60, 80, .09);
     toroid1.exportSTL();
     std::cout << toroid1 << std::endl;
     
-    // Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness); 
+    //TUBE/TENDRIL
+    // Spline3d(const std::vector<ofVec3f>& controlPts, int interpDetail, bool isCurveClosed, float smoothness);
     std::vector<ofVec3f> vecs;
     const int LEN = 20;
-    float radii[100];
+    float radii[LEN*35-2];
     float theta = 0;
     for(int i=0; i<LEN; i++){
-        vecs.push_back(ofVec3f(ofRandom(-1300, 1300), ofRandom(-1300, 1300), ofRandom(-1300, 1300)));
-        radii[i] = abs(sin(theta +=PI/180)*10);
-        radii[i] = 20;
+        vecs.push_back(ofVec3f(ofRandom(-300, 300), ofRandom(-300, 300), ofRandom(-300, 300)));
     }
+
     spline1 = Spline3d(vecs, 35, false, .5);
     //spline1.setTerminalSmooth(false); // not working yet
     
-    tube = Tube(ofVec3f(), Dimension3D(), spline1, 6, 40);
+    tube = ProtoTube(ofVec3f(), Dimension3D(), spline1, 4, 40);
     tube.exportSTL();
+    
+    // TETRAHEDRON
+    tetrahedron = ProtoTetrahedron(ofVec3f(0, 0, 0), Dimension3D(200, 200, 200), 3);
     
     
     
@@ -206,7 +180,7 @@ void ProtoController::update(){
 void ProtoController::draw(){
     cam.begin();
     
-    ofRotateX(180);
+    //ofRotateX(180);
     glTranslatef(0, 0, -50);
     
     //ofNoFill();
@@ -214,42 +188,25 @@ void ProtoController::draw(){
     
     // draw opaque first
     glDisable(GL_CULL_FACE);
+    
     glRotatef(ofGetFrameNum(), 1, 0, 0);
     glRotatef(ofGetFrameNum(), 0, 0, 1);
-
-   
-    ofSetColor(0, 255, 255);
-    ofPushMatrix();
-    ofScale(50, 50, 50);
-    //pOrg02_c.display();
-    ofPopMatrix();
    
     
-    glDepthMask(GL_FALSE); // turn off - for transparency
-
-     //glDisable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
-    ofSetColor(75, 100, 125, 190);
-    ofPushMatrix();
-    ofScale(100, 100, 100);
-    //pOrg02_b.display();
-    ofPopMatrix();
+    //glDepthMask(GL_FALSE); // turn off - for transparency
     
        
-    ofSetColor(155, 255, 255, 80);
-    ofPushMatrix();
-    ofScale(200, 200, 200);
-    //pOrg02.display();
-    ofPopMatrix();
+   
     
-    //pOrg03.display();
-    ofPushMatrix();
-    //glRotatef(180, 1, 0, 0);
-    //pOrg03.display();
     
     glDepthMask(GL_TRUE);
     //toroid1.display();
-    tube.display();
+    //tube.display();
+    
+    ofSetColor(155, 255, 255, 80);
+    //glShadeModel (GL_FLAT);
+    tetrahedron.display();
+    
     ofPopMatrix();
     
     // glEnable(GL_DEPTH_TEST);

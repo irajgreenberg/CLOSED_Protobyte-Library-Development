@@ -13,13 +13,13 @@
 		2AC8DE8B16235C2F00EE207F /* Spline3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8DE8816235C2F00EE207F /* Spline3d.cpp */; };
 		2AC8DE8C16235C2F00EE207F /* Curve3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8DE8916235C2F00EE207F /* Curve3d.cpp */; };
 		2AF6D5B115EBF9D10092D12D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6D5B015EBF9D10092D12D /* Particle.cpp */; };
-		723C4594162F73F60052B358 /* Tube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723C4593162F73F60052B358 /* Tube.cpp */; };
+		723C4594162F73F60052B358 /* ProtoTube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 723C4593162F73F60052B358 /* ProtoTube.cpp */; };
 		7247BD1D162CE2CB004EC54A /* FrenetFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7247BD1C162CE2CB004EC54A /* FrenetFrame.cpp */; };
 		725265C9162BB92B00108E03 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725265C8162BB92B00108E03 /* Quaternion.cpp */; };
 		728A92CE1620681800610171 /* ProtoToroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728A92CD1620681800610171 /* ProtoToroid.cpp */; };
 		728A92D116206AA300610171 /* Dimension3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728A92D016206AA300610171 /* Dimension3D.cpp */; };
-		728BBFB915F82F8F004612CC /* ProtoOrg002.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728BBFB815F82F8F004612CC /* ProtoOrg002.cpp */; };
 		72A22650163B9570000EFDC6 /* Matrix3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A2264F163B9570000EFDC6 /* Matrix3D.cpp */; };
+		72A49DD516472E0B002745ED /* ProtoTetrahedron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72A49DD416472E0B002745ED /* ProtoTetrahedron.cpp */; };
 		72C20FA215F5450000C993D7 /* VertexPacked_VNC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72C20FA115F5450000C993D7 /* VertexPacked_VNC.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -84,8 +84,8 @@
 		2AC8DE8E16235CCB00EE207F /* Curve3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Curve3d.h; sourceTree = "<group>"; };
 		2AF6D5AA15EBEF520092D12D /* Particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		2AF6D5B015EBF9D10092D12D /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
-		723C4592162F73A10052B358 /* Tube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tube.h; sourceTree = "<group>"; };
-		723C4593162F73F60052B358 /* Tube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tube.cpp; sourceTree = "<group>"; };
+		723C4592162F73A10052B358 /* ProtoTube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtoTube.h; sourceTree = "<group>"; };
+		723C4593162F73F60052B358 /* ProtoTube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoTube.cpp; sourceTree = "<group>"; };
 		7247BD1B162CE14A004EC54A /* FrenetFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrenetFrame.h; sourceTree = "<group>"; };
 		7247BD1C162CE2CB004EC54A /* FrenetFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrenetFrame.cpp; sourceTree = "<group>"; };
 		725265C7162BB87F00108E03 /* Quaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
@@ -94,10 +94,10 @@
 		728A92CD1620681800610171 /* ProtoToroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoToroid.cpp; sourceTree = "<group>"; };
 		728A92CF1620697E00610171 /* Dimension3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dimension3D.h; sourceTree = "<group>"; };
 		728A92D016206AA300610171 /* Dimension3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dimension3D.cpp; sourceTree = "<group>"; };
-		728BBFB715F81AB0004612CC /* ProtoOrg002.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtoOrg002.h; sourceTree = "<group>"; };
-		728BBFB815F82F8F004612CC /* ProtoOrg002.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoOrg002.cpp; sourceTree = "<group>"; };
 		72A2264E163B935D000EFDC6 /* Matrix3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matrix3D.h; sourceTree = "<group>"; };
 		72A2264F163B9570000EFDC6 /* Matrix3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix3D.cpp; sourceTree = "<group>"; };
+		72A49DD316472B8D002745ED /* ProtoTetrahedron.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtoTetrahedron.h; sourceTree = "<group>"; };
+		72A49DD416472E0B002745ED /* ProtoTetrahedron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProtoTetrahedron.cpp; sourceTree = "<group>"; };
 		72C20FA015F4F5B100C993D7 /* VertexPacked_VNC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VertexPacked_VNC.h; sourceTree = "<group>"; };
 		72C20FA115F5450000C993D7 /* VertexPacked_VNC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexPacked_VNC.cpp; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
@@ -168,13 +168,13 @@
 				2A8DE23715EFB2C400FC89C3 /* Face3D.h */,
 				2A8DE23815EFB2D000FC89C3 /* Face3D.cpp */,
 				2A413E2315F682020066A6C1 /* ProtoOrgBase.h */,
-				728BBFB715F81AB0004612CC /* ProtoOrg002.h */,
 				2A413E2715F7CF840066A6C1 /* ProtoOrgBase.cpp */,
-				728BBFB815F82F8F004612CC /* ProtoOrg002.cpp */,
 				728A92CC1620680100610171 /* ProtoToroid.h */,
 				728A92CD1620681800610171 /* ProtoToroid.cpp */,
-				723C4592162F73A10052B358 /* Tube.h */,
-				723C4593162F73F60052B358 /* Tube.cpp */,
+				723C4592162F73A10052B358 /* ProtoTube.h */,
+				723C4593162F73F60052B358 /* ProtoTube.cpp */,
+				72A49DD316472B8D002745ED /* ProtoTetrahedron.h */,
+				72A49DD416472E0B002745ED /* ProtoTetrahedron.cpp */,
 			);
 			name = geom;
 			sourceTree = "<group>";
@@ -383,15 +383,15 @@
 				72C20FA215F5450000C993D7 /* VertexPacked_VNC.cpp in Sources */,
 				2A413E2615F7CC710066A6C1 /* Tuple3i.cpp in Sources */,
 				2A413E2815F7CF840066A6C1 /* ProtoOrgBase.cpp in Sources */,
-				728BBFB915F82F8F004612CC /* ProtoOrg002.cpp in Sources */,
 				728A92CE1620681800610171 /* ProtoToroid.cpp in Sources */,
 				728A92D116206AA300610171 /* Dimension3D.cpp in Sources */,
 				2AC8DE8B16235C2F00EE207F /* Spline3d.cpp in Sources */,
 				2AC8DE8C16235C2F00EE207F /* Curve3d.cpp in Sources */,
 				725265C9162BB92B00108E03 /* Quaternion.cpp in Sources */,
 				7247BD1D162CE2CB004EC54A /* FrenetFrame.cpp in Sources */,
-				723C4594162F73F60052B358 /* Tube.cpp in Sources */,
+				723C4594162F73F60052B358 /* ProtoTube.cpp in Sources */,
 				72A22650163B9570000EFDC6 /* Matrix3D.cpp in Sources */,
+				72A49DD516472E0B002745ED /* ProtoTetrahedron.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

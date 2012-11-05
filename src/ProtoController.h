@@ -6,7 +6,8 @@
 #include "ProtoOrg002.h"
 #include "ProtoToroid.h"
 #include "Spline3d.h"
-#include "Tube.h"
+#include "ProtoTube.h"
+#include "ProtoTetrahedron.h"
 
 //#include "ProtoOrgBase.h"
 
@@ -14,17 +15,11 @@ class ProtoController : public ofBaseApp{
 
 public:
     
-    ijg::ProtoOrgBase pBase;
-    ijg::ProtoOrg002 pOrg02;
-    ijg::ProtoOrg002 pOrg02_b;
-    ijg::ProtoOrg002 pOrg02_c;
-    
-    ijg::ProtoOrg002 pOrg03;
     
     ijg::ProtoToroid toroid1;
-    
     ijg::Spline3d spline1;
-    ijg::Tube tube;
+    ijg::ProtoTube tube;
+    ijg::ProtoTetrahedron tetrahedron;
     
     ofEasyCam cam; // add mouse controls for camera movement
     
