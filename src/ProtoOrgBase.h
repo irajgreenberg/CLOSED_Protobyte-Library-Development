@@ -16,7 +16,8 @@
  */
 #include "ofmain.h"
 #include "Tuple3i.h"
-#include "Face3D.h"
+#include "ProtoFace.h"
+#include "ProtoEdge.h"
 #include "Dimension3D.h"
 
 #include <iostream>
@@ -39,7 +40,8 @@ namespace ijg {
         vector <Tuple3i> inds;
         vector <ofVec3f>  norms;
         vector <ofColor> colrs;
-        vector <Face3D>  faces;
+        vector <ProtoFace>  faces;
+        vector <ProtoEdge>  edges;
         
         // primitive buffers
         vector <GLint> indices;
@@ -60,7 +62,7 @@ namespace ijg {
         void clearAll();
         void display();
         void display(int renderStyle);
-        void displayNormals();
+        void displayNormals(float len);
         void move();
         
         //NOT CURRENTLY IMPLEMENTED

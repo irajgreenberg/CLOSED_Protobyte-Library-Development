@@ -8,6 +8,7 @@
 #include "Spline3d.h"
 #include "ProtoTube.h"
 #include "ProtoTetrahedron.h"
+#include "SubDivSurf.h"
 
 //#include "ProtoOrgBase.h"
 
@@ -20,6 +21,7 @@ public:
     ijg::Spline3d spline1;
     ijg::ProtoTube tube;
     ijg::ProtoTetrahedron tetrahedron;
+    ijg::SubDivSurf sds;
     
     ofEasyCam cam; // add mouse controls for camera movement
     

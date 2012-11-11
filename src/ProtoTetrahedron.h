@@ -30,7 +30,7 @@ namespace ijg{
         
     private:
         int subdivisionLevel;
-        std::vector<Face3D> tempFaces;
+        std::vector<ProtoFace> tempFaces;
     };
 
 }

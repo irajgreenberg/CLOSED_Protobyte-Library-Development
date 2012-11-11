@@ -99,7 +99,7 @@ void ProtoOrgBase::calcVerts()
     }
     // inds
     inds.push_back(Tuple3i(0, 1, 2));
-    faces.push_back(Face3D(&verts[0], &verts[1], &verts[2]));
+    faces.push_back(ProtoFace(&verts[0], &verts[1], &verts[2]));
 }
 
 void ProtoOrgBase::calcInds()
@@ -131,7 +131,7 @@ void ProtoOrgBase::calcFaces()
 {
     // calc faces
     for(int i=0; i<inds.size(); i++){
-        faces.push_back( Face3D(&verts[inds[i].elem0], &verts[inds[i].elem1], &verts[inds[i].elem2]) );
+        faces.push_back( ProtoFace(&verts[inds[i].elem0], &verts[inds[i].elem1], &verts[inds[i].elem2]) );
         //std::cout<<"inds["<<i<<"].elem0 = " <<inds[i].elem0 <<std::endl;
         //std::cout<<"inds["<<i<<"].elem1 = " <<inds[i].elem1 <<std::endl;
         //std::cout<<"inds["<<i<<"].elem2 = " <<inds[i].elem2 <<std::endl;
@@ -323,10 +323,11 @@ void ProtoOrgBase::quickFaceSort(vector <GLint>indices, vector <GLfloat>vertices
 }
 
 
-void  ProtoOrgBase::displayNormals()
+void  ProtoOrgBase::displayNormals(float len)
 {
+    glScalef(dim.w, dim.h, dim.d);
     for(int i=0; i<faces.size(); i++){
-        faces[i].displayNormal();
+        faces[i].displayNormal(len);
     }
     
 }
