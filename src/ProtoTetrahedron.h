@@ -31,6 +31,13 @@ namespace ijg{
     private:
         int subdivisionLevel;
         std::vector<ProtoFace> tempFaces;
+        // dyanmically insert vertices based on subdivision
+        std::vector<ofVec3f> tempVerts;
+        std::vector<ProtoEdge> tempEdges;
+        std::list<ofVec3f> dynamicVerts;
+        std::list<ofVec3f>::iterator it;
+        
+        void subdivide(std::vector<ProtoFace>&);
     };
 
 }

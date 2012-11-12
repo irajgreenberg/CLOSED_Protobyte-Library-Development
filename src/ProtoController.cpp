@@ -185,7 +185,7 @@ void ProtoController::draw(){
      glEnable(GL_LIGHTING);
     
     cam.begin();
-    
+     //glEnable(GL_DEPTH_TEST);
     glPushMatrix();
     //ofRotateX(180);
     glTranslatef(0, 0, -50);
@@ -202,22 +202,23 @@ void ProtoController::draw(){
     
     //glDepthMask(GL_FALSE); // turn off - for transparency
     
-       
-   
-    
     
     glDepthMask(GL_TRUE);
-    //toroid1.display();
+    toroid1.display();
+    //toroid1.displayNormals(.3);
     //tube.display();
     
     ofSetColor(155, 255, 255, 80);
-    glShadeModel (GL_FLAT);
-    //tetrahedron.display();
+    //glShadeModel (GL_FLAT);
+    glEnable(GL_LIGHTING);
+    tetrahedron.display();
+    glDisable(GL_LIGHTING);
+    tetrahedron.displayNormals(.3);
     
     // subdivision surface
-    sds.display();
-     glDisable(GL_LIGHTING);
-    sds.displayNormals(.5);
+    //sds.display();
+     //glDisable(GL_LIGHTING);
+    //sds.displayNormals(.5);
     
     glPopMatrix();
     

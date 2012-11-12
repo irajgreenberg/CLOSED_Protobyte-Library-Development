@@ -206,10 +206,10 @@ void ProtoOrgBase::display()
 	glVertexPointer (3, GL_FLOAT, 0, &vertices[0]);
 	glNormalPointer(GL_FLOAT, 0, &normals[0]);
 	
-	glPushMatrix();
+	//Draw Geometry
+    glPushMatrix();
     glTranslatef(loc.x, loc.y, loc.z);
     glScalef(dim.w, dim.h, dim.d);
-    //Draw Protobyte
 	glDrawElements (GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, &indices[0]);
     glPopMatrix();
 	
@@ -325,10 +325,12 @@ void ProtoOrgBase::quickFaceSort(vector <GLint>indices, vector <GLfloat>vertices
 
 void  ProtoOrgBase::displayNormals(float len)
 {
+    glPushMatrix();
     glScalef(dim.w, dim.h, dim.d);
     for(int i=0; i<faces.size(); i++){
         faces[i].displayNormal(len);
     }
+    glPopMatrix();
     
 }
 

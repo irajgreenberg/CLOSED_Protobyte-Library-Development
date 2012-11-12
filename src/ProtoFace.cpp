@@ -38,6 +38,19 @@ ProtoFace::ProtoFace(ofVec3f vs[3])
     calcCentroid();
 }
 
+ProtoFace::ProtoFace(const ProtoEdge& e0, const ProtoEdge& e1, const ProtoEdge& e2):
+e0(e0), e1(e1), e2(e2)
+{
+    
+}
+ProtoFace::ProtoFace(ProtoEdge* p_e0, ProtoEdge* p_e1, ProtoEdge* p_e2)
+{
+    p_edges[0] = p_e0;
+    p_edges[1] = p_e1;
+    p_edges[2] = p_e2;
+}
+
+
 
 ofVec3f& ProtoFace::getNormal()
 {

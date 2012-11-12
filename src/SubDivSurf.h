@@ -34,7 +34,7 @@ namespace ijg {
         int subdivLevel;
         ofVec3f v0, v1, v2;
         std::list<ofVec3f> tempVecs;
-        list<ofVec3f>::iterator it;
+        std::list<ofVec3f>::iterator it;
 
     };
 

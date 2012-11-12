@@ -49,7 +49,7 @@ void SubDivSurf::calcVerts()
     list<ofVec3f>::iterator i;
     for(i=tempVecs.begin(); i != tempVecs.end(); ++i) {
         verts.push_back(*i);
-        cout  << "tempVecs = " << *i << std::endl;
+        //cout  << "tempVecs = " << *i << std::endl;
     }
     
     for(int i=0; i< verts.size(); ++i) {

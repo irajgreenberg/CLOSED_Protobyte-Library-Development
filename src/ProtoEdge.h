@@ -15,6 +15,7 @@ namespace ijg{
     class ProtoEdge {
         
     public:
+        ProtoEdge();
         ProtoEdge(ofVec3f* p_v0, ofVec3f* p_v1);
         
         //ProtoEdge(const ProtoEdge& edge); // don't implement
@@ -25,10 +26,14 @@ namespace ijg{
         
         ofVec3f* getV0();
         ofVec3f* getV1();
+        ofVec3f* getMidV();
+        void setMidV(ofVec3f* p_midV);
+  
         
     private:
         ofVec3f* p_v0;
         ofVec3f* p_v1;
+        ofVec3f* p_midV;
     };
     
 }
