@@ -11,28 +11,30 @@
 
 using namespace ijg;
 
-ProtoFace::ProtoFace(ofVec3f* v0, ofVec3f* v1, ofVec3f* v2)
+
+
+ProtoFace:: ProtoFace()
 {
-    p_vecs[0] = v0;
-    p_vecs[1] = v1;
-    p_vecs[2] = v2;
-    
-    calcNormal();
-    calcCentroid();
 }
+
 
 ProtoFace::ProtoFace(const ofVec3f& v0, const ofVec3f& v1, const ofVec3f& v2):
 v0(v0), v1(v1), v2(v2)
 {
+    vecs[0] = v0;
+    vecs[1] = v1;
+    vecs[2] = v2;
     
+    calcNormal();
+    calcCentroid();  
 }
 
 ProtoFace::ProtoFace(ofVec3f vs[3])
 {
-    vecs = vs;
-    p_vecs[0] = &(vecs[0]);
-    p_vecs[1] = &(vecs[1]);
-    p_vecs[2] = &(vecs[2]);
+    v0 = vecs[0] = vs[0];
+    v1 = vecs[1] = vs[1];
+    v2 = vecs[2] = vs[2];
+
     
     calcNormal();
     calcCentroid();
@@ -41,19 +43,18 @@ ProtoFace::ProtoFace(ofVec3f vs[3])
 ProtoFace::ProtoFace(const ProtoEdge& e0, const ProtoEdge& e1, const ProtoEdge& e2):
 e0(e0), e1(e1), e2(e2)
 {
+    edges[0] = e0;
+    edges[1] = e1;
+    edges[2] = e2;
     
+    v0 = vecs[0] = edges[0].getV0();
+    v1 = vecs[1]= edges[1].getV0();
+    v2 = vecs[2]= edges[2].getV0();
+    
+    calcNormal();
+    calcCentroid();
 }
 
-ProtoFace::ProtoFace(ProtoEdge* p_e0, ProtoEdge* p_e1, ProtoEdge* p_e2)
-{
-    p_edges[0] = p_e0;
-    p_edges[1] = p_e1;
-    p_edges[2] = p_e2;
-    
-    p_vecs[0] = p_edges[0]->getV0();
-    p_vecs[1] = p_edges[1]->getV0();
-    p_vecs[2] = p_edges[2]->getV0();
-}
 
 
 
@@ -77,8 +78,8 @@ void ProtoFace::calcNormal()
      Nz = UxVy - UyVx
      */
     
-    ofVec3f U = *p_vecs[1]-*p_vecs[0];
-    ofVec3f V = *p_vecs[2]-*p_vecs[0];
+    ofVec3f U = vecs[1]-vecs[0];
+    ofVec3f V = vecs[2]-vecs[0];
     
     normal.x = U.y*V.z - U.z*V.y;
     normal.y = U.z*V.x - U.x*V.z;
@@ -91,9 +92,9 @@ void ProtoFace::calcNormal()
 
 void ProtoFace::calcCentroid()
 {
-    centroid = ofVec3f((p_vecs[0]->x+p_vecs[1]->x+p_vecs[2]->x)/3,
-                       (p_vecs[0]->y+p_vecs[1]->y+p_vecs[2]->y)/3,
-                       (p_vecs[0]->z+p_vecs[1]->z+p_vecs[2]->z)/3
+    centroid = ofVec3f((vecs[0].x+vecs[1].x+vecs[2].x)/3,
+                       (vecs[0].y+vecs[1].y+vecs[2].y)/3,
+                       (vecs[0].z+vecs[1].z+vecs[2].z)/3
                        );
    // std::cout<< "centroid = " << centroid << std::endl;
 }
@@ -104,9 +105,9 @@ void ProtoFace::display()
     ofBeginShape();
 
     //glNormal3fv(&n[i][0]);
-    ofVertex(p_vecs[0]->x, p_vecs[0]->y, p_vecs[0]->z);
-    ofVertex(p_vecs[1]->x, p_vecs[1]->y, p_vecs[1]->z);
-    ofVertex(p_vecs[2]->x, p_vecs[2]->y, p_vecs[2]->z);
+    ofVertex(vecs[0].x, vecs[0].y, vecs[0].z);
+    ofVertex(vecs[1].x, vecs[1].y, vecs[1].z);
+    ofVertex(vecs[2].x, vecs[2].y, vecs[2].z);
     ofEndShape(true);
 }
 

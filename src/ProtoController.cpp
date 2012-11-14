@@ -102,7 +102,7 @@ void ProtoController::setup(){
         vecs.push_back(ofVec3f(ofRandom(-300, 300), ofRandom(-300, 300), ofRandom(-300, 300)));
     }
 
-    //spline1 = Spline3d(vecs, 35, false, .5);
+    //spline1 = Spline3d(vecs, 15, false, .5);
     //spline1.setTerminalSmooth(false); // not working yet
     
     //tube = ProtoTube(ofVec3f(), Dimension3D(), spline1, 4, 40);
@@ -206,7 +206,7 @@ void ProtoController::draw(){
     glDepthMask(GL_TRUE);
     toroid1.display();
     //toroid1.displayNormals(.3);
-    //tube.display();
+   // tube.display();
     
     ofSetColor(155, 255, 255, 80);
     //glShadeModel (GL_FLAT);

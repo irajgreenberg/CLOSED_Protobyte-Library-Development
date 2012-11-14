@@ -35,8 +35,8 @@ ProtoOrgBase(loc, dim), path(path), radius(radius), crossSectionDetail(crossSect
     for (int i = 0; i < path.getVertsLength(); i++) {
        // ******** don't leave like this ********
         // testing varying radii
-        this->radii.push_back(.5+abs(cos(t+=PI/15))*radius*15);
-        //this->radii.push_back(radius);
+        //this->radii.push_back(.5+abs(cos(t+=PI/15))*radius*15);
+        this->radii.push_back(radius);
     }
     init();
 }
@@ -59,7 +59,7 @@ void ProtoTube::calcVerts()
             float y = sin(theta)*radii[i];
             
             float z = 0;
-            theta -= PI*2/crossSectionDetail;
+            theta += PI*2/crossSectionDetail;
             
             // transform to Frenet frame of reference
             float px = vecs[i+1].x + x*ff[i].getN().x + y*ff[i].getB().x;

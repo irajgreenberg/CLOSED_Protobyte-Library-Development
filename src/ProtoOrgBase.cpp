@@ -99,7 +99,7 @@ void ProtoOrgBase::calcVerts()
     }
     // inds
     inds.push_back(Tuple3i(0, 1, 2));
-    faces.push_back(ProtoFace(&verts[0], &verts[1], &verts[2]));
+    faces.push_back(ProtoFace(verts[0], verts[1], verts[2]));
 }
 
 void ProtoOrgBase::calcInds()
@@ -117,7 +117,7 @@ void ProtoOrgBase::calcNorms()
     for (int i=0; i<verts.size(); i++){
         ofVec3f temp;
         for (int j=0; j<faces.size(); j++){
-            if(&verts[i] == faces[j].p_vecs[0]|| &verts[i] == faces[j].p_vecs[1] || &verts[i] == faces[j].p_vecs[2]){
+            if(verts[i] == faces[j].vecs[0]|| verts[i] == faces[j].vecs[1] || verts[i] == faces[j].vecs[2]){
                 // std::cout << "in normals loop" << std::endl;
                 temp += faces[j].getNormal();
             }
@@ -131,7 +131,7 @@ void ProtoOrgBase::calcFaces()
 {
     // calc faces
     for(int i=0; i<inds.size(); i++){
-        faces.push_back( ProtoFace(&verts[inds[i].elem0], &verts[inds[i].elem1], &verts[inds[i].elem2]) );
+        faces.push_back( ProtoFace(verts[inds[i].elem0], verts[inds[i].elem1], verts[inds[i].elem2]) );
         //std::cout<<"inds["<<i<<"].elem0 = " <<inds[i].elem0 <<std::endl;
         //std::cout<<"inds["<<i<<"].elem1 = " <<inds[i].elem1 <<std::endl;
         //std::cout<<"inds["<<i<<"].elem2 = " <<inds[i].elem2 <<std::endl;
@@ -157,9 +157,10 @@ void ProtoOrgBase::calcPrimitives()
     
     // normals
     for (int i=0; i<norms.size(); i++){
-        normals.push_back(norms[i].x);
-        normals.push_back(norms[i].y);
-        normals.push_back(norms[i].z);
+       normals.push_back(norms[i].x);
+       normals.push_back(norms[i].y);
+       normals.push_back(norms[i].z);
+
     }
     
     // colors
@@ -355,9 +356,9 @@ void ProtoOrgBase::exportSTL()
         myfile <<  scientific << setprecision (7) <<"\tfacet normal " <<
         faces[i].getNormal().x << " "<<faces[i].getNormal().y << " "<<faces[i].getNormal().z << "\n"<<
         "\t\touter loop\n"<<
-        "\t\t\tvertex " << faces[i].p_vecs[0]->x << " "<<faces[i].p_vecs[0]->y << " "<<faces[i].p_vecs[0]->z << "\n"<<
-        "\t\t\tvertex " << faces[i].p_vecs[1]->x << " "<<faces[i].p_vecs[1]->y << " "<<faces[i].p_vecs[1]->z << "\n"<<
-        "\t\t\tvertex " << faces[i].p_vecs[2]->x << " "<<faces[i].p_vecs[2]->y << " "<<faces[i].p_vecs[2]->z << "\n"<<
+        "\t\t\tvertex " << faces[i].vecs[0].x << " "<<faces[i].vecs[0].y << " "<<faces[i].vecs[0].z << "\n"<<
+        "\t\t\tvertex " << faces[i].vecs[1].x << " "<<faces[i].vecs[1].y << " "<<faces[i].vecs[1].z << "\n"<<
+        "\t\t\tvertex " << faces[i].vecs[2].x << " "<<faces[i].vecs[2].y << " "<<faces[i].vecs[2].z << "\n"<<
         "\t\tendloop\n" <<
         "\tendfacet\n";
     }
