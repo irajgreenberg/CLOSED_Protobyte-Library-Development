@@ -15,7 +15,7 @@
  *
  */
 #include "ofmain.h"
-#include "Face3D.h"
+#include "ProtoFace.h"
 
 namespace ijg {
     
@@ -36,7 +36,7 @@ namespace ijg {
         vector <GLfloat>  vertices;
         vector <ofVec3f>  norms;
         vector <GLfloat>  normals;
-        vector <Face3D>  faces;
+        vector <ProtoFace>  faces;
         
         // to dynamically fill
         // vecs2D.push_back ( vector<ofVec3f>() );

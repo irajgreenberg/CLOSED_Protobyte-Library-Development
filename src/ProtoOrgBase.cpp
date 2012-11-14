@@ -33,15 +33,15 @@ loc(loc), dim(dim)
 }
 
 /*ProtoOrgBase::ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim, const ofColor& colr): // cster
-loc(loc), dim(dim){
-    
-    
-}*/
+ loc(loc), dim(dim){
+ 
+ 
+ }*/
 
 /*ProtoOrgBase::ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim, std::vector<ofColor> colrs): // cster
-loc(loc), dim(dim), {
-    
-}*/
+ loc(loc), dim(dim), {
+ 
+ }*/
 
 ProtoOrgBase::~ProtoOrgBase()
 {
@@ -99,7 +99,7 @@ void ProtoOrgBase::calcVerts()
     }
     // inds
     inds.push_back(Tuple3i(0, 1, 2));
-    faces.push_back(Face3D(&verts[0], &verts[1], &verts[2]));
+    faces.push_back(ProtoFace(&verts[0], &verts[1], &verts[2]));
 }
 
 void ProtoOrgBase::calcInds()
@@ -131,7 +131,7 @@ void ProtoOrgBase::calcFaces()
 {
     // calc faces
     for(int i=0; i<inds.size(); i++){
-        faces.push_back( Face3D(&verts[inds[i].elem0], &verts[inds[i].elem1], &verts[inds[i].elem2]) );
+        faces.push_back( ProtoFace(&verts[inds[i].elem0], &verts[inds[i].elem1], &verts[inds[i].elem2]) );
         //std::cout<<"inds["<<i<<"].elem0 = " <<inds[i].elem0 <<std::endl;
         //std::cout<<"inds["<<i<<"].elem1 = " <<inds[i].elem1 <<std::endl;
         //std::cout<<"inds["<<i<<"].elem2 = " <<inds[i].elem2 <<std::endl;
@@ -164,10 +164,10 @@ void ProtoOrgBase::calcPrimitives()
     
     // colors
     for (int i=0; i<verts.size(); i++){
-//         colors.push_back(ofRandom(1.0));
-//         colors.push_back(ofRandom(1.0));
-//         colors.push_back(ofRandom(1.0));
-//         colors.push_back(1.0);
+        //         colors.push_back(ofRandom(1.0));
+        //         colors.push_back(ofRandom(1.0));
+        //         colors.push_back(ofRandom(1.0));
+        //         colors.push_back(1.0);
         colors.push_back(.7);
         colors.push_back(.7);
         colors.push_back(.7);
@@ -187,8 +187,8 @@ void ProtoOrgBase::display()
     //std::cout << "indices.size() = " << indices.size() << std::endl;
     
     glEnableClientState (GL_VERTEX_ARRAY);
-	//glEnableClientState (GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_NORMAL_ARRAY);
+	 //glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+	 glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
 	
 	//bind the ground texture
@@ -206,10 +206,10 @@ void ProtoOrgBase::display()
 	glVertexPointer (3, GL_FLOAT, 0, &vertices[0]);
 	glNormalPointer(GL_FLOAT, 0, &normals[0]);
 	
-	glPushMatrix();
+	//Draw Geometry
+    glPushMatrix();
     glTranslatef(loc.x, loc.y, loc.z);
     glScalef(dim.w, dim.h, dim.d);
-    //Draw Protobyte
 	glDrawElements (GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, &indices[0]);
     glPopMatrix();
 	
@@ -323,11 +323,14 @@ void ProtoOrgBase::quickFaceSort(vector <GLint>indices, vector <GLfloat>vertices
 }
 
 
-void  ProtoOrgBase::displayNormals()
+void  ProtoOrgBase::displayNormals(float len)
 {
+    glPushMatrix();
+    glScalef(dim.w, dim.h, dim.d);
     for(int i=0; i<faces.size(); i++){
-        faces[i].displayNormal();
+        faces[i].displayNormal(len);
     }
+    glPopMatrix();
     
 }
 

@@ -66,7 +66,7 @@ void ProtoToroid::calcVerts()
             // fill vertices with floats
             verts.push_back( ofVec3f(x2, y, z2) );
             
-            theta -= PI*2/ringDetail;
+            theta += PI*2/ringDetail;
         }
         phi += PI*2/ringCount;
     }

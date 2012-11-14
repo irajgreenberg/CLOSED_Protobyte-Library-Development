@@ -58,7 +58,7 @@ void ProtoController::setup(){
     
     
     // Explicitely set face winding rule
-    glFrontFace(GL_CW); // or GL_CW
+    glFrontFace(GL_CCW); // or GL_CW
     
     // Hide back faces of surfaces
     glEnable(GL_CULL_FACE);
@@ -102,11 +102,11 @@ void ProtoController::setup(){
         vecs.push_back(ofVec3f(ofRandom(-300, 300), ofRandom(-300, 300), ofRandom(-300, 300)));
     }
 
-    spline1 = Spline3d(vecs, 35, false, .5);
+    //spline1 = Spline3d(vecs, 35, false, .5);
     //spline1.setTerminalSmooth(false); // not working yet
     
-    tube = ProtoTube(ofVec3f(), Dimension3D(), spline1, 4, 40);
-    tube.exportSTL();
+    //tube = ProtoTube(ofVec3f(), Dimension3D(), spline1, 4, 40);
+    //tube.exportSTL();
     
     // TETRAHEDRON
     tetrahedron = ProtoTetrahedron(ofVec3f(0, 0, 0), Dimension3D(200, 200, 200), 3);
@@ -126,6 +126,10 @@ void ProtoController::setup(){
     //
     //
     // Eventually Delete
+    
+    //(ofVec3f vecs[3], const ofVec3f& loc, const Dimension3D& dim, int subdivLevel):
+    ofVec3f vs[3] = { ofVec3f(cos(0),sin(0)),ofVec3f(cos(120*PI/180.0),sin(120*PI/180.0)), ofVec3f(cos(240*PI/180.0),sin(240*PI/180.0)) };
+    sds = SubDivSurf(vs, ofVec3f(0, 0, 0), Dimension3D(100, 100, 100), 2);
     
 }
 
@@ -178,8 +182,11 @@ void ProtoController::update(){
 
 //--------------------------------------------------------------
 void ProtoController::draw(){
-    cam.begin();
+     glEnable(GL_LIGHTING);
     
+    cam.begin();
+     //glEnable(GL_DEPTH_TEST);
+    glPushMatrix();
     //ofRotateX(180);
     glTranslatef(0, 0, -50);
     
@@ -187,27 +194,34 @@ void ProtoController::draw(){
 
     
     // draw opaque first
-    glDisable(GL_CULL_FACE);
+    //glDisable(GL_CULL_FACE);
     
-    glRotatef(ofGetFrameNum(), 1, 0, 0);
-    glRotatef(ofGetFrameNum(), 0, 0, 1);
+   // glRotatef(ofGetFrameNum(), 1, 0, 0);
+   // glRotatef(ofGetFrameNum(), 0, 0, 1);
    
     
     //glDepthMask(GL_FALSE); // turn off - for transparency
     
-       
-   
-    
     
     glDepthMask(GL_TRUE);
-    //toroid1.display();
+    toroid1.display();
+    //toroid1.displayNormals(.3);
     //tube.display();
     
     ofSetColor(155, 255, 255, 80);
     //glShadeModel (GL_FLAT);
+    glEnable(GL_LIGHTING);
     tetrahedron.display();
+    glDisable(GL_LIGHTING);
+    tetrahedron.displayNormals(.3);
+    tetrahedron.displayEdges();
     
-    ofPopMatrix();
+    // subdivision surface
+    //sds.display();
+     //glDisable(GL_LIGHTING);
+    //sds.displayNormals(.5);
+    
+    glPopMatrix();
     
     // glEnable(GL_DEPTH_TEST);
     // turn back on
@@ -236,23 +250,7 @@ void ProtoController::draw(){
     
     
     // testing area
-    //
-    //
-    /*
-    glBegin(GL_POLYGON);
-    for(int i=0; i<8; i++){
-        //m.rotate(PI/180, ofVec3f(.7, 1, .4), vs[i]); // axis/angle rot
-        //Quaternion q(ofVec3f(0, 0, 1), PI/180); // quaternion rot
-        //q.rotate(vs[i]);
-        glVertex3f(vs[i].x, vs[i].y, vs[i].z);
-    }
-    glEnd();
-    cam.end();
-    */
-    
-    //
-    //
-    // Eventually Delete
+ 
 }
 
 //--------------------------------------------------------------
