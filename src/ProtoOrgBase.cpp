@@ -33,15 +33,15 @@ loc(loc), dim(dim)
 }
 
 /*ProtoOrgBase::ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim, const ofColor& colr): // cster
-loc(loc), dim(dim){
-    
-    
-}*/
+ loc(loc), dim(dim){
+ 
+ 
+ }*/
 
 /*ProtoOrgBase::ProtoOrgBase(const ofVec3f& loc, const Dimension3D& dim, std::vector<ofColor> colrs): // cster
-loc(loc), dim(dim), {
-    
-}*/
+ loc(loc), dim(dim), {
+ 
+ }*/
 
 ProtoOrgBase::~ProtoOrgBase()
 {
@@ -164,10 +164,10 @@ void ProtoOrgBase::calcPrimitives()
     
     // colors
     for (int i=0; i<verts.size(); i++){
-//         colors.push_back(ofRandom(1.0));
-//         colors.push_back(ofRandom(1.0));
-//         colors.push_back(ofRandom(1.0));
-//         colors.push_back(1.0);
+        //         colors.push_back(ofRandom(1.0));
+        //         colors.push_back(ofRandom(1.0));
+        //         colors.push_back(ofRandom(1.0));
+        //         colors.push_back(1.0);
         colors.push_back(.7);
         colors.push_back(.7);
         colors.push_back(.7);
@@ -187,8 +187,8 @@ void ProtoOrgBase::display()
     //std::cout << "indices.size() = " << indices.size() << std::endl;
     
     glEnableClientState (GL_VERTEX_ARRAY);
-	//glEnableClientState (GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_NORMAL_ARRAY);
+	 //glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+	 glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
 	
 	//bind the ground texture

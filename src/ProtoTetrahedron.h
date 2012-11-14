@@ -27,6 +27,7 @@ namespace ijg{
         //getters/setters
         void setSubdivisionLevel(int subdivisionLevel = 3);
         int getSubdivisionLevel() const;
+        void displayEdges();
         
     private:
         int subdivisionLevel;

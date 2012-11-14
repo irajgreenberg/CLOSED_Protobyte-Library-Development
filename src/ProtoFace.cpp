@@ -43,11 +43,16 @@ e0(e0), e1(e1), e2(e2)
 {
     
 }
+
 ProtoFace::ProtoFace(ProtoEdge* p_e0, ProtoEdge* p_e1, ProtoEdge* p_e2)
 {
     p_edges[0] = p_e0;
     p_edges[1] = p_e1;
     p_edges[2] = p_e2;
+    
+    p_vecs[0] = p_edges[0]->getV0();
+    p_vecs[1] = p_edges[1]->getV0();
+    p_vecs[2] = p_edges[2]->getV0();
 }
 
 

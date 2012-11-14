@@ -214,6 +214,7 @@ void ProtoController::draw(){
     tetrahedron.display();
     glDisable(GL_LIGHTING);
     tetrahedron.displayNormals(.3);
+    tetrahedron.displayEdges();
     
     // subdivision surface
     //sds.display();
