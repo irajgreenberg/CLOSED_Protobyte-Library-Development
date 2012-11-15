@@ -73,7 +73,7 @@ void ProtoTetrahedron::calcVerts()
         }
         std::cout<<"\n";
     }
-
+    
     subdivide(tempFaces);
     
 }
@@ -91,23 +91,36 @@ void ProtoTetrahedron::subdivide(std::vector<ProtoFace>& faces)
      ***\  /***
      ****\/****
      *********/
-
+    
     std::vector<ProtoFace> fs;
     std::vector<ProtoEdge> es;
     
     // add mid points to each edge
-    for(int i=0; i<edges.size(); ++i){
-        ofVec3f v = (edges.at(i).getV0() + edges.at(i).getV1())/2;
-        tempVerts.push_back(v);
-        //std::cout << "v = " << v << std::endl;
-        edges.at(i).setMidV(v);
-        std::cout << "edges.at(i).getV0() = " << edges.at(i).getV0() << std::endl;
-        std::cout << "edges.at(i).getMidV() = " << edges.at(i).getMidV() << std::endl;
-        std::cout << "edges.at(i).getV2() = " << edges.at(i).getV1() << std::endl;
-    }
+    ///////////////////GET rid of this/////////////////////
+    /*for(int i=0; i<edges.size(); ++i){
+     ofVec3f v = (edges.at(i).getV0() + edges.at(i).getV1())/2;
+     tempVerts.push_back(v);
+     //std::cout << "v = " << v << std::endl;
+     edges.at(i).setMidV(v);
+     std::cout << "edges.at(i).getV0() = " << edges.at(i).getV0() << std::endl;
+     std::cout << "edges.at(i).getMidV() = " << edges.at(i).getMidV() << std::endl;
+     std::cout << "edges.at(i).getV2() = " << edges.at(i).getV1() << std::endl;
+     }*/
     
     // create new edges and faces
     for(int i=0; i<faces.size(); ++i){
+        
+        // add mid points to each edge
+        for(int j=0; j<3; ++j){
+            ofVec3f v = (faces.at(i).edges[j].getV0() + faces.at(i).edges[j].getV1())/2;
+            tempVerts.push_back(v);
+            faces.at(i).edges[j].setMidV(v);
+            //std::cout << "v = " << v << std::endl;
+            //faces.at(i).edges[0].setMidV(v);
+        }
+        
+        
+        
         // perimeter edges
         es.push_back(ProtoEdge(faces.at(i).edges[0].getV0(), faces.at(i).edges[0].getMidV()));
         es.push_back(ProtoEdge(faces.at(i).edges[0].getMidV(), faces.at(i).edges[0].getV1()));
@@ -129,41 +142,28 @@ void ProtoTetrahedron::subdivide(std::vector<ProtoFace>& faces)
         fs.push_back(ProtoFace(es.at(6 + 9*i), es.at(8 + 9*i), es.at(7 + 9*i)));
         fs.push_back(ProtoFace(es.at(7 + 9*i), es.at(5 + 9*i), es.at(3 + 9*i)));
     }
-    
-    edges.clear();
-    std::cout<< "es.size() = " << es.size() << std::endl;
-     std::cout<< "edges.size() = " << edges.size() << std::endl;
-    for(int i=0; i<es.size(); i++){
+
+    /*for(int i=0; i<es.size(); i++){
         std::cout<< "es"<<i<<": v0 = "<< es.at(i).getV0() << ", v1 = " << es.at(i).getV1() << std::endl;
-    }
+    }*/
     
-    //tempFaces.clear();
     tempFaces = fs;
     
     for( int i=0; i<fs.size(); ++i){
         /*std::cout<< *fs.at(i).e0.getV0() << std::endl;
-        std::cout<< *fs.at(i).e0.getV1() << std::endl;
-        std::cout<< *fs.at(i).e1.getV0() << std::endl;
-        std::cout<< *fs.at(i).e1.getV1() << std::endl;
+         std::cout<< *fs.at(i).e0.getV1() << std::endl;
+         std::cout<< *fs.at(i).e1.getV0() << std::endl;
+         std::cout<< *fs.at(i).e1.getV1() << std::endl;
          std::cout<< *fs.at(i).e2.getV0() << std::endl;
          std::cout<< *fs.at(i).e2.getV1() << std::endl;*/
     }
     
-    //edges.clear();
-    //edges.resize(es.size());
-    //std::cout<< "edges.size() = " << edges.size() << std::endl;
     edges = es;
-    //edges.resize(es.size());
-    //for(int i=0; i<edges.size(); i++){
-       // edges.at(i) = es.at(i);
-        //std::cout<< *edges.at(i).getV0() << std::endl;
-       // edges.push_back(es.at(i));
-    //}
     
     for(int i=0; i<edges.size(); i++){
         std::cout<< "edges"<<i<<": v0 = "<< edges.at(i).getV0() << ", v1 = " << edges.at(i).getV1() << std::endl;
     }
-
+    
 }
 
 void ProtoTetrahedron::calcInds()
@@ -187,22 +187,34 @@ int ProtoTetrahedron::getSubdivisionLevel() const
     return subdivisionLevel;
 }
 
- void ProtoTetrahedron::displayEdges()
+void ProtoTetrahedron::displayEdges()
 {
-    std::cout<< "tempFaces.size() = " << tempFaces.size()<< std::endl;
+    //std::cout<< "tempFaces.size() = " << tempFaces.size()<< std::endl;
     glPushMatrix();
     glTranslatef(loc.x, loc.y, loc.z);
     glScalef(dim.w, dim.h, dim.d);
     glColor3f(200, 200, 200);
-    glBegin(GL_LINES);
+    
     for( int i=0; i<tempFaces.size(); ++i){
-       // std::cout<< *tempFaces.at(i).e0.getV0() << std::endl;
-       // std::cout<< *tempFaces.at(i).e1.getV0() << std::endl;
-         //std::cout<< *tempFaces.at(i).e2.getV0() << std::endl;
-        glVertex3f(edges.at(i).getV0().x, edges.at(i).getV0().y, edges.at(i).getV0().z);
-        glVertex3f(edges.at(i).getV1().x, edges.at(i).getV1().y, edges.at(i).getV1().z);
-        //tempFaces.at(i).display();
+        glBegin(GL_LINES);
+        glVertex3f(tempFaces.at(i).edges[0].getV0().x, tempFaces.at(i).edges[0].getV0().y, tempFaces.at(i).edges[0].getV0().z);
+        glVertex3f(tempFaces.at(i).edges[0].getV1().x, tempFaces.at(i).edges[0].getV1().y, tempFaces.at(i).edges[0].getV1().z);
+        
+        glVertex3f(tempFaces.at(i).edges[1].getV0().x, tempFaces.at(i).edges[1].getV0().y, tempFaces.at(i).edges[1].getV0().z);
+        glVertex3f(tempFaces.at(i).edges[1].getV1().x, tempFaces.at(i).edges[1].getV1().y, tempFaces.at(i).edges[1].getV1().z);
+        
+        glVertex3f(tempFaces.at(i).edges[2].getV0().x, tempFaces.at(i).edges[2].getV0().y, tempFaces.at(i).edges[2].getV0().z);
+        glVertex3f(tempFaces.at(i).edges[2].getV1().x, tempFaces.at(i).edges[2].getV1().y, tempFaces.at(i).edges[2].getV1().z);
+        glEnd();
     }
-    glEnd();
+    // std::cout<< "edges.size() = " << edges.size()<< std::endl;
+    
+    for( int i=0; i<edges.size(); ++i){
+        glBegin(GL_LINES);
+        // glVertex3f(edges.at(i).getV0().x, edges.at(i).getV0().y, edges.at(i).getV0().z);
+        // glVertex3f(edges.at(i).getV1().x, edges.at(i).getV1().y, edges.at(i).getV1().z);
+        glEnd();
+    }
+    
     glPopMatrix();
 }
