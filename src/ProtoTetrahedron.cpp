@@ -56,6 +56,8 @@ void ProtoTetrahedron::calcVerts()
     edges.push_back(ProtoEdge(tempVerts.at(2), tempVerts.at(3)));
     edges.push_back(ProtoEdge(tempVerts.at(3), tempVerts.at(1)));
     
+    // std::cout<< " unitiailized mid pt = " << edges.at(0).getMidV()<<std::endl;
+    
     for(int i=0; i<edges.size(); i++){
         std::cout<< "edges"<<i<<": v0 = "<< edges.at(i).getV0() << ", v1 = " << edges.at(i).getV1() << std::endl;
     }
@@ -74,12 +76,19 @@ void ProtoTetrahedron::calcVerts()
         std::cout<<"\n";
     }
     
+    std::cout << "tempFaces.size() = " << tempFaces.size() << std::endl;
     subdivide(tempFaces);
+    std::cout << "tempFaces.size() = " << tempFaces.size() << std::endl;
+    //subdivide(tempFaces);
+    std::cout << "tempFaces.size() = " << tempFaces.size() << std::endl;
+    //subdivide(tempFaces);
+    //std::cout << "tempFaces.size() = " << tempFaces.size() << std::endl;
     
 }
 
 void ProtoTetrahedron::subdivide(std::vector<ProtoFace>& faces)
 {
+    
     /**********
      calculate
      subdivison
@@ -93,35 +102,27 @@ void ProtoTetrahedron::subdivide(std::vector<ProtoFace>& faces)
      *********/
     
     std::vector<ProtoFace> fs;
-    std::vector<ProtoEdge> es;
-    
-    // add mid points to each edge
-    ///////////////////GET rid of this/////////////////////
-    /*for(int i=0; i<edges.size(); ++i){
-     ofVec3f v = (edges.at(i).getV0() + edges.at(i).getV1())/2;
-     tempVerts.push_back(v);
-     //std::cout << "v = " << v << std::endl;
-     edges.at(i).setMidV(v);
-     std::cout << "edges.at(i).getV0() = " << edges.at(i).getV0() << std::endl;
-     std::cout << "edges.at(i).getMidV() = " << edges.at(i).getMidV() << std::endl;
-     std::cout << "edges.at(i).getV2() = " << edges.at(i).getV1() << std::endl;
-     }*/
+   
     
     // create new edges and faces
     for(int i=0; i<faces.size(); ++i){
         
-        // add mid points to each edge
+        // only divide edges if midV hasn't been set
         for(int j=0; j<3; ++j){
-            ofVec3f v = (faces.at(i).edges[j].getV0() + faces.at(i).edges[j].getV1())/2;
-            tempVerts.push_back(v);
-            faces.at(i).edges[j].setMidV(v);
-            //std::cout << "v = " << v << std::endl;
-            //faces.at(i).edges[0].setMidV(v);
+            if (faces.at(i).edges[j].getMidV().x == 0 && faces.at(i).edges[j].getMidV().y == 0 && faces.at(i).edges[j].getMidV().z == 0){
+                ofVec3f v = (faces.at(i).edges[j].getV0() + faces.at(i).edges[j].getV1())/2;
+                 //tempVerts.push_back(v);
+                faces.at(i).edges[j].setMidV(v);
+            } else {
+                std::cout<< "Mid point already exists"<< std::endl;
+            }
+            
         }
         
-        
-        
+      
         // perimeter edges
+        std::vector<ProtoEdge> es;
+        
         es.push_back(ProtoEdge(faces.at(i).edges[0].getV0(), faces.at(i).edges[0].getMidV()));
         es.push_back(ProtoEdge(faces.at(i).edges[0].getMidV(), faces.at(i).edges[0].getV1()));
         
@@ -136,33 +137,37 @@ void ProtoTetrahedron::subdivide(std::vector<ProtoFace>& faces)
         es.push_back(ProtoEdge(faces.at(i).edges[1].getMidV(), faces.at(i).edges[2].getMidV()));
         es.push_back(ProtoEdge(faces.at(i).edges[2].getMidV(), faces.at(i).edges[0].getMidV()));
         
+        
         // create new faces
-        fs.push_back(ProtoFace(es.at(1 + 9*i), es.at(4 + 9*i), es.at(8 + 9*i)));
-        fs.push_back(ProtoFace(es.at(0 + 9*i), es.at(6 + 9*i), es.at(2 + 9*i)));
-        fs.push_back(ProtoFace(es.at(6 + 9*i), es.at(8 + 9*i), es.at(7 + 9*i)));
-        fs.push_back(ProtoFace(es.at(7 + 9*i), es.at(5 + 9*i), es.at(3 + 9*i)));
+        fs.push_back(ProtoFace(es.at(1), es.at(8), es.at(4)));
+        fs.push_back(ProtoFace(es.at(0), es.at(2), es.at(6)));
+        fs.push_back(ProtoFace(es.at(6 ), es.at(7), es.at(8)));
+        fs.push_back(ProtoFace(es.at(7), es.at(3), es.at(5)));
+        
+        
+        /*
+         //ProtoEdge e0(faces.at(i).edges[0].getV0(), faces.at(i).edges[0].getMidV());
+         //ProtoEdge e1(faces.at(i).edges[1].getV0(), faces.at(i).edges[1].getMidV());
+         //ProtoEdge e2(faces.at(i).edges[1].getMidV(), faces.at(i).edges[0].getMidV());
+         //fs.push_back(ProtoFace(e0, e1, e2));
+         
+         /* ProtoEdge e2(faces.at(i).edges[0].getV0(), faces.at(i).edges[0].getMidV());
+         ProtoEdge e3(faces.at(i).edges[0].getV0(), faces.at(i).edges[0].getMidV());
+         ProtoEdge e4(faces.at(i).edges[0].getV0(), faces.at(i).edges[0].getMidV());
+         ProtoEdge e5(faces.at(i).edges[0].getV0(), faces.at(i).edges[0].getMidV());
+         ProtoEdge e6(faces.at(i).edges[0].getV0(), faces.at(i).edges[0].getMidV());
+         ProtoEdge e7(faces.at(i).edges[0].getV0(), faces.at(i).edges[0].getMidV());
+         ProtoEdge e8(faces.at(i).edges[0].getV0(), faces.at(i).edges[0].getMidV());*/
+        
+        //fs.push_back(ProtoFace(es.at(1 + 9*i), es.at(4 + 9*i), es.at(8 + 9*i)));
+        //fs.push_back(ProtoFace(es.at(0 + 9*i), es.at(6 + 9*i), es.at(2 + 9*i)));
+        //fs.push_back(ProtoFace(es.at(6 + 9*i), es.at(8 + 9*i), es.at(7 + 9*i)));
+        //fs.push_back(ProtoFace(es.at(7 + 9*i), es.at(5 + 9*i), es.at(3 + 9*i)));
     }
-
-    /*for(int i=0; i<es.size(); i++){
-        std::cout<< "es"<<i<<": v0 = "<< es.at(i).getV0() << ", v1 = " << es.at(i).getV1() << std::endl;
-    }*/
     
+    
+    //edges = es;
     tempFaces = fs;
-    
-    for( int i=0; i<fs.size(); ++i){
-        /*std::cout<< *fs.at(i).e0.getV0() << std::endl;
-         std::cout<< *fs.at(i).e0.getV1() << std::endl;
-         std::cout<< *fs.at(i).e1.getV0() << std::endl;
-         std::cout<< *fs.at(i).e1.getV1() << std::endl;
-         std::cout<< *fs.at(i).e2.getV0() << std::endl;
-         std::cout<< *fs.at(i).e2.getV1() << std::endl;*/
-    }
-    
-    edges = es;
-    
-    for(int i=0; i<edges.size(); i++){
-        std::cout<< "edges"<<i<<": v0 = "<< edges.at(i).getV0() << ", v1 = " << edges.at(i).getV1() << std::endl;
-    }
     
 }
 

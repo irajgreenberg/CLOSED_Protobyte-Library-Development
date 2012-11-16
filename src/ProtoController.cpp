@@ -109,7 +109,7 @@ void ProtoController::setup(){
     //tube.exportSTL();
     
     // TETRAHEDRON
-    tetrahedron = ProtoTetrahedron(ofVec3f(0, 0, 0), Dimension3D(200, 200, 200), 3);
+    tetrahedron = ProtoTetrahedron(ofVec3f(0, 0, 0), Dimension3D(300, 300, 300), 3);
     
     
     
@@ -204,7 +204,7 @@ void ProtoController::draw(){
     
     
     glDepthMask(GL_TRUE);
-    toroid1.display();
+    //toroid1.display();
     //toroid1.displayNormals(.3);
    // tube.display();
     
